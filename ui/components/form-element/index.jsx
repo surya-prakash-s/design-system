@@ -149,28 +149,28 @@ FormElementSpanFauxLabel.defaultProps = {
 };
 
 export const FormElementTooltip = props => {
-  const { showTooltip,fieldLevelMessage } = props;
+  const { id, showTooltip, fieldLevelMessage } = props;
 
   return (
     <div className="slds-form-element__icon">
       <ButtonIcon
-        aria-describedby={showTooltip && 'help'}
+        aria-describedby={showTooltip && (id || 'help')}
         symbol="info"
         assistiveText="Help"
+        title="Help"
       />
       {showTooltip && (
         <Tooltip
           className="slds-nubbin_bottom-left"
-          id="help"
+          id={id || 'help'}
           style={{
             position: 'absolute',
             top: '-45px',
             left: '-15px',
-            width: fieldLevelMessage ? '220px':'170px'
+            width: fieldLevelMessage ? '220px' : '170px'
           }}
         >
-          {fieldLevelMessage  || "Some helpful information."}
-
+          {fieldLevelMessage || 'Some helpful information.'}
         </Tooltip>
       )}
     </div>
@@ -178,6 +178,7 @@ export const FormElementTooltip = props => {
 };
 
 FormElementTooltip.propTypes = {
+  id: PropTypes.string,
   showTooltip: PropTypes.bool,
   fieldLevelMessage: PropTypes.string
 };
@@ -279,7 +280,14 @@ FieldsetWrapper.propTypes = {
 };
 
 export const Legend = props => {
-  const { isRequired, hasTooltip, hasHiddenLabel, children } = props;
+  const {
+    id,
+    isRequired,
+    hasTooltip,
+    showTooltip,
+    hasHiddenLabel,
+    children
+  } = props;
 
   return (
     <React.Fragment>
@@ -296,20 +304,18 @@ export const Legend = props => {
         )}
         {children}
       </legend>
-      {hasTooltip && (
-        <div className="slds-form-element__icon">
-          <ButtonIcon symbol="info" assistiveText="Help" />
-        </div>
-      )}
+      {hasTooltip && <FormElementTooltip id={id} showTooltip={showTooltip} />}
     </React.Fragment>
   );
 };
 
 Legend.propTypes = {
+  id: PropTypes.string,
   children: PropTypes.node,
   isRequired: PropTypes.bool,
   hasHiddenLabel: PropTypes.bool,
-  hasTooltip: PropTypes.bool
+  hasTooltip: PropTypes.bool,
+  showTooltip: PropTypes.bool
 };
 
 /**
@@ -420,13 +426,23 @@ export const FormElement = props => {
             showRequiredIndicator={showRequiredIndicator}
           />
         ))}
-      {hasTooltip && <FormElementTooltip showTooltip={showTooltip} {...(fieldLevelMessage && { fieldLevelMessage })}/>}
+      {hasTooltip && (
+        <FormElementTooltip
+          id={inputId ? `${inputId}-help` : undefined}
+          showTooltip={showTooltip}
+          {...(fieldLevelMessage && { fieldLevelMessage })}
+        />
+      )}
       <FormElementControl
         className={classNames(inputIconPositionClasses, formControlClassName)}
       >
         {isEdited && (
           <div className="slds-form-element__undo">
-            <ButtonIcon symbol="undo" assistiveText={`Undo ${labelContent}`} />
+            <ButtonIcon
+              symbol="undo"
+              assistiveText={`Undo ${labelContent}`}
+              title={`Undo ${labelContent}`}
+            />
           </div>
         )}
         {children}
@@ -485,6 +501,7 @@ export const Fieldset = props => {
     hasError,
     hasCompoundFields,
     hasTooltip,
+    showTooltip,
     hasHiddenLabel,
     errorId,
     inlineMessage,
@@ -505,8 +522,10 @@ export const Fieldset = props => {
       isDeprecated={isDeprecated}
     >
       <Legend
+        id={id ? `${id}-help` : undefined}
         isRequired={isRequired}
         hasTooltip={hasTooltip}
+        showTooltip={showTooltip}
         hasHiddenLabel={hasHiddenLabel}
       >
         {label}
@@ -534,6 +553,7 @@ Fieldset.propTypes = {
   hasHiddenLabel: PropTypes.bool,
   hasCompoundFields: PropTypes.bool,
   hasTooltip: PropTypes.bool,
+  showTooltip: PropTypes.bool,
   hasError: PropTypes.bool,
   errorId: PropTypes.string,
   inlineMessage: PropTypes.string,

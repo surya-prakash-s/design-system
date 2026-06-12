@@ -228,7 +228,7 @@ export let states = [
           </abbr>{' '}
           Radio Group Label
         </Legend>
-        <FormElementTooltip showTooltip="true" />
+        <FormElementTooltip showTooltip />
         <FormElementControl>
           <Radio checked label="Radio Label One" />
           <Radio label="Radio Label Two" />

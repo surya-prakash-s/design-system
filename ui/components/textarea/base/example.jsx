@@ -83,7 +83,12 @@ export let states = [
         errorId="error-01"
         inlineMessage="Enter a value."
       >
-        <Textarea id={textareaId} required aria-describedby="error-01" />
+        <Textarea
+          id={textareaId}
+          required
+          aria-describedby="error-01"
+          aria-invalid="true"
+        />
       </FormElement>
     )
   },

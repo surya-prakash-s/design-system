@@ -53,7 +53,12 @@ export let states = [
         hasError
         inlineMessage="This field is required"
       >
-        <Input id="input-unique-id-03" required aria-describedby={errorId} />
+        <Input
+          id="input-unique-id-03"
+          required
+          aria-describedby={errorId}
+          aria-invalid="true"
+        />
       </FormElement>
     ),
   },

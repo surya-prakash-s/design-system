@@ -199,7 +199,7 @@ export const FormElementHelpMessage = props => {
 
 FormElementHelpMessage.propTypes = {
   errorId: PropTypes.string,
-  hasHiddenInlineMessage: PropTypes.boolean,
+  hasHiddenInlineMessage: PropTypes.bool,
   children: PropTypes.node
 };
 
@@ -385,6 +385,15 @@ export const FormElement = props => {
     inputIconPositionClasses = 'slds-input-has-icon slds-input-has-icon_right';
   }
 
+  const childrenWithProps = React.Children.map(children, child => {
+    if (React.isValidElement(child)) {
+      return React.cloneElement(child, {
+        'aria-invalid': hasError ? true : child.props['aria-invalid']
+      });
+    }
+    return child;
+  });
+
   return (
     <SimpleFormElementWrapper
       {...rest}
@@ -429,7 +438,7 @@ export const FormElement = props => {
             <ButtonIcon symbol="undo" assistiveText={`Undo ${labelContent}`} />
           </div>
         )}
-        {children}
+        {childrenWithProps}
       </FormElementControl>
       {inlineMessage && (
         <FormElementHelpMessage hasHiddenInlineMessage={hasHiddenInlineMessage} errorId={errorId}>

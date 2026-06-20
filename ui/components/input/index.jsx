@@ -38,7 +38,7 @@ const Input = props => {
       defaultValue={defaultValue}
       disabled={disabled}
       required={required}
-      aria-invalid={props['aria-describedby'] ? 'true' : undefined}
+      aria-invalid={props['aria-invalid']}
       role={role}
       tabIndex={tabIndex}
     />
@@ -83,7 +83,8 @@ Input.propTypes = {
   role: PropTypes.string,
   tabIndex: PropTypes.string,
   isBare: PropTypes.bool,
-  hasBorders: PropTypes.bool
+  hasBorders: PropTypes.bool,
+  'aria-invalid': PropTypes.bool
 };
 
 export default Input;

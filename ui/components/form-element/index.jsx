@@ -199,7 +199,7 @@ export const FormElementHelpMessage = props => {
 
 FormElementHelpMessage.propTypes = {
   errorId: PropTypes.string,
-  hasHiddenInlineMessage: PropTypes.boolean,
+  hasHiddenInlineMessage: PropTypes.bool,
   children: PropTypes.node
 };
 
@@ -429,7 +429,13 @@ export const FormElement = props => {
             <ButtonIcon symbol="undo" assistiveText={`Undo ${labelContent}`} />
           </div>
         )}
-        {children}
+        {hasError
+          ? React.Children.map(children, child =>
+              React.isValidElement(child)
+                ? React.cloneElement(child, { 'aria-invalid': 'true' })
+                : child
+            )
+          : children}
       </FormElementControl>
       {inlineMessage && (
         <FormElementHelpMessage hasHiddenInlineMessage={hasHiddenInlineMessage} errorId={errorId}>

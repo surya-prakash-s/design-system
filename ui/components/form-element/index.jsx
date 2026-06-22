@@ -62,11 +62,19 @@ SimpleFormElementWrapper.propTypes = {
 };
 
 export const FormElementControl = props => {
-  const { className, children } = props;
+  const { className, children, hasError } = props;
 
   return (
     <div className={classNames('slds-form-element__control', className)}>
-      {children}
+      {hasError
+        ? React.Children.map(children, child =>
+            React.isValidElement(child)
+              ? React.cloneElement(child, {
+                  'aria-invalid': 'true'
+                })
+              : child
+          )
+        : children}
     </div>
   );
 };
@@ -199,7 +207,7 @@ export const FormElementHelpMessage = props => {
 
 FormElementHelpMessage.propTypes = {
   errorId: PropTypes.string,
-  hasHiddenInlineMessage: PropTypes.boolean,
+  hasHiddenInlineMessage: PropTypes.bool,
   children: PropTypes.node
 };
 
@@ -423,6 +431,7 @@ export const FormElement = props => {
       {hasTooltip && <FormElementTooltip showTooltip={showTooltip} {...(fieldLevelMessage && { fieldLevelMessage })}/>}
       <FormElementControl
         className={classNames(inputIconPositionClasses, formControlClassName)}
+        hasError={hasError}
       >
         {isEdited && (
           <div className="slds-form-element__undo">

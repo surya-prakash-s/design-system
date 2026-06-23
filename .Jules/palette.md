@@ -1,0 +1,3 @@
+## 2025-05-21 - [A11y Propagation in Form Elements]
+**Learning:** Propagating accessibility states (like `aria-invalid`) from form wrappers to child controls via `React.Children.map` and `React.cloneElement` ensures consistent screen reader feedback without requiring manual prop syncing by consumers. This reduces the risk of accessibility gaps where the visual error state (e.g., `slds-has-error`) is present but the programmatic state is missing.
+**Action:** When building wrapper components for form fields (like `FormElement` or `Fieldset`), use child cloning with `React.isValidElement` checks to automatically inject relevant ARIA attributes based on the wrapper's state.

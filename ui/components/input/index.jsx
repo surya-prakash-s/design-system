@@ -27,6 +27,11 @@ const Input = props => {
     'slds-input_borders': readOnly && hasBorders
   };
 
+  const ariaInvalid =
+    props['aria-invalid'] !== undefined
+      ? props['aria-invalid']
+      : undefined;
+
   return (
     <input
       {...props}
@@ -38,7 +43,7 @@ const Input = props => {
       defaultValue={defaultValue}
       disabled={disabled}
       required={required}
-      aria-invalid={props['aria-describedby'] ? 'true' : undefined}
+      aria-invalid={ariaInvalid}
       role={role}
       tabIndex={tabIndex}
     />

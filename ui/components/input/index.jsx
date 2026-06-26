@@ -18,7 +18,8 @@ const Input = props => {
     role,
     tabIndex,
     isBare,
-    hasBorders
+    hasBorders,
+    'aria-invalid': ariaInvalid
   } = props;
 
   const computedClassNames = {
@@ -38,7 +39,7 @@ const Input = props => {
       defaultValue={defaultValue}
       disabled={disabled}
       required={required}
-      aria-invalid={props['aria-describedby'] ? 'true' : undefined}
+      aria-invalid={ariaInvalid || (props['aria-describedby'] ? 'true' : undefined)}
       role={role}
       tabIndex={tabIndex}
     />

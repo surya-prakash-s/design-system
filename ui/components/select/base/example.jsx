@@ -19,6 +19,7 @@ export let Select = props => {
   const renderSelect = () => (
     <select
       aria-describedby={props['aria-describedby']}
+      aria-invalid={props['aria-invalid']}
       className={classNames('slds-select', props.className)}
       disabled={props.disabled}
       id={props.id || defaultSelectId}
@@ -43,7 +44,8 @@ Select.propTypes = {
   hasNoContainer: PropTypes.bool,
   id: PropTypes.string,
   multiple: PropTypes.bool,
-  required: PropTypes.bool
+  required: PropTypes.bool,
+  'aria-invalid': PropTypes.string
 };
 
 /// ///////////////////////////////////////////

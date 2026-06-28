@@ -17,6 +17,7 @@ export const CheckboxPrimitive = props => {
       defaultChecked={isChecked}
       required={isRequired}
       aria-describedby={errorId}
+      aria-invalid={props['aria-invalid']}
     />
   );
 };
@@ -28,7 +29,8 @@ CheckboxPrimitive.propTypes = {
   isDisabled: PropTypes.bool,
   isChecked: PropTypes.bool,
   isRequired: PropTypes.bool,
-  errorId: PropTypes.string
+  errorId: PropTypes.string,
+  'aria-invalid': PropTypes.string
 };
 
 export const CheckboxStandalone = props => {
@@ -57,5 +59,6 @@ CheckboxStandalone.propTypes = {
   isDisabled: PropTypes.bool,
   isChecked: PropTypes.bool,
   isRequired: PropTypes.bool,
-  errorId: PropTypes.string
+  errorId: PropTypes.string,
+  'aria-invalid': PropTypes.string
 };

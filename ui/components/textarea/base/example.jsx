@@ -23,18 +23,22 @@ export let Textarea = props => (
     id={props.id || textareaId}
     className={classNames('slds-textarea', props.className)}
     placeholder={props.placeholder}
+    aria-invalid={props['aria-invalid']}
   />
 );
 
 Textarea.propTypes = {
   id: PropTypes.string,
   className: PropTypes.string,
-  placeholder: PropTypes.string
+  placeholder: PropTypes.string,
+  'aria-invalid': PropTypes.string
 };
 
 Textarea.defaultProps = {
   placeholder: 'Placeholder text…'
 };
+
+Textarea.displayName = 'Textarea';
 
 /// ///////////////////////////////////////////
 // Export

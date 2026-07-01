@@ -38,12 +38,20 @@ const Input = props => {
       defaultValue={defaultValue}
       disabled={disabled}
       required={required}
-      aria-invalid={props['aria-describedby'] ? 'true' : undefined}
+      aria-invalid={
+        props['aria-invalid'] !== undefined
+          ? props['aria-invalid']
+          : props['aria-describedby']
+          ? 'true'
+          : undefined
+      }
       role={role}
       tabIndex={tabIndex}
     />
   );
 };
+
+Input.displayName = 'Input';
 
 Input.defaultProps = {
   type: 'text'

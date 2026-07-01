@@ -25,6 +25,7 @@ export let Textarea = props => (
     placeholder={props.placeholder}
   />
 );
+Textarea.displayName = 'Textarea';
 
 Textarea.propTypes = {
   id: PropTypes.string,

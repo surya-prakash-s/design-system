@@ -21,6 +21,8 @@ export const CheckboxPrimitive = props => {
   );
 };
 
+CheckboxPrimitive.displayName = 'CheckboxPrimitive';
+
 CheckboxPrimitive.propTypes = {
   id: PropTypes.string,
   name: PropTypes.string,

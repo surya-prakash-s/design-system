@@ -36,6 +36,9 @@ export let Select = props => {
 
   return props.hasNoContainer ? renderSelect() : renderWithContainter();
 };
+
+Select.displayName = 'Select';
+
 Select.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,

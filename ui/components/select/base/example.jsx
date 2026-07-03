@@ -19,6 +19,7 @@ export let Select = props => {
   const renderSelect = () => (
     <select
       aria-describedby={props['aria-describedby']}
+      aria-invalid={props['aria-invalid']}
       className={classNames('slds-select', props.className)}
       disabled={props.disabled}
       id={props.id || defaultSelectId}
@@ -45,6 +46,8 @@ Select.propTypes = {
   multiple: PropTypes.bool,
   required: PropTypes.bool
 };
+
+Select.displayName = 'Select';
 
 /// ///////////////////////////////////////////
 // State Constructor(s)

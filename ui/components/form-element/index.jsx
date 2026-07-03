@@ -62,18 +62,33 @@ SimpleFormElementWrapper.propTypes = {
 };
 
 export const FormElementControl = props => {
-  const { className, children } = props;
+  const { className, children, hasError } = props;
 
   return (
     <div className={classNames('slds-form-element__control', className)}>
-      {children}
+      {hasError
+        ? React.Children.map(children, child => {
+            if (
+              React.isValidElement(child) &&
+              (typeof child.type === 'function' ||
+                typeof child.type === 'object') &&
+              ['Input', 'Select', 'Textarea', 'CheckboxPrimitive'].includes(
+                child.type.displayName || child.type.name
+              )
+            ) {
+              return React.cloneElement(child, { 'aria-invalid': 'true' });
+            }
+            return child;
+          })
+        : children}
     </div>
   );
 };
 
 FormElementControl.propTypes = {
   children: PropTypes.node,
-  className: PropTypes.string
+  className: PropTypes.string,
+  hasError: PropTypes.bool
 };
 
 export const FormElementLabel = props => {
@@ -188,10 +203,11 @@ export const FormElementHelpMessage = props => {
   return (
     <div
       className={classNames(
-        "slds-form-element__help",
-        props.hasHiddenInlineMessage && 'slds-assistive-text',
+        'slds-form-element__help',
+        props.hasHiddenInlineMessage && 'slds-assistive-text'
       )}
-      id={errorId}>
+      id={errorId}
+    >
       {children}
     </div>
   );
@@ -199,7 +215,7 @@ export const FormElementHelpMessage = props => {
 
 FormElementHelpMessage.propTypes = {
   errorId: PropTypes.string,
-  hasHiddenInlineMessage: PropTypes.boolean,
+  hasHiddenInlineMessage: PropTypes.bool,
   children: PropTypes.node
 };
 
@@ -423,6 +439,7 @@ export const FormElement = props => {
       {hasTooltip && <FormElementTooltip showTooltip={showTooltip} {...(fieldLevelMessage && { fieldLevelMessage })}/>}
       <FormElementControl
         className={classNames(inputIconPositionClasses, formControlClassName)}
+        hasError={hasError}
       >
         {isEdited && (
           <div className="slds-form-element__undo">
@@ -511,7 +528,7 @@ export const Fieldset = props => {
       >
         {label}
       </Legend>
-      <FormElementControl>{children}</FormElementControl>
+      <FormElementControl hasError={hasError}>{children}</FormElementControl>
       {inlineMessage && (
         <FormElementHelpMessage errorId={errorId}>
           {inlineMessage}

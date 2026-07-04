@@ -19,6 +19,9 @@ export let Select = props => {
   const renderSelect = () => (
     <select
       aria-describedby={props['aria-describedby']}
+      aria-invalid={
+        props['aria-invalid'] || (props['aria-describedby'] ? 'true' : undefined)
+      }
       className={classNames('slds-select', props.className)}
       disabled={props.disabled}
       id={props.id || defaultSelectId}
@@ -36,6 +39,8 @@ export let Select = props => {
 
   return props.hasNoContainer ? renderSelect() : renderWithContainter();
 };
+Select.displayName = 'Select';
+
 Select.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,

@@ -38,7 +38,13 @@ const Input = props => {
       defaultValue={defaultValue}
       disabled={disabled}
       required={required}
-      aria-invalid={props['aria-describedby'] ? 'true' : undefined}
+      aria-invalid={
+        props['aria-invalid'] !== undefined
+          ? props['aria-invalid']
+          : props['aria-describedby']
+          ? 'true'
+          : undefined
+      }
       role={role}
       tabIndex={tabIndex}
     />
@@ -48,6 +54,8 @@ const Input = props => {
 Input.defaultProps = {
   type: 'text'
 };
+
+Input.displayName = 'Input';
 
 Input.propTypes = {
   id: PropTypes.string,

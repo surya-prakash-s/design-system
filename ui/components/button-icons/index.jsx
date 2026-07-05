@@ -130,9 +130,7 @@ class ButtonIcon extends Component {
             symbol="down"
           />
         )}
-        <span className="slds-assistive-text">
-          {assistiveText || 'Provide description of action'}
-        </span>
+        <span className="slds-assistive-text">{assistiveText}</span>
       </button>
     );
   }
@@ -142,7 +140,7 @@ ButtonIcon.propTypes = {
   id: PropTypes.string,
   symbol: PropTypes.string,
   theme: PropTypes.string,
-  assistiveText: PropTypes.string,
+  assistiveText: PropTypes.string.isRequired,
   useCurrentColor: PropTypes.bool,
   title: PropTypes.string
 };

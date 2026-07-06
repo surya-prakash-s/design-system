@@ -17,10 +17,12 @@ export const CheckboxPrimitive = props => {
       defaultChecked={isChecked}
       required={isRequired}
       aria-describedby={errorId}
+      aria-invalid={props['aria-invalid']}
     />
   );
 };
 
+CheckboxPrimitive.displayName = 'CheckboxPrimitive';
 CheckboxPrimitive.propTypes = {
   id: PropTypes.string,
   name: PropTypes.string,
@@ -44,12 +46,14 @@ export const CheckboxStandalone = props => {
         isChecked={isChecked}
         isRequired={isRequired}
         errorId={errorId}
+        aria-invalid={props['aria-invalid']}
       />
       <span className="slds-checkbox_faux" />
     </span>
   );
 };
 
+CheckboxStandalone.displayName = 'CheckboxStandalone';
 CheckboxStandalone.propTypes = {
   id: PropTypes.string,
   name: PropTypes.string,

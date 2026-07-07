@@ -188,10 +188,11 @@ export const FormElementHelpMessage = props => {
   return (
     <div
       className={classNames(
-        "slds-form-element__help",
-        props.hasHiddenInlineMessage && 'slds-assistive-text',
+        'slds-form-element__help',
+        props.hasHiddenInlineMessage && 'slds-assistive-text'
       )}
-      id={errorId}>
+      id={errorId}
+    >
       {children}
     </div>
   );
@@ -199,7 +200,7 @@ export const FormElementHelpMessage = props => {
 
 FormElementHelpMessage.propTypes = {
   errorId: PropTypes.string,
-  hasHiddenInlineMessage: PropTypes.boolean,
+  hasHiddenInlineMessage: PropTypes.bool,
   children: PropTypes.node
 };
 
@@ -426,7 +427,12 @@ export const FormElement = props => {
       >
         {isEdited && (
           <div className="slds-form-element__undo">
-            <ButtonIcon symbol="undo" assistiveText={`Undo ${labelContent}`} />
+            <ButtonIcon
+              symbol="undo"
+              assistiveText={
+                <React.Fragment>Undo {labelContent}</React.Fragment>
+              }
+            />
           </div>
         )}
         {children}

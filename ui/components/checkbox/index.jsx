@@ -5,10 +5,19 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 export const CheckboxPrimitive = props => {
-  const { id, name, value, isDisabled, isChecked, isRequired, errorId } = props;
+  const {
+    id,
+    name,
+    value,
+    isDisabled,
+    isChecked,
+    isRequired,
+    errorId
+  } = props;
 
   return (
     <input
+      {...props}
       type="checkbox"
       id={id}
       name={name || 'label'}
@@ -17,6 +26,7 @@ export const CheckboxPrimitive = props => {
       defaultChecked={isChecked}
       required={isRequired}
       aria-describedby={errorId}
+      aria-invalid={props['aria-invalid']}
     />
   );
 };
@@ -28,15 +38,27 @@ CheckboxPrimitive.propTypes = {
   isDisabled: PropTypes.bool,
   isChecked: PropTypes.bool,
   isRequired: PropTypes.bool,
-  errorId: PropTypes.string
+  errorId: PropTypes.string,
+  'aria-invalid': PropTypes.oneOfType([PropTypes.bool, PropTypes.string])
 };
 
+CheckboxPrimitive.displayName = 'CheckboxPrimitive';
+
 export const CheckboxStandalone = props => {
-  const { id, name, value, isDisabled, isChecked, isRequired, errorId } = props;
+  const {
+    id,
+    name,
+    value,
+    isDisabled,
+    isChecked,
+    isRequired,
+    errorId
+  } = props;
 
   return (
     <span className="slds-checkbox slds-checkbox_standalone">
       <CheckboxPrimitive
+        {...props}
         id={id}
         name={name}
         value={value}
@@ -57,5 +79,8 @@ CheckboxStandalone.propTypes = {
   isDisabled: PropTypes.bool,
   isChecked: PropTypes.bool,
   isRequired: PropTypes.bool,
-  errorId: PropTypes.string
+  errorId: PropTypes.string,
+  'aria-invalid': PropTypes.oneOfType([PropTypes.bool, PropTypes.string])
 };
+
+CheckboxStandalone.displayName = 'CheckboxStandalone';

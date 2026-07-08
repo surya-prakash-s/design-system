@@ -29,8 +29,11 @@ export let Textarea = props => (
 Textarea.propTypes = {
   id: PropTypes.string,
   className: PropTypes.string,
-  placeholder: PropTypes.string
+  placeholder: PropTypes.string,
+  'aria-invalid': PropTypes.oneOfType([PropTypes.bool, PropTypes.string])
 };
+
+Textarea.displayName = 'Textarea';
 
 Textarea.defaultProps = {
   placeholder: 'Placeholder text…'

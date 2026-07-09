@@ -62,18 +62,40 @@ SimpleFormElementWrapper.propTypes = {
 };
 
 export const FormElementControl = props => {
-  const { className, children } = props;
+  const { className, children, hasError, errorId } = props;
+
+  const childrenWithProps = React.Children.map(children, child => {
+    if (React.isValidElement(child)) {
+      const isWhitelisted =
+        ['Input', 'Select', 'Textarea', 'CheckboxPrimitive', 'CheckboxStandalone'].includes(
+          child.type.displayName
+        ) ||
+        ['Input', 'Select', 'Textarea', 'CheckboxPrimitive', 'CheckboxStandalone'].includes(
+          child.type.name
+        );
+
+      if (isWhitelisted) {
+        return React.cloneElement(child, {
+          'aria-describedby': classNames(child.props['aria-describedby'], errorId),
+          'aria-invalid': hasError ? 'true' : 'false'
+        });
+      }
+    }
+    return child;
+  });
 
   return (
     <div className={classNames('slds-form-element__control', className)}>
-      {children}
+      {childrenWithProps}
     </div>
   );
 };
 
 FormElementControl.propTypes = {
   children: PropTypes.node,
-  className: PropTypes.string
+  className: PropTypes.string,
+  hasError: PropTypes.bool,
+  errorId: PropTypes.string
 };
 
 export const FormElementLabel = props => {
@@ -199,7 +221,7 @@ export const FormElementHelpMessage = props => {
 
 FormElementHelpMessage.propTypes = {
   errorId: PropTypes.string,
-  hasHiddenInlineMessage: PropTypes.boolean,
+  hasHiddenInlineMessage: PropTypes.bool,
   children: PropTypes.node
 };
 
@@ -423,6 +445,8 @@ export const FormElement = props => {
       {hasTooltip && <FormElementTooltip showTooltip={showTooltip} {...(fieldLevelMessage && { fieldLevelMessage })}/>}
       <FormElementControl
         className={classNames(inputIconPositionClasses, formControlClassName)}
+        hasError={hasError}
+        errorId={errorId}
       >
         {isEdited && (
           <div className="slds-form-element__undo">
@@ -511,7 +535,9 @@ export const Fieldset = props => {
       >
         {label}
       </Legend>
-      <FormElementControl>{children}</FormElementControl>
+      <FormElementControl hasError={hasError} errorId={errorId}>
+        {children}
+      </FormElementControl>
       {inlineMessage && (
         <FormElementHelpMessage errorId={errorId}>
           {inlineMessage}

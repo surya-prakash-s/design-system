@@ -45,6 +45,8 @@ const Input = props => {
   );
 };
 
+Input.displayName = 'Input';
+
 Input.defaultProps = {
   type: 'text'
 };

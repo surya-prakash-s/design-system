@@ -17,6 +17,13 @@ export const CheckboxPrimitive = props => {
       defaultChecked={isChecked}
       required={isRequired}
       aria-describedby={errorId}
+      aria-invalid={
+        props['aria-invalid'] !== undefined
+          ? props['aria-invalid']
+          : errorId
+          ? 'true'
+          : undefined
+      }
     />
   );
 };

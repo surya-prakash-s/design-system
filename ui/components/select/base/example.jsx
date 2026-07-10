@@ -18,7 +18,15 @@ const errorId = 'error-01';
 export let Select = props => {
   const renderSelect = () => (
     <select
+      {...props}
       aria-describedby={props['aria-describedby']}
+      aria-invalid={
+        props['aria-invalid'] !== undefined
+          ? props['aria-invalid']
+          : props['aria-describedby']
+          ? 'true'
+          : undefined
+      }
       className={classNames('slds-select', props.className)}
       disabled={props.disabled}
       id={props.id || defaultSelectId}

@@ -20,11 +20,20 @@ const textareaId = 'textarea-id-01';
 export let Textarea = props => (
   <textarea
     {...props}
+    aria-invalid={
+      props['aria-invalid'] !== undefined
+        ? props['aria-invalid']
+        : props['aria-describedby']
+        ? 'true'
+        : undefined
+    }
     id={props.id || textareaId}
     className={classNames('slds-textarea', props.className)}
     placeholder={props.placeholder}
   />
 );
+
+Textarea.displayName = 'Textarea';
 
 Textarea.propTypes = {
   id: PropTypes.string,

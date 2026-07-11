@@ -5,10 +5,20 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 export const CheckboxPrimitive = props => {
-  const { id, name, value, isDisabled, isChecked, isRequired, errorId } = props;
+  const {
+    id,
+    name,
+    value,
+    isDisabled,
+    isChecked,
+    isRequired,
+    errorId,
+    ...rest
+  } = props;
 
   return (
     <input
+      {...rest}
       type="checkbox"
       id={id}
       name={name || 'label'}
@@ -16,7 +26,14 @@ export const CheckboxPrimitive = props => {
       disabled={isDisabled}
       defaultChecked={isChecked}
       required={isRequired}
-      aria-describedby={errorId}
+      aria-describedby={props['aria-describedby'] || errorId}
+      aria-invalid={
+        props['aria-invalid'] !== undefined
+          ? props['aria-invalid']
+          : errorId
+          ? 'true'
+          : undefined
+      }
     />
   );
 };
@@ -37,6 +54,7 @@ export const CheckboxStandalone = props => {
   return (
     <span className="slds-checkbox slds-checkbox_standalone">
       <CheckboxPrimitive
+        {...props}
         id={id}
         name={name}
         value={value}
@@ -49,6 +67,9 @@ export const CheckboxStandalone = props => {
     </span>
   );
 };
+
+CheckboxPrimitive.displayName = 'CheckboxPrimitive';
+CheckboxStandalone.displayName = 'CheckboxStandalone';
 
 CheckboxStandalone.propTypes = {
   id: PropTypes.string,

@@ -61,12 +61,34 @@ SimpleFormElementWrapper.propTypes = {
   column: PropTypes.number
 };
 
+const formPrimitives = [
+  'Input',
+  'Select',
+  'Textarea',
+  'CheckboxPrimitive',
+  'CheckboxStandalone'
+];
+
 export const FormElementControl = props => {
-  const { className, children } = props;
+  const { className, children, hasError, errorId } = props;
 
   return (
     <div className={classNames('slds-form-element__control', className)}>
-      {children}
+      {React.Children.map(children, child => {
+        if (
+          React.isValidElement(child) &&
+          (formPrimitives.includes(child.type.displayName) ||
+            formPrimitives.includes(child.type.name))
+        ) {
+          return React.cloneElement(child, {
+            'aria-describedby': classNames(child.props['aria-describedby'], {
+              [errorId]: hasError
+            }),
+            'aria-invalid': hasError ? 'true' : 'false'
+          });
+        }
+        return child;
+      })}
     </div>
   );
 };
@@ -199,7 +221,7 @@ export const FormElementHelpMessage = props => {
 
 FormElementHelpMessage.propTypes = {
   errorId: PropTypes.string,
-  hasHiddenInlineMessage: PropTypes.boolean,
+  hasHiddenInlineMessage: PropTypes.bool,
   children: PropTypes.node
 };
 
@@ -423,6 +445,8 @@ export const FormElement = props => {
       {hasTooltip && <FormElementTooltip showTooltip={showTooltip} {...(fieldLevelMessage && { fieldLevelMessage })}/>}
       <FormElementControl
         className={classNames(inputIconPositionClasses, formControlClassName)}
+        hasError={hasError}
+        errorId={errorId}
       >
         {isEdited && (
           <div className="slds-form-element__undo">
@@ -511,7 +535,9 @@ export const Fieldset = props => {
       >
         {label}
       </Legend>
-      <FormElementControl>{children}</FormElementControl>
+      <FormElementControl hasError={hasError} errorId={errorId}>
+        {children}
+      </FormElementControl>
       {inlineMessage && (
         <FormElementHelpMessage errorId={errorId}>
           {inlineMessage}

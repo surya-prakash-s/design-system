@@ -18,7 +18,8 @@ const Input = props => {
     role,
     tabIndex,
     isBare,
-    hasBorders
+    hasBorders,
+    ...rest
   } = props;
 
   const computedClassNames = {
@@ -29,7 +30,7 @@ const Input = props => {
 
   return (
     <input
-      {...props}
+      {...rest}
       id={id}
       className={classNames('slds-input', computedClassNames, className)}
       type={type}
@@ -38,12 +39,14 @@ const Input = props => {
       defaultValue={defaultValue}
       disabled={disabled}
       required={required}
-      aria-invalid={props['aria-describedby'] ? 'true' : undefined}
+      aria-invalid={props['aria-invalid']}
       role={role}
       tabIndex={tabIndex}
     />
   );
 };
+
+Input.displayName = 'Input';
 
 Input.defaultProps = {
   type: 'text'

@@ -18,13 +18,9 @@ const errorId = 'error-01';
 export let Select = props => {
   const renderSelect = () => (
     <select
-      aria-describedby={props['aria-describedby']}
+      {...props}
       className={classNames('slds-select', props.className)}
-      disabled={props.disabled}
       id={props.id || defaultSelectId}
-      required={props.required}
-      multiple={props.multiple}
-      onChange={props.onChange}
     >
       {props.children}
     </select>
@@ -36,6 +32,8 @@ export let Select = props => {
 
   return props.hasNoContainer ? renderSelect() : renderWithContainter();
 };
+Select.displayName = 'Select';
+
 Select.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,

@@ -1,0 +1,3 @@
+## 2025-02-18 - Support Complex Nodes for Assistive Text
+**Learning:** Icon buttons and similar components that accept assistive text/labels should define `assistiveText` propType as `PropTypes.node` instead of `PropTypes.string`. This allows parent containers (such as FormElement wrappers) to pass rich content or complex label propagation without triggering React warning logs or causing '[object Object]' rendering issues.
+**Action:** Always check if a component's text-oriented props (like labels or assistive descriptions) can be populated by dynamic wrapper components. If so, prefer `PropTypes.node` over `PropTypes.string` to ensure robust rendering and compatibility.

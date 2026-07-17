@@ -27,7 +27,7 @@ const ButtonText = props => {
 
 ButtonText.propTypes = {
   label: PropTypes.string,
-  assistiveText: PropTypes.string
+  assistiveText: PropTypes.node
 };
 
 export const ButtonMenu = props => {
@@ -57,6 +57,6 @@ export const ButtonMenu = props => {
 ButtonMenu.propTypes = {
   isOpen: PropTypes.bool,
   symbol: PropTypes.string,
-  assistiveText: PropTypes.string,
+  assistiveText: PropTypes.node,
   children: PropTypes.node
 };

@@ -22,7 +22,7 @@ ButtonIconStateful.propTypes = {
   title: PropTypes.string.isRequired,
   symbol: PropTypes.string.isRequired,
   assistiveText: PropTypes.string.isRequired,
-  'aria-pressed': PropTypes.string,
+  'aria-pressed': PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
   disabled: PropTypes.bool,
   selected: PropTypes.bool,
   theme: PropTypes.string

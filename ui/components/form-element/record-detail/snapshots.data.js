@@ -1017,7 +1017,7 @@ export const ObjectFieldTypesHorizontalWithError = {
                     label="Time"
                     placeholder="Select a time…"
                     inputIconPosition="right"
-                    hasError={true}
+                    hasError
                     rightInputIcon={
                       <UtilityIcon
                         symbol="clock"

@@ -1,0 +1,3 @@
+## 2025-02-18 - Dynamic Accessible Labels on Interactive Elements in Lists
+**Learning:** In lists of Pill or similar repetitive interactive elements, static action labels like "Remove" degrade accessibility because screen readers cannot determine context (which specific item is being acted upon). Dynamically appending the element's custom label to the title and assistive text resolves this and satisfies WCAG 2.1 link/button purpose guidelines.
+**Action:** Always map the item's label or title dynamically to action button properties (e.g., `Remove ${props.label || 'item'}`) instead of using a static, generic string.

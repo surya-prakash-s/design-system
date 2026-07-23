@@ -1,0 +1,3 @@
+## 2025-03-01 - Context-Aware Close Buttons for Pill Components
+**Learning:** In lists of dismissible or removable elements (such as Pill components), using static "Remove" or "Close" labels for the action buttons makes it very difficult for screen-reader users to understand which item is being targeted when navigating directly via buttons. Incorporating the unique label of the item dynamically (e.g. "Remove [Label]") provides robust accessibility (WCAG 2.1) and prevents confusion.
+**Action:** Always dynamically propagate the item's label/title into the associated remove button's `title` and `assistiveText` attributes rather than relying on a generic fallback label.

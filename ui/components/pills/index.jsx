@@ -17,8 +17,8 @@ export let Pill = props => (
     <ButtonIcon
       className="slds-button_icon slds-pill__remove"
       symbol="close"
-      assistiveText="Remove"
-      title="Remove"
+      assistiveText={`Remove ${props.label || 'Pill Label'}`}
+      title={`Remove ${props.label || 'Pill Label'}`}
     />
   </span>
 );
@@ -48,12 +48,12 @@ export let ListboxPill = props => (
     >
       {props.label || 'Pill Label'}
     </span>
-    <span className="slds-icon_container slds-pill__remove" title="Remove">
+    <span className="slds-icon_container slds-pill__remove" title={`Remove ${props.label || 'Pill Label'}`}>
       <ButtonIcon
         className="slds-button_icon slds-pill__remove"
         symbol="close"
-        assistiveText="Remove"
-        title="Remove"
+        assistiveText={`Remove ${props.label || 'Pill Label'}`}
+        title={`Remove ${props.label || 'Pill Label'}`}
       />
     </span>
   </span>
@@ -106,12 +106,12 @@ export let PillWithTruncation = props => (
     >
       {props.label || 'Pill label that is longer than the area that contains it'}
     </span>
-    <span className="slds-icon_container slds-pill__remove" title="Remove">
+    <span className="slds-icon_container slds-pill__remove" title={`Remove ${props.label || 'Pill label that is longer than the area that contains it'}`}>
       <ButtonIcon
         className="slds-button_icon slds-pill__remove"
         symbol="close"
-        assistiveText="Remove"
-        title="Remove"
+        assistiveText={`Remove ${props.label || 'Pill label that is longer than the area that contains it'}`}
+        title={`Remove ${props.label || 'Pill label that is longer than the area that contains it'}`}
       />
     </span>
   </span>
@@ -145,8 +145,8 @@ export let LinkedPillWithTruncation = props => (
     <ButtonIcon
       className="slds-button_icon slds-pill__remove"
       symbol="close"
-      assistiveText="Remove"
-      title="Remove"
+      assistiveText={`Remove ${props.label || 'Pill label that is longer than the area that contains it'}`}
+      title={`Remove ${props.label || 'Pill label that is longer than the area that contains it'}`}
     />
   </span>
 );

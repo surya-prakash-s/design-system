@@ -17,8 +17,8 @@ export let Pill = props => (
     <ButtonIcon
       className="slds-button_icon slds-pill__remove"
       symbol="close"
-      assistiveText="Remove"
-      title="Remove"
+      assistiveText={props.label ? `Remove ${props.label}` : 'Remove'}
+      title={props.label ? `Remove ${props.label}` : 'Remove'}
     />
   </span>
 );
@@ -48,12 +48,12 @@ export let ListboxPill = props => (
     >
       {props.label || 'Pill Label'}
     </span>
-    <span className="slds-icon_container slds-pill__remove" title="Remove">
+    <span className="slds-icon_container slds-pill__remove" title={props.label ? `Remove ${props.label}` : 'Remove'}>
       <ButtonIcon
         className="slds-button_icon slds-pill__remove"
         symbol="close"
-        assistiveText="Remove"
-        title="Remove"
+        assistiveText={props.label ? `Remove ${props.label}` : 'Remove'}
+        title={props.label ? `Remove ${props.label}` : 'Remove'}
       />
     </span>
   </span>
@@ -106,12 +106,12 @@ export let PillWithTruncation = props => (
     >
       {props.label || 'Pill label that is longer than the area that contains it'}
     </span>
-    <span className="slds-icon_container slds-pill__remove" title="Remove">
+    <span className="slds-icon_container slds-pill__remove" title={props.label ? `Remove ${props.label}` : 'Remove'}>
       <ButtonIcon
         className="slds-button_icon slds-pill__remove"
         symbol="close"
-        assistiveText="Remove"
-        title="Remove"
+        assistiveText={props.label ? `Remove ${props.label}` : 'Remove'}
+        title={props.label ? `Remove ${props.label}` : 'Remove'}
       />
     </span>
   </span>
@@ -145,8 +145,8 @@ export let LinkedPillWithTruncation = props => (
     <ButtonIcon
       className="slds-button_icon slds-pill__remove"
       symbol="close"
-      assistiveText="Remove"
-      title="Remove"
+      assistiveText={props.label ? `Remove ${props.label}` : 'Remove'}
+      title={props.label ? `Remove ${props.label}` : 'Remove'}
     />
   </span>
 );

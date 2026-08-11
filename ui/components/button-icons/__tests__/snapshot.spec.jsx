@@ -9,61 +9,61 @@ const { matchesMarkup } = createHelpers(__dirname);
 
 // Bare
 describe('bare button icon', () => {
-  it('renders a button icon', () => matchesMarkup(<ButtonIcon />));
+  it('renders a button icon', () => matchesMarkup(<ButtonIcon assistiveText="Settings" title="Settings" />));
 
   it('renders a disabled button icon', () =>
-    matchesMarkup(<ButtonIcon disabled />));
+    matchesMarkup(<ButtonIcon disabled assistiveText="Settings" title="Settings" />));
 });
 
 // Container
 describe('button icon with container', () => {
   it('renders a button icon', () =>
-    matchesMarkup(<ButtonIcon size="medium" />));
+    matchesMarkup(<ButtonIcon size="medium" assistiveText="Settings" title="Settings" />));
 
   it('renders a disabled button icon', () =>
-    matchesMarkup(<ButtonIcon disabled size="medium" />));
+    matchesMarkup(<ButtonIcon disabled size="medium" assistiveText="Settings" title="Settings" />));
 });
 
 // Bordered Container
 describe('button icon with bordered transparent container', () => {
   it('renders a button icon', () =>
-    matchesMarkup(<ButtonIcon theme="transparent" />));
+    matchesMarkup(<ButtonIcon theme="transparent" assistiveText="Settings" title="Settings" />));
 
   it('renders a disabled button icon', () =>
-    matchesMarkup(<ButtonIcon disabled theme="transparent" />));
+    matchesMarkup(<ButtonIcon disabled theme="transparent" assistiveText="Settings" title="Settings" />));
 });
 
 // Bordered Container Filled
 describe('button icon with bordered filled container', () => {
   it('renders a button icon', () =>
-    matchesMarkup(<ButtonIcon theme="neutral" />));
+    matchesMarkup(<ButtonIcon theme="neutral" assistiveText="Settings" title="Settings" />));
 
   it('renders a disabled button icon', () =>
-    matchesMarkup(<ButtonIcon disabled theme="neutral" />));
+    matchesMarkup(<ButtonIcon disabled theme="neutral" assistiveText="Settings" title="Settings" />));
 });
 
 // Brand
 describe('brand button icon', () => {
   it('renders a button icon', () =>
-    matchesMarkup(<ButtonIcon theme="brand" />));
+    matchesMarkup(<ButtonIcon theme="brand" assistiveText="Settings" title="Settings" />));
 
   it('renders a disabled button icon', () =>
-    matchesMarkup(<ButtonIcon disabled theme="brand" />));
+    matchesMarkup(<ButtonIcon disabled theme="brand" assistiveText="Settings" title="Settings" />));
 });
 
 // Inverse
 describe('button icon on inversed background', () => {
   it('renders a button icon', () =>
-    matchesMarkup(<ButtonIcon theme="inverse" />));
+    matchesMarkup(<ButtonIcon theme="inverse" assistiveText="Settings" title="Settings" />));
 
   it('renders a disabled button icon', () =>
-    matchesMarkup(<ButtonIcon disabled theme="inverse" />));
+    matchesMarkup(<ButtonIcon disabled theme="inverse" assistiveText="Settings" title="Settings" />));
 });
 
 // Dropdown
 describe('button menu icon for dropdowns', () => {
   it('renders a button menu icon', () =>
-    matchesMarkup(<ButtonIcon hasDropdown theme="neutral" />));
+    matchesMarkup(<ButtonIcon hasDropdown theme="neutral" assistiveText="Settings" title="Settings" />));
 
   it('renders a button menu icon on inversed background', () =>
     matchesMarkup(
@@ -71,6 +71,8 @@ describe('button menu icon for dropdowns', () => {
         className="slds-button_icon-inverse"
         hasDropdown
         theme="transparent"
+        assistiveText="Settings"
+        title="Settings"
       />
     ));
 });

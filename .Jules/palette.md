@@ -1,0 +1,3 @@
+## 2025-03-05 - Enforcing Unique Assistive Text for ButtonIcons
+**Learning:** Icon-only buttons (such as `ButtonIcon`) must never rely on screen-reader unfriendly fallbacks like "Provide description of action". Making the `assistiveText` prop required ensures developers explicitly provide context-specific labels (using strings or complex nodes) to support robust WCAG accessibility compliance.
+**Action:** Set `assistiveText` to `PropTypes.oneOfType([PropTypes.string, PropTypes.node]).isRequired` inside `ButtonIcon` propTypes, and proactively update any usages or test cases missing explicit unique accessibility descriptions.

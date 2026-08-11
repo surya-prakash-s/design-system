@@ -142,7 +142,7 @@ ButtonIcon.propTypes = {
   id: PropTypes.string,
   symbol: PropTypes.string,
   theme: PropTypes.string,
-  assistiveText: PropTypes.string,
+  assistiveText: PropTypes.oneOfType([PropTypes.string, PropTypes.node]).isRequired,
   useCurrentColor: PropTypes.bool,
   title: PropTypes.string
 };

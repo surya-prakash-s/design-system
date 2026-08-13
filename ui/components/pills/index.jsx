@@ -3,25 +3,28 @@ import ButtonIcon from '../button-icons/';
 import classNames from 'classnames';
 import { Tooltip } from '../tooltips/base/example';
 
-export let Pill = props => (
-  <span className={classNames('slds-pill slds-pill_link', props.className)}>
-    {props.children}
-    <a
-      href="#"
-      className="slds-pill__action"
-      title={props.label || 'Full pill label verbiage mirrored here'}
-      onClick={e => e.preventDefault()}
-    >
-      <span className="slds-pill__label">{props.label || 'Pill Label'}</span>
-    </a>
-    <ButtonIcon
-      className="slds-button_icon slds-pill__remove"
-      symbol="close"
-      assistiveText="Remove"
-      title="Remove"
-    />
-  </span>
-);
+export let Pill = props => {
+  const pillLabel = props.label || 'Pill Label';
+  return (
+    <span className={classNames('slds-pill slds-pill_link', props.className)}>
+      {props.children}
+      <a
+        href="#"
+        className="slds-pill__action"
+        title={props.label || 'Full pill label verbiage mirrored here'}
+        onClick={e => e.preventDefault()}
+      >
+        <span className="slds-pill__label">{pillLabel}</span>
+      </a>
+      <ButtonIcon
+        className="slds-button_icon slds-pill__remove"
+        symbol="close"
+        assistiveText={`Remove ${pillLabel}`}
+        title={`Remove ${pillLabel}`}
+      />
+    </span>
+  );
+};
 
 export let PillContainer = props => {
   return (
@@ -37,27 +40,30 @@ export let PillContainer = props => {
   );
 };
 
-export let ListboxPill = props => (
-  <span
-    className={classNames('slds-pill', props.className)}
-  >
-    {props.children}
+export let ListboxPill = props => {
+  const pillLabel = props.label || 'Pill Label';
+  return (
     <span
-      className="slds-pill__label"
-      title={props.label || 'Full pill label verbiage mirrored here'}
+      className={classNames('slds-pill', props.className)}
     >
-      {props.label || 'Pill Label'}
+      {props.children}
+      <span
+        className="slds-pill__label"
+        title={props.label || 'Full pill label verbiage mirrored here'}
+      >
+        {pillLabel}
+      </span>
+      <span className="slds-icon_container slds-pill__remove" title={`Remove ${pillLabel}`}>
+        <ButtonIcon
+          className="slds-button_icon slds-pill__remove"
+          symbol="close"
+          assistiveText={`Remove ${pillLabel}`}
+          title={`Remove ${pillLabel}`}
+        />
+      </span>
     </span>
-    <span className="slds-icon_container slds-pill__remove" title="Remove">
-      <ButtonIcon
-        className="slds-button_icon slds-pill__remove"
-        symbol="close"
-        assistiveText="Remove"
-        title="Remove"
-      />
-    </span>
-  </span>
-);
+  );
+};
 
 export let ListboxPills = props => (
   <ul
@@ -81,72 +87,78 @@ export let ListboxPillsItem = props => (
   </li>
 );
 
-export let PillWithTruncation = props => (
-  <span
-    className={classNames('slds-pill', props.className)}
-    tabIndex={props.tabIndex}
-    aria-selected="true"
-  >
-    {props.children}
-    <Tooltip
-      className="slds-nubbin_bottom-left"
-      id="help"
-      style={{
-        position: 'absolute',
-        top: '-45px',
-        left: '-2px'
-      }}
-    >
-      {props.label || 'Pill label that is longer than the area that contains it'}
-
-    </Tooltip>
+export let PillWithTruncation = props => {
+  const pillLabel = props.label || 'Pill label that is longer than the area that contains it';
+  return (
     <span
-      className="slds-pill__label"
-      title={props.label || 'Pill label that is longer than the area that contains it'}
+      className={classNames('slds-pill', props.className)}
+      tabIndex={props.tabIndex}
+      aria-selected="true"
     >
-      {props.label || 'Pill label that is longer than the area that contains it'}
+      {props.children}
+      <Tooltip
+        className="slds-nubbin_bottom-left"
+        id="help"
+        style={{
+          position: 'absolute',
+          top: '-45px',
+          left: '-2px'
+        }}
+      >
+        {pillLabel}
+
+      </Tooltip>
+      <span
+        className="slds-pill__label"
+        title={props.label || 'Pill label that is longer than the area that contains it'}
+      >
+        {pillLabel}
+      </span>
+      <span className="slds-icon_container slds-pill__remove" title={`Remove ${pillLabel}`}>
+        <ButtonIcon
+          className="slds-button_icon slds-pill__remove"
+          symbol="close"
+          assistiveText={`Remove ${pillLabel}`}
+          title={`Remove ${pillLabel}`}
+        />
+      </span>
     </span>
-    <span className="slds-icon_container slds-pill__remove" title="Remove">
+  );
+};
+
+export let LinkedPillWithTruncation = props => {
+  const pillLabel = props.label || 'Pill label that is longer than the area that contains it';
+  return (
+    <span className={classNames('slds-pill slds-pill_link', props.className)}>
+      {props.children}
+      <Tooltip
+        className="slds-nubbin_bottom-left"
+        id="help"
+        style={{
+          position: 'absolute',
+          top: '-45px',
+          left: '-2px'
+        }}
+      >
+        {pillLabel}
+
+      </Tooltip>
+      <a
+        href="#"
+        className="slds-pill__action"
+        title={props.label || 'Full pill label verbiage mirrored here'}
+        onClick={e => e.preventDefault()}
+      >
+        <span className="slds-pill__label">
+          {pillLabel}
+        </span>
+      </a>
       <ButtonIcon
         className="slds-button_icon slds-pill__remove"
         symbol="close"
-        assistiveText="Remove"
-        title="Remove"
+        assistiveText={`Remove ${pillLabel}`}
+        title={`Remove ${pillLabel}`}
       />
     </span>
-  </span>
-);
-
-export let LinkedPillWithTruncation = props => (
-  <span className={classNames('slds-pill slds-pill_link', props.className)}>
-    {props.children}
-    <Tooltip
-      className="slds-nubbin_bottom-left"
-      id="help"
-      style={{
-        position: 'absolute',
-        top: '-45px',
-        left: '-2px'
-      }}
-    >
-      {props.label || 'Pill label that is longer than the area that contains it'}
-
-    </Tooltip>
-    <a
-      href="#"
-      className="slds-pill__action"
-      title={props.label || 'Full pill label verbiage mirrored here'}
-      onClick={e => e.preventDefault()}
-    >
-      <span className="slds-pill__label">
-        {props.label || 'Pill label that is longer than the area that contains it'}
-      </span>
-    </a>
-    <ButtonIcon
-      className="slds-button_icon slds-pill__remove"
-      symbol="close"
-      assistiveText="Remove"
-      title="Remove"
-    />
-  </span>
-);
+  );
+};

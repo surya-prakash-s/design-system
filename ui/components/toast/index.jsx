@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import ButtonIcon from '../button-icons/';
 
 const Toast = props => {
-  const { containerClassName, className, type, children } = props;
+  const { containerClassName, className, type, children, closeButtonAssistiveText } = props;
 
   return (
     <div className={classNames('slds-notify_container', containerClassName)}>
@@ -22,8 +22,8 @@ const Toast = props => {
           <ButtonIcon
             className="slds-button_icon-inverse"
             symbol="close"
-            assistiveText="Close"
-            title="Close"
+            assistiveText={closeButtonAssistiveText || (type ? `Close ${type} toast` : 'Close toast')}
+            title={closeButtonAssistiveText || (type ? `Close ${type} toast` : 'Close toast')}
           />
         </div>
       </div>
@@ -35,7 +35,8 @@ Toast.propTypes = {
   containerClassName: PropTypes.string,
   className: PropTypes.string,
   type: PropTypes.oneOf(['info', 'success', 'warning', 'error']),
-  children: PropTypes.node
+  children: PropTypes.node,
+  closeButtonAssistiveText: PropTypes.string
 };
 
 Toast.defaultProps = {

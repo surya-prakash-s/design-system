@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import ButtonIcon from '../button-icons/';
 
 const Alert = props => {
-  const { type, children, isLegacy } = props;
+  const { type, children, isLegacy, closeButtonAssistiveText } = props;
   const alertTypeClass = classNames(
     type === 'warning' && 'slds-alert_warning',
     type === 'error' && 'slds-alert_error',
@@ -17,6 +17,10 @@ const Alert = props => {
     type === 'error' && isLegacy && 'slds-theme_error',
     type === 'offline' && isLegacy && 'slds-theme_offline'
   );
+
+  const closeText =
+    closeButtonAssistiveText ||
+    (type ? `Close ${type} alert` : 'Close alert');
 
   return (
     <div
@@ -35,8 +39,8 @@ const Alert = props => {
             type !== 'warning' && 'slds-button_icon-inverse'
           )}
           symbol="close"
-          assistiveText="Close"
-          title="Close"
+          assistiveText={closeText}
+          title={closeText}
           size="small"
         />
       </div>
@@ -47,7 +51,8 @@ const Alert = props => {
 Alert.propTypes = {
   type: PropTypes.oneOf(['info', 'warning', 'error', 'offline']),
   children: PropTypes.node,
-  isLegacy: PropTypes.bool
+  isLegacy: PropTypes.bool,
+  closeButtonAssistiveText: PropTypes.string
 };
 
 Alert.defaultProps = {

@@ -12,3 +12,16 @@ it('renders a base breadcrumb', () => matchesMarkup(<BreadcrumbsBase />));
 
 it('renders a overflow menu as the first breadcrumb', () =>
   matchesMarkup(<BreadcrumbsWithOverflow />));
+
+it('renders aria-current="page" on the current crumb', () => {
+  const { Crumb } = require('../index.react').default;
+  const BreadCrumbs = require('../index.react').default;
+  matchesMarkup(
+    <BreadCrumbs>
+      <Crumb href="/parent">Parent</Crumb>
+      <Crumb href="/child" isCurrent>
+        Child
+      </Crumb>
+    </BreadCrumbs>
+  );
+});

@@ -2,6 +2,7 @@
 import React from 'react';
 import Accordion, { AccordionSection } from '../';
 import Card from '../../cards/';
+import { ActionOverflow } from '../../menus/action-overflow/example';
 
 import createHelpers from '../../../../jest.helpers';
 
@@ -204,7 +205,9 @@ it('renders an accordion with action overflow', () =>
     <Accordion>
       <AccordionSection
         summary="Accordion summary"
-        hasActionOverflow
+        actionMenu={
+          <ActionOverflow position="right" dropdownIsOpen={false} />
+        }
         isOpen
         referenceId="referenceId-01"
       >
@@ -212,14 +215,18 @@ it('renders an accordion with action overflow', () =>
       </AccordionSection>
       <AccordionSection
         summary="Accordion summary"
-        hasActionOverflow
+        actionMenu={
+          <ActionOverflow position="right" dropdownIsOpen={false} />
+        }
         referenceId="referenceId-02"
       >
         Accordion details - B
       </AccordionSection>
       <AccordionSection
         summary="Accordion summary"
-        hasActionOverflow
+        actionMenu={
+          <ActionOverflow position="right" dropdownIsOpen={false} />
+        }
         referenceId="referenceId-03"
       >
         Accordion details - C

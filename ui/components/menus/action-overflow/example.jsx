@@ -16,20 +16,20 @@ export const Context = props => (
   </div>
 );
 
-const moreIcon = (
-  <ButtonIcon
-    className="slds-button_icon-border-filled slds-button_icon-x-small"
-    symbol="down"
-    assistiveText="Show More"
-    aria-haspopup="true"
-    title="Show More"
-  />
-);
-
 export const ActionOverflow = props => {
-  const { position, dropdownIsOpen } = props;
+  const { position, dropdownIsOpen, assistiveText, title } = props;
+  const overflowLabel = assistiveText || title || 'Show More';
+  const triggerIcon = (
+    <ButtonIcon
+      className="slds-button_icon-border-filled slds-button_icon-x-small"
+      symbol="down"
+      assistiveText={overflowLabel}
+      aria-haspopup="true"
+      title={title || overflowLabel}
+    />
+  );
   return (
-    <Trigger isOpen={dropdownIsOpen} triggerIcon={moreIcon}>
+    <Trigger isOpen={dropdownIsOpen} triggerIcon={triggerIcon}>
       <Menu
         className={classNames(
           'slds-dropdown_actions',
@@ -53,7 +53,9 @@ ActionOverflow.defaultProps = {
 
 ActionOverflow.propTypes = {
   position: PropTypes.oneOf(['left', 'right']),
-  dropdownIsOpen: PropTypes.bool
+  dropdownIsOpen: PropTypes.bool,
+  assistiveText: PropTypes.string,
+  title: PropTypes.string
 };
 
 /// ///////////////////////////////////////////

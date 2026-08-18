@@ -47,7 +47,13 @@ export let SectionTitleAction = props => (
       sprite="utility"
       symbol="switch"
     />
-    <span className="slds-truncate" title={props.children}>
+    <span
+      className="slds-truncate"
+      title={
+        props.title ||
+        (typeof props.children === 'string' ? props.children : undefined)
+      }
+    >
       {props.children}
     </span>
   </button>

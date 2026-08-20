@@ -2,6 +2,7 @@
 // Licensed under BSD 3-Clause - see LICENSE.txt or git.io/sfdc-license
 
 import React, { useRef } from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 const Crumb = ({
@@ -9,7 +10,9 @@ const Crumb = ({
   className,
   hasMenu,
   kxScopeBreadcrumbsItem,
-  kxTypeUnderline
+  kxTypeUnderline,
+  isCurrent,
+  'aria-current': ariaCurrent
 }) => {
   const pointerRef = { current: { offsetX: '50%', offsetY: '50%' } };
   const breadCrumbRef = useRef();
@@ -48,6 +51,8 @@ const Crumb = ({
     });
   };
 
+  const computedAriaCurrent = ariaCurrent || (isCurrent ? 'page' : undefined);
+
   return (
     <li
       className={classNames('slds-breadcrumb__item', className)}
@@ -63,6 +68,7 @@ const Crumb = ({
           ref={breadCrumbRef}
           href="#"
           onClick={e => e.preventDefault()}
+          aria-current={computedAriaCurrent}
           {...kxScopeBreadcrumbsItem &&
             kxTypeUnderline && {
               onMouseEnter: handleEnter,
@@ -74,6 +80,16 @@ const Crumb = ({
       )}
     </li>
   );
+};
+
+Crumb.propTypes = {
+  children: PropTypes.node,
+  className: PropTypes.string,
+  hasMenu: PropTypes.bool,
+  isCurrent: PropTypes.bool,
+  'aria-current': PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
+  kxScopeBreadcrumbsItem: PropTypes.bool,
+  kxTypeUnderline: PropTypes.bool
 };
 
 const BreadCrumbs = ({

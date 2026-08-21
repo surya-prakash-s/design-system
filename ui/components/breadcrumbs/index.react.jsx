@@ -8,9 +8,12 @@ const Crumb = ({
   children,
   className,
   hasMenu,
+  isCurrent,
+  'aria-current': ariaCurrent,
   kxScopeBreadcrumbsItem,
   kxTypeUnderline
 }) => {
+  const currentAttr = ariaCurrent || (isCurrent ? 'page' : undefined);
   const pointerRef = { current: { offsetX: '50%', offsetY: '50%' } };
   const breadCrumbRef = useRef();
   const requestRef = { current: null };
@@ -62,6 +65,7 @@ const Crumb = ({
         <a
           ref={breadCrumbRef}
           href="#"
+          aria-current={currentAttr}
           onClick={e => e.preventDefault()}
           {...kxScopeBreadcrumbsItem &&
             kxTypeUnderline && {

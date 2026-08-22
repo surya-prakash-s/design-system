@@ -2,12 +2,16 @@
 // Licensed under BSD 3-Clause - see LICENSE.txt or git.io/sfdc-license
 
 import React, { useRef } from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 const Crumb = ({
+  'aria-current': ariaCurrent,
   children,
   className,
   hasMenu,
+  href = '#',
+  isCurrent,
   kxScopeBreadcrumbsItem,
   kxTypeUnderline
 }) => {
@@ -61,8 +65,13 @@ const Crumb = ({
       ) : (
         <a
           ref={breadCrumbRef}
-          href="#"
-          onClick={e => e.preventDefault()}
+          href={href}
+          aria-current={isCurrent ? 'page' : ariaCurrent}
+          onClick={e => {
+            if (href === '#') {
+              e.preventDefault();
+            }
+          }}
           {...kxScopeBreadcrumbsItem &&
             kxTypeUnderline && {
               onMouseEnter: handleEnter,
@@ -106,6 +115,24 @@ const BreadCrumbs = ({
       </ol>
     </nav>
   );
+};
+
+Crumb.propTypes = {
+  'aria-current': PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
+  children: PropTypes.node,
+  className: PropTypes.string,
+  hasMenu: PropTypes.bool,
+  href: PropTypes.string,
+  isCurrent: PropTypes.bool,
+  kxScopeBreadcrumbsItem: PropTypes.bool,
+  kxTypeUnderline: PropTypes.bool
+};
+
+BreadCrumbs.propTypes = {
+  children: PropTypes.node,
+  kxScopeBreadcrumbsItem: PropTypes.bool,
+  kxTypeUnderline: PropTypes.bool,
+  listClassNames: PropTypes.string
 };
 
 BreadCrumbs.Crumb = Crumb;

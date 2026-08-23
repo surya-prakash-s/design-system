@@ -5,12 +5,15 @@ import React, { useRef } from 'react';
 import classNames from 'classnames';
 
 const Crumb = ({
+  'aria-current': ariaCurrent,
   children,
   className,
   hasMenu,
+  isCurrent,
   kxScopeBreadcrumbsItem,
   kxTypeUnderline
 }) => {
+  const computedAriaCurrent = ariaCurrent || (isCurrent ? 'page' : undefined);
   const pointerRef = { current: { offsetX: '50%', offsetY: '50%' } };
   const breadCrumbRef = useRef();
   const requestRef = { current: null };
@@ -62,12 +65,13 @@ const Crumb = ({
         <a
           ref={breadCrumbRef}
           href="#"
+          aria-current={computedAriaCurrent}
           onClick={e => e.preventDefault()}
-          {...kxScopeBreadcrumbsItem &&
+          {...(kxScopeBreadcrumbsItem &&
             kxTypeUnderline && {
               onMouseEnter: handleEnter,
               onMouseLeave: handleLeave
-            }}
+            })}
         >
           {children}
         </a>

@@ -5,9 +5,11 @@ import React, { useRef } from 'react';
 import classNames from 'classnames';
 
 const Crumb = ({
+  'aria-current': ariaCurrent,
   children,
   className,
   hasMenu,
+  isCurrent,
   kxScopeBreadcrumbsItem,
   kxTypeUnderline
 }) => {
@@ -62,6 +64,7 @@ const Crumb = ({
         <a
           ref={breadCrumbRef}
           href="#"
+          aria-current={ariaCurrent || (isCurrent ? 'page' : undefined)}
           onClick={e => e.preventDefault()}
           {...kxScopeBreadcrumbsItem &&
             kxTypeUnderline && {

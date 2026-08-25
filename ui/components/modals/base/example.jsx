@@ -44,33 +44,43 @@ export let Backdrop = (props) => {
   );
 };
 
-export let Modal = (props) => (
-  <section
-    role="dialog"
-    tabIndex={props.tabIndex}
-    aria-modal="true"
-    aria-label={props['aria-label']}
-    aria-labelledby={props['aria-labelledby']}
-    aria-describedby={props['aria-describedby']}
-    className={classNames('slds-modal slds-fade-in-open', props.className)}
-  >
-    <div className="slds-modal__container">
-      {
-        props.closeButton !== false ? (
-          <ButtonIcon
-            className="slds-modal__close"
-            iconClassName="slds-button__icon_large"
-            symbol="close"
-            assistiveText="Cancel and close"
-            disabled={props.closeButtonDisabled}
-          />
-        ) : null
-      }
-      {props.children}</div>
-  </section>
-);
+export let Modal = (props) => {
+  const titleText = props.title || props['aria-label'];
+  const closeButtonAssistiveText =
+    props.closeButtonAssistiveText ||
+    (titleText ? `Cancel and close ${titleText}` : 'Cancel and close');
+
+  return (
+    <section
+      role="dialog"
+      tabIndex={props.tabIndex}
+      aria-modal="true"
+      aria-label={props['aria-label']}
+      aria-labelledby={props['aria-labelledby']}
+      aria-describedby={props['aria-describedby']}
+      className={classNames('slds-modal slds-fade-in-open', props.className)}
+    >
+      <div className="slds-modal__container">
+        {
+          props.closeButton !== false ? (
+            <ButtonIcon
+              className="slds-modal__close"
+              iconClassName="slds-button__icon_large"
+              symbol="close"
+              assistiveText={closeButtonAssistiveText}
+              title={closeButtonAssistiveText}
+              disabled={props.closeButtonDisabled}
+            />
+          ) : null
+        }
+        {props.children}</div>
+    </section>
+  );
+};
 
 Modal.propTypes = {
+  title: PropTypes.string,
+  closeButtonAssistiveText: PropTypes.string,
   tabIndex: PropTypes.oneOf(['-1', '0']),
   closeButtonDisabled: PropTypes.bool,
   isFullSize: PropTypes.bool,

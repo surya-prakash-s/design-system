@@ -59,7 +59,12 @@ class ProgressRing extends Component {
           aria-valuemin="0"
           aria-valuemax="100"
           aria-valuenow={percent}
-          aria-label={this.props['aria-label'] || "{{Placeholder for description of progress ring}}"}
+          aria-labelledby={this.props['aria-labelledby']}
+          aria-label={
+            this.props['aria-label'] ||
+            this.props.title ||
+            "{{Placeholder for description of progress ring}}"
+          }
         >
           <svg viewBox={viewBoxParams}>
             {percent === 100 ? (
@@ -100,12 +105,15 @@ class ProgressRing extends Component {
 }
 
 ProgressRing.propTypes = {
+  'aria-label': PropTypes.string,
+  'aria-labelledby': PropTypes.string,
   percent: PropTypes.number,
   isWarning: PropTypes.bool,
   isComplete: PropTypes.bool,
   isExpired: PropTypes.bool,
   isActiveStep: PropTypes.bool,
-  isFilling: PropTypes.bool
+  isFilling: PropTypes.bool,
+  title: PropTypes.string
 };
 
 ProgressRing.defaultProps = {

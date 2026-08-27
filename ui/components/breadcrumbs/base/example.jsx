@@ -46,7 +46,7 @@ export const BreadcrumbsBase = ({ kineticsEnabled }) => (
     kxTypeUnderline={kineticsEnabled}
   >
     <Crumb>Parent Entity</Crumb>
-    <Crumb>Parent Record Name</Crumb>
+    <Crumb isCurrent>Parent Record Name</Crumb>
   </BreadCrumbs>
 );
 

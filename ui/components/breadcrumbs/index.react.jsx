@@ -8,6 +8,9 @@ const Crumb = ({
   children,
   className,
   hasMenu,
+  href,
+  isCurrent,
+  'aria-current': ariaCurrent,
   kxScopeBreadcrumbsItem,
   kxTypeUnderline
 }) => {
@@ -61,8 +64,11 @@ const Crumb = ({
       ) : (
         <a
           ref={breadCrumbRef}
-          href="#"
-          onClick={e => e.preventDefault()}
+          href={href || '#'}
+          aria-current={ariaCurrent || (isCurrent ? 'page' : undefined)}
+          onClick={e => {
+            if (!href || href === '#') e.preventDefault();
+          }}
           {...kxScopeBreadcrumbsItem &&
             kxTypeUnderline && {
               onMouseEnter: handleEnter,

@@ -51,6 +51,15 @@ class ProgressRing extends Component {
     if (isComplete) stateClass = 'slds-progress-ring_complete';
     if (isActiveStep) stateClass = 'slds-progress-ring_active-step';
 
+    const ariaLabelledby = this.props['aria-labelledby'];
+    const ariaLabel =
+      this.props['aria-label'] ||
+      (!ariaLabelledby
+        ? this.props.title ||
+          this.props.assistiveText ||
+          '{{Placeholder for description of progress ring}}'
+        : undefined);
+
     return (
       <div className={classNames('slds-progress-ring', stateClass, className)}>
         <div
@@ -59,7 +68,8 @@ class ProgressRing extends Component {
           aria-valuemin="0"
           aria-valuemax="100"
           aria-valuenow={percent}
-          aria-label={this.props['aria-label'] || "{{Placeholder for description of progress ring}}"}
+          aria-labelledby={ariaLabelledby}
+          aria-label={ariaLabel}
         >
           <svg viewBox={viewBoxParams}>
             {percent === 100 ? (
@@ -100,12 +110,18 @@ class ProgressRing extends Component {
 }
 
 ProgressRing.propTypes = {
-  percent: PropTypes.number,
-  isWarning: PropTypes.bool,
+  'aria-label': PropTypes.string,
+  'aria-labelledby': PropTypes.string,
+  assistiveText: PropTypes.string,
+  children: PropTypes.node,
+  className: PropTypes.string,
+  isActiveStep: PropTypes.bool,
   isComplete: PropTypes.bool,
   isExpired: PropTypes.bool,
-  isActiveStep: PropTypes.bool,
-  isFilling: PropTypes.bool
+  isFilling: PropTypes.bool,
+  isWarning: PropTypes.bool,
+  percent: PropTypes.number,
+  title: PropTypes.string
 };
 
 ProgressRing.defaultProps = {

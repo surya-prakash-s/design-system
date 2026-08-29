@@ -23,4 +23,12 @@ describe('Progress Ring', () => {
     matchesMarkup(<ProgressRing percent={0} isFilling />));
   it('renders a filling active step ring', () =>
     matchesMarkup(<ProgressRing percent={20} isActiveStep isFilling />));
+  it('renders with aria-labelledby and no fallback aria-label', () =>
+    matchesMarkup(
+      <ProgressRing percent={20} aria-labelledby="custom-label-id" />
+    ));
+  it('renders with title as aria-label fallback', () =>
+    matchesMarkup(<ProgressRing percent={20} title="Step 2 of 5" />));
+  it('renders with assistiveText as aria-label fallback', () =>
+    matchesMarkup(<ProgressRing percent={20} assistiveText="Step 3 of 5" />));
 });

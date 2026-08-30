@@ -4,11 +4,21 @@
 
 import React from 'react';
 import createHelpers from '../../../../jest.helpers';
+import BreadCrumbs from '../index.react';
 import { BreadcrumbsBase, BreadcrumbsWithOverflow } from '../base/example';
 
+const { Crumb } = BreadCrumbs;
 const { matchesMarkup } = createHelpers(__dirname);
 
 it('renders a base breadcrumb', () => matchesMarkup(<BreadcrumbsBase />));
 
 it('renders a overflow menu as the first breadcrumb', () =>
   matchesMarkup(<BreadcrumbsWithOverflow />));
+
+it('renders aria-current="page" on the current crumb link when isCurrent is true', () =>
+  matchesMarkup(
+    <BreadCrumbs>
+      <Crumb>Parent Entity</Crumb>
+      <Crumb isCurrent>Current Record</Crumb>
+    </BreadCrumbs>
+  ));

@@ -3,14 +3,23 @@
 
 import React, { useRef } from 'react';
 import classNames from 'classnames';
+import PropTypes from 'prop-types';
 
 const Crumb = ({
   children,
   className,
   hasMenu,
+  isCurrent,
+  'aria-current': ariaCurrent,
   kxScopeBreadcrumbsItem,
   kxTypeUnderline
 }) => {
+  const computedAriaCurrent =
+    ariaCurrent !== undefined
+      ? ariaCurrent
+      : isCurrent
+      ? 'page'
+      : undefined;
   const pointerRef = { current: { offsetX: '50%', offsetY: '50%' } };
   const breadCrumbRef = useRef();
   const requestRef = { current: null };
@@ -63,11 +72,12 @@ const Crumb = ({
           ref={breadCrumbRef}
           href="#"
           onClick={e => e.preventDefault()}
-          {...kxScopeBreadcrumbsItem &&
+          aria-current={computedAriaCurrent}
+          {...(kxScopeBreadcrumbsItem &&
             kxTypeUnderline && {
               onMouseEnter: handleEnter,
               onMouseLeave: handleLeave
-            }}
+            })}
         >
           {children}
         </a>
@@ -106,6 +116,16 @@ const BreadCrumbs = ({
       </ol>
     </nav>
   );
+};
+
+Crumb.propTypes = {
+  children: PropTypes.node,
+  className: PropTypes.string,
+  hasMenu: PropTypes.bool,
+  isCurrent: PropTypes.bool,
+  'aria-current': PropTypes.string,
+  kxScopeBreadcrumbsItem: PropTypes.bool,
+  kxTypeUnderline: PropTypes.bool
 };
 
 BreadCrumbs.Crumb = Crumb;

@@ -47,4 +47,20 @@ describe('Summary-Detail', () => {
         summaryTitle="Summary Title"
       />
     ));
+
+  it('renders summary-detail action without summaryTitle', () =>
+    matchesMarkup(
+      <SummaryDetailAction
+        referenceId="test-id-5"
+      />
+    ));
+
+  it('renders summary-detail action with custom title and assistiveText', () =>
+    matchesMarkup(
+      <SummaryDetailAction
+        referenceId="test-id-6"
+        title="Custom Title"
+        assistiveText="Custom Assistive Text"
+      />
+    ));
 });

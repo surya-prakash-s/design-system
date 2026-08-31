@@ -2,6 +2,7 @@
 // Licensed under BSD 3-Clause - see LICENSE.txt or git.io/sfdc-license
 
 import React from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { Badge } from '../../badges';
 import ButtonIcon from '../../button-icons';
@@ -39,17 +40,34 @@ export const SummaryDetailTitle = props => (
   </div>
 );
 
-export const SummaryDetailAction = props => (
-  <ButtonIcon
-    className={classNames('slds-m-right_x-small', props.className)}
-    iconClassName="slds-summary-detail__action-icon"
-    symbol="switch"
-    title={`Toggle details for ${props.summaryTitle}`}
-    assistiveText={`Toggle details for ${props.summaryTitle}`}
-    aria-controls={props.referenceId}
-    aria-expanded={props.isOpen ? 'true' : 'false'}
-  />
-);
+export const SummaryDetailAction = props => {
+  const defaultLabel = props.summaryTitle
+    ? `Toggle details for ${props.summaryTitle}`
+    : 'Toggle details';
+  const title = props.title || defaultLabel;
+  const assistiveText = props.assistiveText || defaultLabel;
+
+  return (
+    <ButtonIcon
+      className={classNames('slds-m-right_x-small', props.className)}
+      iconClassName="slds-summary-detail__action-icon"
+      symbol="switch"
+      title={title}
+      assistiveText={assistiveText}
+      aria-controls={props.referenceId}
+      aria-expanded={props.isOpen ? 'true' : 'false'}
+    />
+  );
+};
+
+SummaryDetailAction.propTypes = {
+  className: PropTypes.string,
+  referenceId: PropTypes.string,
+  isOpen: PropTypes.bool,
+  summaryTitle: PropTypes.node,
+  title: PropTypes.string,
+  assistiveText: PropTypes.oneOfType([PropTypes.string, PropTypes.node])
+};
 
 /* -----------------------------------------------------------------------------
     Exports

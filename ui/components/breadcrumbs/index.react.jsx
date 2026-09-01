@@ -3,14 +3,20 @@
 
 import React, { useRef } from 'react';
 import classNames from 'classnames';
+import PropTypes from 'prop-types';
 
 const Crumb = ({
   children,
   className,
   hasMenu,
+  href = '#',
+  isCurrent,
+  'aria-current': ariaCurrentProp,
   kxScopeBreadcrumbsItem,
-  kxTypeUnderline
+  kxTypeUnderline,
+  ...props
 }) => {
+  const ariaCurrent = ariaCurrentProp || (isCurrent ? 'page' : undefined);
   const pointerRef = { current: { offsetX: '50%', offsetY: '50%' } };
   const breadCrumbRef = useRef();
   const requestRef = { current: null };
@@ -61,13 +67,22 @@ const Crumb = ({
       ) : (
         <a
           ref={breadCrumbRef}
-          href="#"
-          onClick={e => e.preventDefault()}
+          href={href}
+          aria-current={ariaCurrent}
+          onClick={e => {
+            if (href === '#') {
+              e.preventDefault();
+            }
+            if (props.onClick) {
+              props.onClick(e);
+            }
+          }}
           {...kxScopeBreadcrumbsItem &&
             kxTypeUnderline && {
               onMouseEnter: handleEnter,
               onMouseLeave: handleLeave
             }}
+          {...props}
         >
           {children}
         </a>
@@ -106,6 +121,24 @@ const BreadCrumbs = ({
       </ol>
     </nav>
   );
+};
+
+Crumb.propTypes = {
+  children: PropTypes.node,
+  className: PropTypes.string,
+  hasMenu: PropTypes.bool,
+  href: PropTypes.string,
+  isCurrent: PropTypes.bool,
+  'aria-current': PropTypes.string,
+  kxScopeBreadcrumbsItem: PropTypes.bool,
+  kxTypeUnderline: PropTypes.bool
+};
+
+BreadCrumbs.propTypes = {
+  children: PropTypes.node,
+  kxScopeBreadcrumbsItem: PropTypes.bool,
+  kxTypeUnderline: PropTypes.bool,
+  listClassNames: PropTypes.string
 };
 
 BreadCrumbs.Crumb = Crumb;

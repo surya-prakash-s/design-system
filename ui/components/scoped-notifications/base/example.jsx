@@ -11,22 +11,22 @@ import classNames from 'classnames';
 /// ///////////////////////////////////////////
 
 export const ScopedNotification = props => {
-  const { children } = props;
+  const { children, type, title, assistiveText, role } = props;
 
   return (
     <div
       className={classNames(
         'slds-scoped-notification slds-media slds-media_center',
-        props.type && 'slds-theme_' + props.type
+        type && 'slds-theme_' + type
       )}
-      role="status"
+      role={role || (type === 'error' ? 'alert' : 'status')}
     >
       <div className="slds-media__figure">
         <UtilityIcon
-          title={props.type}
+          title={title || type}
           className="slds-icon_small"
-          assistiveText={props.type}
-          symbol={props.type}
+          assistiveText={assistiveText || type}
+          symbol={type}
         />
       </div>
       <div className="slds-media__body">{children}</div>
@@ -36,28 +36,31 @@ export const ScopedNotification = props => {
 
 ScopedNotification.propTypes = {
   type: PropTypes.oneOf(['info', 'success', 'warning', 'error']),
+  title: PropTypes.string,
+  assistiveText: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
+  role: PropTypes.string,
   children: PropTypes.node
 };
 
 export const ScopedNotificationThemed = props => {
-  const { children, theme } = props;
+  const { children, theme, title, assistiveText, role } = props;
 
   return (
     <div
       className={classNames(
         'slds-scoped-notification slds-media slds-media_center',
-        props.theme && 'slds-scoped-notification_' + props.theme
+        theme && 'slds-scoped-notification_' + theme
       )}
-      role="status"
+      role={role || 'status'}
     >
       <div className="slds-media__figure">
         <UtilityIcon
-          title="information"
+          title={title || 'information'}
           className={classNames(
             'slds-icon_small',
             theme && theme === 'light' && 'slds-icon-text-default'
           )}
-          assistiveText="information"
+          assistiveText={assistiveText || 'information'}
           symbol="info"
         />
       </div>
@@ -68,7 +71,10 @@ export const ScopedNotificationThemed = props => {
 
 ScopedNotificationThemed.propTypes = {
   children: PropTypes.node,
-  theme: PropTypes.oneOf(['light', 'dark'])
+  theme: PropTypes.oneOf(['light', 'dark']),
+  title: PropTypes.string,
+  assistiveText: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
+  role: PropTypes.string
 };
 
 /// ///////////////////////////////////////////

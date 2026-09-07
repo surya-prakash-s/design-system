@@ -46,7 +46,7 @@ export const BreadcrumbsBase = ({ kineticsEnabled }) => (
     kxTypeUnderline={kineticsEnabled}
   >
     <Crumb>Parent Entity</Crumb>
-    <Crumb>Parent Record Name</Crumb>
+    <Crumb isCurrent>Parent Record Name</Crumb>
   </BreadCrumbs>
 );
 
@@ -61,7 +61,7 @@ export const BreadcrumbsWithOverflow = ({ kineticsEnabled }) => (
       <BreadcrumbMenu />
     </Crumb>
     <Crumb>Parent Entity</Crumb>
-    <Crumb>Parent Record Name</Crumb>
+    <Crumb isCurrent>Parent Record Name</Crumb>
   </BreadCrumbs>
 );
 

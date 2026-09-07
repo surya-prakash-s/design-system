@@ -3,18 +3,34 @@
 
 import React, { useRef } from 'react';
 import classNames from 'classnames';
+import PropTypes from 'prop-types';
 
 const Crumb = ({
   children,
   className,
   hasMenu,
+  href = '#',
+  isCurrent,
+  'aria-current': ariaCurrent,
+  onClick,
   kxScopeBreadcrumbsItem,
-  kxTypeUnderline
+  kxTypeUnderline,
+  ...props
 }) => {
   const pointerRef = { current: { offsetX: '50%', offsetY: '50%' } };
   const breadCrumbRef = useRef();
   const requestRef = { current: null };
   const previousTimeRef = { current: null };
+
+  const computedAriaCurrent = ariaCurrent || (isCurrent ? 'page' : undefined);
+
+  const handleClick = e => {
+    if (onClick) {
+      onClick(e);
+    } else if (href === '#') {
+      e.preventDefault();
+    }
+  };
 
   const setCoordProps = element => {
     const { offsetX } = pointerRef.current;
@@ -51,23 +67,25 @@ const Crumb = ({
   return (
     <li
       className={classNames('slds-breadcrumb__item', className)}
-      {...kxTypeUnderline && {
+      {...(kxTypeUnderline && {
         'kx-type': 'underline'
-      }}
-      {...kxScopeBreadcrumbsItem && { 'kx-scope': 'breadcrumbs-item' }}
+      })}
+      {...(kxScopeBreadcrumbsItem && { 'kx-scope': 'breadcrumbs-item' })}
     >
       {hasMenu ? (
         children
       ) : (
         <a
           ref={breadCrumbRef}
-          href="#"
-          onClick={e => e.preventDefault()}
-          {...kxScopeBreadcrumbsItem &&
+          href={href}
+          onClick={handleClick}
+          aria-current={computedAriaCurrent}
+          {...props}
+          {...(kxScopeBreadcrumbsItem &&
             kxTypeUnderline && {
               onMouseEnter: handleEnter,
               onMouseLeave: handleLeave
-            }}
+            })}
         >
           {children}
         </a>
@@ -76,11 +94,25 @@ const Crumb = ({
   );
 };
 
+Crumb.propTypes = {
+  children: PropTypes.node,
+  className: PropTypes.string,
+  hasMenu: PropTypes.bool,
+  href: PropTypes.string,
+  isCurrent: PropTypes.bool,
+  'aria-current': PropTypes.string,
+  onClick: PropTypes.func,
+  kxScopeBreadcrumbsItem: PropTypes.bool,
+  kxTypeUnderline: PropTypes.bool
+};
+
 const BreadCrumbs = ({
   children,
+  className,
   kxScopeBreadcrumbsItem,
   kxTypeUnderline,
-  listClassNames
+  listClassNames,
+  ...props
 }) => {
   const kineticsChildren = crumbs =>
     React.Children.map(crumbs, child => {
@@ -95,7 +127,12 @@ const BreadCrumbs = ({
     });
 
   return (
-    <nav role="navigation" aria-label="Breadcrumbs">
+    <nav
+      role="navigation"
+      aria-label="Breadcrumbs"
+      className={className}
+      {...props}
+    >
       <ol
         className={classNames(
           'slds-breadcrumb slds-list_horizontal slds-wrap',
@@ -106,6 +143,14 @@ const BreadCrumbs = ({
       </ol>
     </nav>
   );
+};
+
+BreadCrumbs.propTypes = {
+  children: PropTypes.node,
+  className: PropTypes.string,
+  kxScopeBreadcrumbsItem: PropTypes.bool,
+  kxTypeUnderline: PropTypes.bool,
+  listClassNames: PropTypes.string
 };
 
 BreadCrumbs.Crumb = Crumb;

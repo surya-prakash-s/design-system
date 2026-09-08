@@ -37,6 +37,11 @@ export let Popover = props => {
     }
   );
 
+  const popoverTitle = props.headerTitle || props.title;
+  const closeButtonLabel =
+    props.closeButtonAssistiveText ||
+    (popoverTitle ? `Close ${popoverTitle} dialog` : 'Close dialog');
+
   return (
     <section
       aria-describedby={bodyUniqueId}
@@ -52,13 +57,13 @@ export let Popover = props => {
     >
       {props.closeButton ? (
         <ButtonIcon
-          assistiveText="Close dialog"
+          assistiveText={closeButtonLabel}
           className={classNames(
             'slds-button_icon-small slds-float_right slds-popover__close',
             props.inverse && 'slds-button_icon-inverse'
           )}
           symbol="close"
-          title="Close dialog"
+          title={closeButtonLabel}
           onClick={props.onClose}
         />
       ) : null}
@@ -137,6 +142,7 @@ Popover.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
   closeButton: PropTypes.bool,
+  closeButtonAssistiveText: PropTypes.string,
   footer: PropTypes.node,
   footerClassName: PropTypes.string,
   hasFormFooter: PropTypes.bool,

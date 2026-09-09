@@ -2,6 +2,7 @@
 // Licensed under BSD 3-Clause - see LICENSE.txt or git.io/sfdc-license
 
 import React from 'react';
+import PropTypes from 'prop-types';
 import SvgIcon from '../../../shared/svg-icon';
 import ButtonIcon from '../../button-icons/';
 import { Checkbox } from '../../checkbox/base/example';
@@ -11,63 +12,22 @@ import classNames from 'classnames';
 // Partial(s)
 /// ////////////////////////////////////////
 
-export let Tile = props => (
-  <article
-    className={classNames(
-      'slds-tile',
-      props.className,
-      props.actions ? 'slds-hint-parent' : null
-    )}
-  >
-    {props.actions ? (
-      <div className="slds-grid slds-grid_align-spread slds-has-flexi-truncate">
-        <h3
-          className="slds-tile__title slds-truncate"
-          title={props.title || 'Title'}
-        >
-          <a href="#" onClick={e => e.preventDefault()}>
-            {props.title || 'Title'}
-          </a>
-        </h3>
-        <div className="slds-shrink-none">
-          <ButtonIcon
-            className="slds-button_icon-border-filled slds-button_icon-x-small"
-            iconClassName="slds-button__icon_hint"
-            symbol="down"
-            aria-haspopup="true"
-            assistiveText="More options"
-            title="More options"
-          />
-        </div>
-      </div>
-    ) : (
-      <h3
-        className="slds-tile__title slds-truncate"
-        title={props.title || 'Title'}
-      >
-        <a href="#" onClick={e => e.preventDefault()}>
-          {props.title || 'Title'}
-        </a>
-      </h3>
-    )}
-    <div className="slds-tile__detail">
-      {props.children ? props.children : <Detail />}
-    </div>
-  </article>
-);
+export let Tile = props => {
+  const actionAssistiveText =
+    props.actionAssistiveText ||
+    (props.title ? `More options for ${props.title}` : 'More options');
+  const actionTitle =
+    props.actionTitle ||
+    (props.title ? `More options for ${props.title}` : 'More options');
 
-export let TileMedia = props => (
-  <article
-    className={classNames(
-      'slds-tile slds-media',
-      props.className,
-      props.actions ? 'slds-hint-parent' : null
-    )}
-  >
-    {props.media ? (
-      <div className="slds-media__figure">{props.media}</div>
-    ) : null}
-    <div className="slds-media__body">
+  return (
+    <article
+      className={classNames(
+        'slds-tile',
+        props.className,
+        props.actions ? 'slds-hint-parent' : null
+      )}
+    >
       {props.actions ? (
         <div className="slds-grid slds-grid_align-spread slds-has-flexi-truncate">
           <h3
@@ -84,8 +44,8 @@ export let TileMedia = props => (
               iconClassName="slds-button__icon_hint"
               symbol="down"
               aria-haspopup="true"
-              assistiveText="More options"
-              title="More options"
+              assistiveText={actionAssistiveText}
+              title={actionTitle}
             />
           </div>
         </div>
@@ -102,9 +62,87 @@ export let TileMedia = props => (
       <div className="slds-tile__detail">
         {props.children ? props.children : <Detail />}
       </div>
-    </div>
-  </article>
-);
+    </article>
+  );
+};
+
+Tile.propTypes = {
+  actions: PropTypes.bool,
+  actionTitle: PropTypes.string,
+  actionAssistiveText: PropTypes.string,
+  children: PropTypes.node,
+  className: PropTypes.string,
+  title: PropTypes.string
+};
+
+export let TileMedia = props => {
+  const actionAssistiveText =
+    props.actionAssistiveText ||
+    (props.title ? `More options for ${props.title}` : 'More options');
+  const actionTitle =
+    props.actionTitle ||
+    (props.title ? `More options for ${props.title}` : 'More options');
+
+  return (
+    <article
+      className={classNames(
+        'slds-tile slds-media',
+        props.className,
+        props.actions ? 'slds-hint-parent' : null
+      )}
+    >
+      {props.media ? (
+        <div className="slds-media__figure">{props.media}</div>
+      ) : null}
+      <div className="slds-media__body">
+        {props.actions ? (
+          <div className="slds-grid slds-grid_align-spread slds-has-flexi-truncate">
+            <h3
+              className="slds-tile__title slds-truncate"
+              title={props.title || 'Title'}
+            >
+              <a href="#" onClick={e => e.preventDefault()}>
+                {props.title || 'Title'}
+              </a>
+            </h3>
+            <div className="slds-shrink-none">
+              <ButtonIcon
+                className="slds-button_icon-border-filled slds-button_icon-x-small"
+                iconClassName="slds-button__icon_hint"
+                symbol="down"
+                aria-haspopup="true"
+                assistiveText={actionAssistiveText}
+                title={actionTitle}
+              />
+            </div>
+          </div>
+        ) : (
+          <h3
+            className="slds-tile__title slds-truncate"
+            title={props.title || 'Title'}
+          >
+            <a href="#" onClick={e => e.preventDefault()}>
+              {props.title || 'Title'}
+            </a>
+          </h3>
+        )}
+        <div className="slds-tile__detail">
+          {props.children ? props.children : <Detail />}
+        </div>
+      </div>
+    </article>
+  );
+};
+
+TileMedia.propTypes = {
+  actions: PropTypes.bool,
+  actionTitle: PropTypes.string,
+  actionAssistiveText: PropTypes.string,
+  children: PropTypes.node,
+  className: PropTypes.string,
+  media: PropTypes.node,
+  title: PropTypes.string
+};
 
 let Detail = props => (
   <dl className="slds-list_horizontal slds-wrap">

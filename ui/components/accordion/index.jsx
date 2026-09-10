@@ -32,8 +32,15 @@ const AccordionSection = props => {
   const isHidden = !isActive;
 
   const renderActionMenu = () => {
-    return React.cloneElement(props.actionMenu);
-  }
+    const contextualLabel = props.summary
+      ? `More actions for ${props.summary}`
+      : undefined;
+    return React.cloneElement(props.actionMenu, {
+      assistiveText:
+        props.actionMenu.props.assistiveText || contextualLabel,
+      title: props.actionMenu.props.title || contextualLabel
+    });
+  };
 
   return (
     <li className="slds-accordion__list-item">

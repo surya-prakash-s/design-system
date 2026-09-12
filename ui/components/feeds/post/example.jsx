@@ -2,6 +2,7 @@
 // Licensed under BSD 3-Clause - see LICENSE.txt or git.io/sfdc-license
 
 import React from 'react';
+import PropTypes from 'prop-types';
 import ButtonIcon from '../../button-icons/';
 import { File, AttachmentLink } from '../../files';
 import { Publisher } from '../../publishers/comment/example';
@@ -73,53 +74,68 @@ export let PostFooterMeta = props => (
   </ul>
 );
 
-export let PostHeader = props => (
-  <header className="slds-post__header slds-media">
-    <div className="slds-media__figure">
-      <a
-        href="#"
-        className="slds-avatar slds-avatar_circle slds-avatar_large"
-        onClick={e => e.preventDefault()}
-      >
-        <img
-          alt="Jason Rodgers"
-          src="/assets/images/avatar1.jpg"
-          title="Jason Rodgers avatar"
-        />
-      </a>
-    </div>
-    <div className="slds-media__body">
-      <div className="slds-grid slds-grid_align-spread slds-has-flexi-truncate">
-        <p>
-          <a href="#" title="Jason Rodgers" onClick={e => e.preventDefault()}>
-            Jason Rogers
-          </a>{' '}
-          —{' '}
-          <a href="#" title="Design Systems" onClick={e => e.preventDefault()}>
-            Design Systems
-          </a>
-        </p>
-        <ButtonIcon
-          className="slds-button_icon-border slds-button_icon-x-small"
-          aria-haspopup="true"
-          symbol="down"
-          assistiveText="More Options"
-          title="More Options"
-        />
-      </div>
-      <p className="slds-text-body_small">
+export let PostHeader = props => {
+  const userName = props.userName || 'Jason Rogers';
+  const computedText = userName
+    ? `More Options for ${userName}'s post`
+    : 'More Options for post';
+  const assistiveText = props.assistiveText || computedText;
+  const title = props.title || computedText;
+
+  return (
+    <header className="slds-post__header slds-media">
+      <div className="slds-media__figure">
         <a
           href="#"
-          title="Click for single-item view of this post"
-          className="slds-text-link_reset"
+          className="slds-avatar slds-avatar_circle slds-avatar_large"
           onClick={e => e.preventDefault()}
         >
-          5 days Ago
+          <img
+            alt={userName}
+            src="/assets/images/avatar1.jpg"
+            title={`${userName} avatar`}
+          />
         </a>
-      </p>
-    </div>
-  </header>
-);
+      </div>
+      <div className="slds-media__body">
+        <div className="slds-grid slds-grid_align-spread slds-has-flexi-truncate">
+          <p>
+            <a href="#" title={userName} onClick={e => e.preventDefault()}>
+              {userName}
+            </a>{' '}
+            —{' '}
+            <a href="#" title="Design Systems" onClick={e => e.preventDefault()}>
+              Design Systems
+            </a>
+          </p>
+          <ButtonIcon
+            className="slds-button_icon-border slds-button_icon-x-small"
+            aria-haspopup="true"
+            symbol="down"
+            assistiveText={assistiveText}
+            title={title}
+          />
+        </div>
+        <p className="slds-text-body_small">
+          <a
+            href="#"
+            title="Click for single-item view of this post"
+            className="slds-text-link_reset"
+            onClick={e => e.preventDefault()}
+          >
+            5 days Ago
+          </a>
+        </p>
+      </div>
+    </header>
+  );
+};
+
+PostHeader.propTypes = {
+  userName: PropTypes.string,
+  title: PropTypes.string,
+  assistiveText: PropTypes.string
+};
 
 export let PostContent = props => (
   <div

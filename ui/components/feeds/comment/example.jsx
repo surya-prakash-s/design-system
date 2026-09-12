@@ -2,6 +2,7 @@
 // Licensed under BSD 3-Clause - see LICENSE.txt or git.io/sfdc-license
 
 import React from 'react';
+import PropTypes from 'prop-types';
 import ButtonIcon from '../../button-icons/';
 import classNames from 'classnames';
 
@@ -33,24 +34,39 @@ export let Comment = props => (
   </article>
 );
 
-export let CommentHeader = props => (
-  <header className="slds-media slds-media_center">
-    <div className="slds-grid slds-grid_align-spread slds-has-flexi-truncate">
-      <p className="slds-truncate" title="Jenna Davis">
-        <a href="#" onClick={e => e.preventDefault()}>
-          Jenna Davis
-        </a>
-      </p>
-      <ButtonIcon
-        className="slds-button_icon-border slds-button_icon-x-small"
-        aria-haspopup="true"
-        symbol="down"
-        assistiveText="More Options"
-        title="More Options"
-      />
-    </div>
-  </header>
-);
+export let CommentHeader = props => {
+  const userName = props.userName || 'Jenna Davis';
+  const computedText = userName
+    ? `More Options for ${userName}'s comment`
+    : 'More Options for comment';
+  const assistiveText = props.assistiveText || computedText;
+  const title = props.title || computedText;
+
+  return (
+    <header className="slds-media slds-media_center">
+      <div className="slds-grid slds-grid_align-spread slds-has-flexi-truncate">
+        <p className="slds-truncate" title={userName}>
+          <a href="#" onClick={e => e.preventDefault()}>
+            {userName}
+          </a>
+        </p>
+        <ButtonIcon
+          className="slds-button_icon-border slds-button_icon-x-small"
+          aria-haspopup="true"
+          symbol="down"
+          assistiveText={assistiveText}
+          title={title}
+        />
+      </div>
+    </header>
+  );
+};
+
+CommentHeader.propTypes = {
+  userName: PropTypes.string,
+  title: PropTypes.string,
+  assistiveText: PropTypes.string
+};
 
 export let CommentContent = props => (
   <div

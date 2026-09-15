@@ -2,6 +2,7 @@
 // Licensed under BSD 3-Clause - see LICENSE.txt or git.io/sfdc-license
 
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Avatar } from '../../avatar/base/example';
 import ButtonIcon from '../../button-icons/';
 import { Menu, MenuList, MenuItem } from '../../menus/dropdown/example';
@@ -102,83 +103,108 @@ const EmailFooter = props => (
   </div>
 );
 
-export let DockedComposerPanel = props => (
-  <section
-    className={classNames(
-      'slds-docked-composer slds-grid slds-grid_vertical',
-      props.className,
-      props.dialogClosed ? 'slds-is-closed' : null
-    )}
-    role={!props.nestedDialog ? 'dialog' : null}
-    aria-labelledby={!props.nestedDialog ? dialogHeadingId : null}
-    aria-describedby={!props.nestedDialog ? dialogBodyId : null}
-  >
-    <header
-      className="slds-docked-composer__header slds-grid slds-shrink-none"
-      aria-live="assertive"
+export let DockedComposerPanel = props => {
+  const headerText = typeof props.header === 'string' ? props.header : null;
+  const minimizeText = props.minimizeButtonAssistiveText || (headerText ? `Minimize ${headerText}` : 'Minimize Composer Panel');
+  const expandText = props.expandButtonAssistiveText || (headerText ? `Expand ${headerText}` : 'Expand Composer Panel');
+  const closeText = props.closeButtonAssistiveText || (headerText ? `Close ${headerText}` : 'Close Composer Panel');
+
+  return (
+    <section
+      className={classNames(
+        'slds-docked-composer slds-grid slds-grid_vertical',
+        props.className,
+        props.dialogClosed ? 'slds-is-closed' : null
+      )}
+      role={!props.nestedDialog ? 'dialog' : null}
+      aria-labelledby={!props.nestedDialog ? dialogHeadingId : null}
+      aria-describedby={!props.nestedDialog ? dialogBodyId : null}
     >
-      <div className="slds-media slds-media_center slds-no-space">
-        <div className="slds-media__figure slds-m-right_x-small">
-          <span className="slds-icon_container">
-            <SvgIcon
-              className="slds-icon slds-icon_small slds-icon-text-default"
-              sprite="standard"
-              symbol={props.headerSymbol || 'call'}
-            />
-          </span>
-        </div>
-        <div className="slds-media__body">
-          {props.dialogClosed ? (
-            <span className="slds-assistive-text">Minimized</span>
-          ) : null}
-          <h2
-            className="slds-truncate"
-            id={dialogHeadingId}
-            title={props.header || 'Header'}
-          >
-            {props.header || 'Header'}
-          </h2>
-        </div>
-      </div>
-      <div className="slds-col_bump-left slds-shrink-none">
-        <ButtonIcon
-          className="slds-button_icon"
-          symbol="minimize_window"
-          assistiveText="Minimize Composer Panel"
-          title="Minimize window"
-        />
-        <ButtonIcon
-          className="slds-button_icon"
-          symbol="expand_alt"
-          assistiveText="Expand Composer Panel"
-          title="Expand Composer"
-        />
-        <ButtonIcon
-          className="slds-button_icon"
-          symbol="close"
-          assistiveText="Close Composer Panel"
-          title="Close"
-        />
-      </div>
-    </header>
-    <div
-      className={classNames('slds-docked-composer__body', props.bodyClassName)}
-      id={dialogBodyId}
-    >
-      {props.children}
-    </div>
-    {props.footer ? (
-      <footer
-        className={classNames(
-          'slds-docked-composer__footer slds-shrink-none',
-          props.footerClassName
-        )}
+      <header
+        className="slds-docked-composer__header slds-grid slds-shrink-none"
+        aria-live="assertive"
       >
-        {props.footer}
-      </footer>
-    ) : null}
-  </section>
-);
+        <div className="slds-media slds-media_center slds-no-space">
+          <div className="slds-media__figure slds-m-right_x-small">
+            <span className="slds-icon_container">
+              <SvgIcon
+                className="slds-icon slds-icon_small slds-icon-text-default"
+                sprite="standard"
+                symbol={props.headerSymbol || 'call'}
+              />
+            </span>
+          </div>
+          <div className="slds-media__body">
+            {props.dialogClosed ? (
+              <span className="slds-assistive-text">Minimized</span>
+            ) : null}
+            <h2
+              className="slds-truncate"
+              id={dialogHeadingId}
+              title={props.header || 'Header'}
+            >
+              {props.header || 'Header'}
+            </h2>
+          </div>
+        </div>
+        <div className="slds-col_bump-left slds-shrink-none">
+          <ButtonIcon
+            className="slds-button_icon"
+            symbol="minimize_window"
+            assistiveText={minimizeText}
+            title={props.minimizeButtonTitle || minimizeText}
+          />
+          <ButtonIcon
+            className="slds-button_icon"
+            symbol="expand_alt"
+            assistiveText={expandText}
+            title={props.expandButtonTitle || expandText}
+          />
+          <ButtonIcon
+            className="slds-button_icon"
+            symbol="close"
+            assistiveText={closeText}
+            title={props.closeButtonTitle || closeText}
+          />
+        </div>
+      </header>
+      <div
+        className={classNames('slds-docked-composer__body', props.bodyClassName)}
+        id={dialogBodyId}
+      >
+        {props.children}
+      </div>
+      {props.footer ? (
+        <footer
+          className={classNames(
+            'slds-docked-composer__footer slds-shrink-none',
+            props.footerClassName
+          )}
+        >
+          {props.footer}
+        </footer>
+      ) : null}
+    </section>
+  );
+};
+
+DockedComposerPanel.propTypes = {
+  bodyClassName: PropTypes.string,
+  children: PropTypes.node,
+  className: PropTypes.string,
+  closeButtonAssistiveText: PropTypes.string,
+  closeButtonTitle: PropTypes.string,
+  dialogClosed: PropTypes.bool,
+  expandButtonAssistiveText: PropTypes.string,
+  expandButtonTitle: PropTypes.string,
+  footer: PropTypes.node,
+  footerClassName: PropTypes.string,
+  header: PropTypes.node,
+  headerSymbol: PropTypes.string,
+  minimizeButtonAssistiveText: PropTypes.string,
+  minimizeButtonTitle: PropTypes.string,
+  nestedDialog: PropTypes.bool
+};
 
 export let ComposerOverflowMenu = props => (
   <div className="slds-docked-composer slds-docked-composer_overflow">

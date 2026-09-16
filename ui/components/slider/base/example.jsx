@@ -2,13 +2,14 @@
 // Licensed under BSD 3-Clause - see LICENSE.txt or git.io/sfdc-license
 
 import React from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { FormElement } from '../../form-element';
 import uniqueId from 'lodash.uniqueid';
+
 /* -----------------------------------------------------------------------------
     Variables
 ----------------------------------------------------------------------------- */
-
 
 const errorMessageId = uniqueId('error-message-id-');
 
@@ -25,11 +26,17 @@ const SliderLabel = props => (
   </span>
 );
 
-export const Slider = (props) => {
+SliderLabel.propTypes = {
+  min: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  max: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+};
+
+export const Slider = props => {
   return (
     <div className={classNames('slds-slider', props.className)}>
       <input
         aria-describedby={props['aria-describedby']}
+        aria-invalid={props['aria-invalid']}
         id={props.id || uniqueId('slider-id-')}
         className="slds-slider__range"
         type="range"
@@ -44,6 +51,20 @@ export const Slider = (props) => {
       </span>
     </div>
   );
+};
+
+Slider.displayName = 'Slider';
+
+Slider.propTypes = {
+  id: PropTypes.string,
+  className: PropTypes.string,
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  min: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  max: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  step: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  disabled: PropTypes.bool,
+  'aria-describedby': PropTypes.string,
+  'aria-invalid': PropTypes.oneOfType([PropTypes.string, PropTypes.bool])
 };
 
 /* -----------------------------------------------------------------------------
@@ -230,6 +251,7 @@ export let examples = [
       >
         <Slider
           aria-describedby={errorMessageId}
+          aria-invalid="true"
           className="slds-size_large"
           value="50"
           id={newExampleId}

@@ -2,6 +2,7 @@
 // Licensed under BSD 3-Clause - see LICENSE.txt or git.io/sfdc-license
 
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { StandardIcon } from '../icons/standard/example';
 import classNames from 'classnames';
 
@@ -9,7 +10,7 @@ import classNames from 'classnames';
  * Card Header
  */
 export const CardHeader = props => {
-  const { className, title, href, symbol, action } = props;
+  const { className, title, href, symbol, action, iconAssistiveText, iconTitle } = props;
 
   return (
     <div className={classNames('slds-card__header slds-grid', className)}>
@@ -19,8 +20,8 @@ export const CardHeader = props => {
             <StandardIcon
               className="slds-icon_small"
               symbol={symbol}
-              assistiveText={symbol}
-              title={symbol}
+              assistiveText={iconAssistiveText !== undefined ? iconAssistiveText : symbol}
+              title={iconTitle !== undefined ? iconTitle : symbol}
             />
           </div>
         )}
@@ -106,5 +107,33 @@ class Card extends Component {
     );
   }
 }
+
+CardHeader.propTypes = {
+  className: PropTypes.string,
+  title: PropTypes.node,
+  href: PropTypes.string,
+  symbol: PropTypes.string,
+  action: PropTypes.node,
+  iconAssistiveText: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
+  iconTitle: PropTypes.oneOfType([PropTypes.string, PropTypes.bool])
+};
+
+CardBody.propTypes = {
+  children: PropTypes.node,
+  className: PropTypes.string,
+  hasPadding: PropTypes.bool
+};
+
+CardFooter.propTypes = {
+  children: PropTypes.node,
+  className: PropTypes.string,
+  linkTabIndex: PropTypes.string
+};
+
+Card.propTypes = {
+  children: PropTypes.node,
+  className: PropTypes.string,
+  hasCardBoundary: PropTypes.bool
+};
 
 export default Card;

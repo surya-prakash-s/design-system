@@ -1,0 +1,3 @@
+## 2026-03-30 - Contextual Labels for Docked Composer Action Buttons
+**Learning:** Generic action button labels in floating or docked panels (such as "Minimize Composer Panel", "Expand Composer Panel", "Close Composer Panel") create ambiguity for screen reader users when multiple composer instances are open simultaneously on a page.
+**Action:** Dynamically derive `assistiveText` and `title` attributes from the component's `header` prop when explicit custom action button props are omitted, and safely validate `typeof props.header === 'string'` to avoid rendering `[object Object]` when React nodes are passed.

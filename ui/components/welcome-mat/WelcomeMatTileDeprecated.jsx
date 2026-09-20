@@ -16,6 +16,7 @@ class WelcomeMatTileDeprecated extends React.Component {
     const className = classNames('slds-welcome-mat__tile', {
       'slds-welcome-mat__tile_complete': completed
     });
+    const completedLabel = tile.title ? `Completed: ${tile.title}` : 'Completed';
 
     return (
       <li className={className}>
@@ -30,8 +31,8 @@ class WelcomeMatTileDeprecated extends React.Component {
                 assistiveText={false}
               />
               <ActionIcon
-                title="Completed"
-                assistiveText="Completed"
+                title={completedLabel}
+                assistiveText={completedLabel}
                 className="slds-welcome-mat__icon-check"
                 symbol="check"
               />
@@ -49,7 +50,12 @@ class WelcomeMatTileDeprecated extends React.Component {
 }
 
 WelcomeMatTileDeprecated.propTypes = {
-  tile: PropTypes.object.isRequired
+  tile: PropTypes.shape({
+    symbol: PropTypes.string,
+    title: PropTypes.string,
+    description: PropTypes.string,
+    completed: PropTypes.bool
+  }).isRequired
 };
 
 WelcomeMatTileDeprecated.defaultProps = {

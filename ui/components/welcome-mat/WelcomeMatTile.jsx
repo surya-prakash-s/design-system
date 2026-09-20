@@ -16,6 +16,7 @@ class WelcomeMatTile extends React.Component {
       'slds-welcome-mat__tile_complete': completed,
       'slds-welcome-mat__tile_info-only': isInfoOnly
     });
+    const completedLabel = tile.title ? `Completed: ${tile.title}` : 'Completed';
 
     const renderMediaObject = () => (
       <Fragment>
@@ -34,8 +35,8 @@ class WelcomeMatTile extends React.Component {
               />
               {!isInfoOnly && (
                 <ActionIcon
-                  title="Completed"
-                  assistiveText="Completed"
+                  title={completedLabel}
+                  assistiveText={completedLabel}
                   className="slds-welcome-mat__icon-check"
                   symbol="check"
                 />
@@ -73,7 +74,13 @@ class WelcomeMatTile extends React.Component {
 }
 
 WelcomeMatTile.propTypes = {
-  tile: PropTypes.object.isRequired
+  tile: PropTypes.shape({
+    symbol: PropTypes.string,
+    title: PropTypes.string,
+    description: PropTypes.string,
+    completed: PropTypes.bool
+  }).isRequired,
+  isInfoOnly: PropTypes.bool
 };
 
 WelcomeMatTile.defaultProps = {

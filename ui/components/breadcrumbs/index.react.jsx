@@ -3,11 +3,16 @@
 
 import React, { useRef } from 'react';
 import classNames from 'classnames';
+import PropTypes from 'prop-types';
 
 const Crumb = ({
   children,
   className,
   hasMenu,
+  href = '#',
+  isCurrent,
+  'aria-current': ariaCurrent,
+  onClick,
   kxScopeBreadcrumbsItem,
   kxTypeUnderline
 }) => {
@@ -61,8 +66,15 @@ const Crumb = ({
       ) : (
         <a
           ref={breadCrumbRef}
-          href="#"
-          onClick={e => e.preventDefault()}
+          href={href}
+          aria-current={ariaCurrent || (isCurrent ? 'page' : undefined)}
+          onClick={e => {
+            if (onClick) {
+              onClick(e);
+            } else if (href === '#') {
+              e.preventDefault();
+            }
+          }}
           {...kxScopeBreadcrumbsItem &&
             kxTypeUnderline && {
               onMouseEnter: handleEnter,
@@ -106,6 +118,25 @@ const BreadCrumbs = ({
       </ol>
     </nav>
   );
+};
+
+Crumb.propTypes = {
+  children: PropTypes.node,
+  className: PropTypes.string,
+  hasMenu: PropTypes.bool,
+  href: PropTypes.string,
+  isCurrent: PropTypes.bool,
+  'aria-current': PropTypes.string,
+  onClick: PropTypes.func,
+  kxScopeBreadcrumbsItem: PropTypes.bool,
+  kxTypeUnderline: PropTypes.bool
+};
+
+BreadCrumbs.propTypes = {
+  children: PropTypes.node,
+  kxScopeBreadcrumbsItem: PropTypes.bool,
+  kxTypeUnderline: PropTypes.bool,
+  listClassNames: PropTypes.string
 };
 
 BreadCrumbs.Crumb = Crumb;

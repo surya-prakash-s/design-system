@@ -2,6 +2,7 @@
 // Licensed under BSD 3-Clause - see LICENSE.txt or git.io/sfdc-license
 
 import React from 'react';
+import PropTypes from 'prop-types';
 import SvgIcon from '../../../shared/svg-icon';
 import {
   Modal,
@@ -135,63 +136,99 @@ export let AppLauncherModal = props => (
   </Modal>
 );
 
-export const AppLauncherTile = props => (
-  <div
-    draggable
-    className={classNames(
-      'slds-app-launcher__tile slds-text-link_reset slds-is-draggable',
-      props.className,
-      {
-        'slds-is-grabbed': props.grabbed
-      }
-    )}
-  >
-    <div className="slds-app-launcher__tile-figure">
-      <Avatar className="slds-avatar_large">
-        <abbr
-          className={classNames('slds-avatar__initials', props.figureClass)}
-          title={props.label}
+export const AppLauncherTile = props => {
+  const labelText =
+    typeof props.label === 'string'
+      ? props.label
+      : undefined;
+
+  const reorderAssistiveText =
+    props.reorderButtonAssistiveText ||
+    (labelText ? `Reorder ${labelText}` : 'Reorder');
+
+  const reorderTitle =
+    props.reorderButtonTitle ||
+    (labelText ? `Reorder ${labelText}` : 'Reorder');
+
+  return (
+    <div
+      draggable
+      className={classNames(
+        'slds-app-launcher__tile slds-text-link_reset slds-is-draggable',
+        props.className,
+        {
+          'slds-is-grabbed': props.grabbed
+        }
+      )}
+    >
+      <div className="slds-app-launcher__tile-figure">
+        <Avatar className="slds-avatar_large">
+          <abbr
+            className={classNames('slds-avatar__initials', props.figureClass)}
+            title={labelText}
+          >
+            {props.objectInitials}
+          </abbr>
+        </Avatar>
+        <div className="slds-m-top_xxx-small">
+          <ButtonIconStateful
+            aria-pressed={props.grabbed ? 'true' : 'false'}
+            assistiveText={reorderAssistiveText}
+            selected={props.grabbed}
+            symbol="rows"
+            title={reorderTitle}
+          />
+        </div>
+      </div>
+      <div className="slds-app-launcher__tile-body">
+        <a href="#" onClick={e => e.preventDefault()}>
+          {props.label}
+        </a>
+        <p>
+          {props.description}{' '}
+          {props.hasTooltip && (
+            <button
+              aria-describedby={`help-${props.index}`}
+              className="slds-button slds-button_reset slds-text-link"
+            >
+              More
+            </button>
+          )}
+        </p>
+        <Tooltip
+          className={classNames('slds-nubbin_top-right', {
+            'slds-hide': !props.tooltipText
+          })}
+          id={`help-${props.index}`}
+          style={{ position: 'absolute', top: '80px', right: '30px' }}
         >
-          {props.objectInitials}
-        </abbr>
-      </Avatar>
-      <div className="slds-m-top_xxx-small">
-        <ButtonIconStateful
-          aria-pressed={props.grabbed ? 'true' : 'false'}
-          assistiveText="Reorder"
-          selected={props.grabbed}
-          symbol="rows"
-          title="Reorder"
-        />
+          {props.tooltipText}
+        </Tooltip>
       </div>
     </div>
-    <div className="slds-app-launcher__tile-body">
-      <a href="#" onClick={e => e.preventDefault()}>
-        {props.label}
-      </a>
-      <p>
-        {props.description}{' '}
-        {props.hasTooltip && (
-          <button
-            aria-describedby={`help-${props.index}`}
-            className="slds-button slds-button_reset slds-text-link"
-          >
-            More
-          </button>
-        )}
-      </p>
-      <Tooltip
-        className={classNames('slds-nubbin_top-right', {
-          'slds-hide': !props.tooltipText
-        })}
-        id={`help-${props.index}`}
-        style={{ position: 'absolute', top: '80px', right: '30px' }}
-      >
-        {props.tooltipText}
-      </Tooltip>
-    </div>
-  </div>
-);
+  );
+};
+
+AppLauncherTile.propTypes = {
+  className: PropTypes.string,
+  description: PropTypes.node,
+  figureClass: PropTypes.string,
+  grabbed: PropTypes.bool,
+  hasTooltip: PropTypes.bool,
+  index: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  label: PropTypes.node,
+  objectInitials: PropTypes.node,
+  reorderButtonAssistiveText: PropTypes.string,
+  reorderButtonTitle: PropTypes.string,
+  tooltipText: PropTypes.node
+};
+
+AppLauncherModal.propTypes = {
+  appTiles: PropTypes.array,
+  dragDropLiveRegion: PropTypes.node,
+  itemTiles: PropTypes.array,
+  searchTerm: PropTypes.string
+};
 
 /// ///////////////////////////////////////////
 // Export

@@ -1701,7 +1701,9 @@ exports[`renders a dueling picklist with a required option 1`] = `
                       className="slds-assistive-text"
                     >
                        
-                      : item cannot be removed from 
+                      :
+                      Option 4
+                       cannot be removed from
                       Second Category
                     </span>
                   </span>

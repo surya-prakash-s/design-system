@@ -122,16 +122,32 @@ MultiSelectLabel.propTypes = {
 
 const MoveButtons = props => {
   const firstButtonText =
-    'Move Selection ' +
-    (props.direction === 'vertical' ? 'Up' : 'to ' + props.targetB);
+    props.firstButtonAssistiveText ||
+    props.firstButtonTitle ||
+    ('Move Selection ' +
+      (props.direction === 'vertical'
+        ? 'Up'
+        : props.targetB
+        ? 'to ' + props.targetB
+        : 'Right'));
   const secondButtonText =
-    'Move Selection ' +
-    (props.direction === 'vertical' ? 'Down' : 'to ' + props.targetA);
+    props.secondButtonAssistiveText ||
+    props.secondButtonTitle ||
+    ('Move Selection ' +
+      (props.direction === 'vertical'
+        ? 'Down'
+        : props.targetA
+        ? 'to ' + props.targetA
+        : 'Left'));
+
+  const firstButtonTitle = props.firstButtonTitle || firstButtonText;
+  const secondButtonTitle = props.secondButtonTitle || secondButtonText;
+
   return (
     <div className="slds-dueling-list__column">
       <button
         className="slds-button slds-button_icon slds-button_icon-container"
-        title={firstButtonText}
+        title={firstButtonTitle}
         disabled={props.disabled}
       >
         <SvgIcon
@@ -143,7 +159,7 @@ const MoveButtons = props => {
       </button>
       <button
         className="slds-button slds-button_icon slds-button_icon-container"
-        title={secondButtonText}
+        title={secondButtonTitle}
         disabled={props.disabled}
       >
         <SvgIcon
@@ -155,6 +171,17 @@ const MoveButtons = props => {
       </button>
     </div>
   );
+};
+
+MoveButtons.propTypes = {
+  direction: PropTypes.oneOf(['horizontal', 'vertical']),
+  targetA: PropTypes.string,
+  targetB: PropTypes.string,
+  disabled: PropTypes.bool,
+  firstButtonAssistiveText: PropTypes.string,
+  firstButtonTitle: PropTypes.string,
+  secondButtonAssistiveText: PropTypes.string,
+  secondButtonTitle: PropTypes.string
 };
 
 const SelectionGroup = props => {
@@ -176,6 +203,15 @@ const SelectionGroup = props => {
       />
     </div>
   );
+};
+
+SelectionGroup.propTypes = {
+  disabled: PropTypes.bool,
+  isResponsive: PropTypes.bool,
+  group: PropTypes.shape({
+    label: PropTypes.string,
+    options: PropTypes.array
+  })
 };
 
 const ListBox = props => (
@@ -202,6 +238,13 @@ const ListBox = props => (
     </ul>
   </div>
 );
+
+ListBox.propTypes = {
+  disabled: PropTypes.bool,
+  options: PropTypes.array,
+  ariaLabelledby: PropTypes.string,
+  listboxLabel: PropTypes.string
+};
 
 const Option = props => (
   <li role="presentation" className="slds-listbox__item">
@@ -237,7 +280,7 @@ const Option = props => (
             />
             <span className="slds-assistive-text">
               {' '}
-              : item cannot be removed from {props.listboxLabel}
+              : {props.option.text || 'item'} cannot be removed from {props.listboxLabel}
             </span>
           </span>
         </span>
@@ -245,6 +288,17 @@ const Option = props => (
     </div>
   </li>
 );
+
+Option.propTypes = {
+  option: PropTypes.shape({
+    text: PropTypes.string,
+    tabIndex: PropTypes.number,
+    isSelected: PropTypes.bool,
+    isGrabbed: PropTypes.bool,
+    locked: PropTypes.bool
+  }),
+  listboxLabel: PropTypes.string
+};
 
 export const Demo = props => (
   <div className="demo-only" style={{ paddingTop: '3rem' }}>

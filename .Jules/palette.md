@@ -1,0 +1,3 @@
+## 2025-05-20 - Dynamic Assistive Text for Dueling Picklist Locked Items and Reorder Action Buttons
+**Learning:** In Dueling Picklist multi-select components, static lock indicator assistive text (e.g. `: item cannot be removed from [listLabel]`) lacks context when multiple items are presented, making it unclear to screen reader users which specific item is locked. Similarly, directional move buttons can generate confusing labels like `Move Selection to undefined` if target labels are omitted.
+**Action:** Always dynamically prepend the option label (e.g. `: [option.text] cannot be removed from [listLabel]`) for locked list item descriptions and provide safe direction fallbacks (e.g. `Right` / `Left`) when target labels are missing on directional move actions.

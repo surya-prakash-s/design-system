@@ -154,7 +154,7 @@ export const examples = [
               itemLabel="lightning"
               tabIndex={0}
             >
-              <TreeItem isBranch itemLabel="lightning" />
+              <TreeItem isBranch isExpanded itemLabel="lightning" />
               <TreeGroup>
                 <TreeListItem ariaLevel={2} itemLabel="lightning-button">
                   <TreeItem itemLabel="lightning-button" />
@@ -286,7 +286,7 @@ export const examples = [
               </TreeGroup>
             </TreeListItem>
             <TreeListItem ariaLevel={1} isBranch isExpanded itemLabel="ui">
-              <TreeItem isBranch itemLabel="ui" />
+              <TreeItem isBranch isExpanded itemLabel="ui" />
               <TreeGroup>
                 <TreeListItem ariaLevel={2} itemLabel="ui:button">
                   <TreeItem itemLabel="ui:button" termToMark="butto" />

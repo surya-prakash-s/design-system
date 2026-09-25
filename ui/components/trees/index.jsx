@@ -27,16 +27,21 @@ export const TreeItem = props => {
     }
   };
 
+  const actionPrefix = props.isExpanded ? 'Collapse' : 'Expand';
+  const defaultActionText = props.itemLabel ? `${actionPrefix} ${props.itemLabel}` : actionPrefix;
+  const assistiveText = props.assistiveText || defaultActionText;
+  const title = props.title || defaultActionText;
+
   return (
     <div className={classNames('slds-tree__item', props.className)}>
       <ButtonIcon
         aria-hidden="true"
-        assistiveText={`Expand ${props.itemLabel}`}
+        assistiveText={assistiveText}
         className={classNames('slds-m-right_x-small', (!props.isBranch || props.isDisabled) && 'slds-hidden')}
         iconClassName="slds-button__icon_small"
         symbol="chevronright"
         tabIndex="-1"
-        title={`Expand ${props.itemLabel}`}
+        title={title}
       />
       <span className="slds-has-flexi-truncate">
         <span className="slds-tree__item-label slds-truncate" title={props.itemLabel}>
@@ -56,13 +61,16 @@ export const TreeItem = props => {
 
 TreeItem.displayName = 'TreeItem';
 TreeItem.propTypes = {
+  assistiveText: PropTypes.string,
   children: PropTypes.node,
   isBranch: PropTypes.bool,
   isDisabled: PropTypes.bool,
+  isExpanded: PropTypes.bool,
   itemLabel: PropTypes.string,
   metaTextLabel: PropTypes.string,
   /** Term or string to highlight within the itemLabel */
-  termToMark: PropTypes.string
+  termToMark: PropTypes.string,
+  title: PropTypes.string
 };
 
 TreeItem.defaultProps = {

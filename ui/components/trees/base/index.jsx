@@ -39,7 +39,7 @@ export const ExpandedTree = () => (
       <TreeItem />
     </TreeListItem>
     <TreeListItem ariaLevel={1} isBranch isExpanded itemLabel="Tree Branch">
-      <TreeItem isBranch itemLabel="Tree Branch" />
+      <TreeItem isBranch isExpanded itemLabel="Tree Branch" />
       <TreeGroup>
         <TreeListItem ariaLevel={2}>
           <TreeItem />
@@ -70,7 +70,7 @@ export const SelectedTree = () => (
       <TreeItem />
     </TreeListItem>
     <TreeListItem ariaLevel={1} isBranch isExpanded itemLabel="Tree Branch">
-      <TreeItem isBranch itemLabel="Tree Branch" />
+      <TreeItem isBranch isExpanded itemLabel="Tree Branch" />
       <TreeGroup>
         <TreeListItem ariaLevel={2} isSelected tabIndex={0}>
           <TreeItem />
@@ -98,13 +98,13 @@ export const DeeplyNestedTree = () => (
       <TreeItem />
     </TreeListItem>
     <TreeListItem ariaLevel={1} isBranch isExpanded itemLabel="Tree Branch">
-      <TreeItem isBranch itemLabel="Tree Branch" />
+      <TreeItem isBranch isExpanded itemLabel="Tree Branch" />
       <TreeGroup>
         <TreeListItem ariaLevel={2}>
           <TreeItem />
         </TreeListItem>
         <TreeListItem ariaLevel={2} isBranch isExpanded itemLabel="Tree Branch">
-          <TreeItem isBranch itemLabel="Tree Branch" />
+          <TreeItem isBranch isExpanded itemLabel="Tree Branch" />
           <TreeGroup>
             <TreeListItem ariaLevel={3}>
               <TreeItem />
@@ -126,7 +126,7 @@ export const DeeplyNestedTree = () => (
               isExpanded
               itemLabel="Tree Branch"
             >
-              <TreeItem isBranch itemLabel="Tree Branch" />
+              <TreeItem isBranch isExpanded itemLabel="Tree Branch" />
               <TreeGroup>
                 <TreeListItem ariaLevel={4}>
                   <TreeItem />
@@ -143,7 +143,7 @@ export const DeeplyNestedTree = () => (
                   isExpanded
                   itemLabel="Tree Branch"
                 >
-                  <TreeItem isBranch itemLabel="Tree Branch" />
+                  <TreeItem isBranch isExpanded itemLabel="Tree Branch" />
                   <TreeGroup>
                     <TreeListItem ariaLevel={5}>
                       <TreeItem />
@@ -189,7 +189,7 @@ export const MetaTextTree = () => (
       <TreeItem />
     </TreeListItem>
     <TreeListItem ariaLevel={1} isBranch isExpanded itemLabel="Tree Branch">
-      <TreeItem isBranch itemLabel="Tree Branch" />
+      <TreeItem isBranch isExpanded itemLabel="Tree Branch" />
       <TreeGroup>
         <TreeListItem
           ariaLevel={2}

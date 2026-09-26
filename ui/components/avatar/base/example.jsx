@@ -76,7 +76,11 @@ export let examples = [
     label: 'Fallback - User icon',
     element: (
       <Avatar className="slds-avatar_circle">
-        <AvatarIcon symbol="user" />
+        <AvatarIcon
+          symbol="user"
+          title="User avatar"
+          assistiveText="User avatar"
+        />
       </Avatar>
     )
   },
@@ -98,7 +102,10 @@ export let examples = [
     label: 'Fallback - Entity Icon',
     element: (
       <Avatar>
-        <AvatarIcon />
+        <AvatarIcon
+          title="Account avatar"
+          assistiveText="Account avatar"
+        />
       </Avatar>
     )
   },

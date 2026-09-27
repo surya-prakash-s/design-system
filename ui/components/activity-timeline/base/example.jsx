@@ -69,36 +69,56 @@ export const TimelineIcon = props => (
   </div>
 );
 
-export const TimelineActions = props => (
-  <div
-    className={classNames('slds-timeline__actions', {
-      'slds-timeline__actions_inline': props.inline
-    })}
-  >
-    <p className="slds-timeline__date">{props.date || 'Feb 24'}</p>
-    <ButtonIcon
-      className="slds-button_icon-border-filled slds-button_icon-x-small"
-      symbol="down"
-      assistiveText={props.assistiveText || 'More Options'}
-      aria-haspopup="true"
-      title={props.title || 'More Options'}
-    />
-  </div>
-);
+export const TimelineActions = props => {
+  const itemTitle = props.itemTitle || props.title;
+  const computedTitle =
+    props.title && !props.itemTitle
+      ? props.title
+      : itemTitle
+      ? `More Options for ${itemTitle}`
+      : 'More Options';
+  const computedAssistiveText = props.assistiveText || computedTitle;
 
-export const TimelineMediaFigure = props => (
-  <div className="slds-media__figure">
-    <ButtonIcon
-      iconClassName="slds-timeline__details-action-icon"
-      symbol="switch"
-      title={`Toggle details for ${props.title}`}
-      assistiveText={`Toggle details for ${props.title}`}
-      aria-controls={props.id}
-      aria-expanded={props.isExpanded}
-    />
-    <TimelineIcon symbol={props.type} className="slds-timeline__icon" />
-  </div>
-);
+  return (
+    <div
+      className={classNames('slds-timeline__actions', {
+        'slds-timeline__actions_inline': props.inline
+      })}
+    >
+      <p className="slds-timeline__date">{props.date || 'Feb 24'}</p>
+      <ButtonIcon
+        className="slds-button_icon-border-filled slds-button_icon-x-small"
+        symbol="down"
+        assistiveText={computedAssistiveText}
+        aria-haspopup="true"
+        title={computedTitle}
+      />
+    </div>
+  );
+};
+
+export const TimelineMediaFigure = props => {
+  const itemTitle = props.itemTitle || props.title;
+  const computedTitle =
+    props.buttonTitle ||
+    (itemTitle ? `Toggle details for ${itemTitle}` : 'Toggle details');
+  const computedAssistiveText =
+    props.assistiveText || props.buttonAssistiveText || computedTitle;
+
+  return (
+    <div className="slds-media__figure">
+      <ButtonIcon
+        iconClassName="slds-timeline__details-action-icon"
+        symbol="switch"
+        title={computedTitle}
+        assistiveText={computedAssistiveText}
+        aria-controls={props.id}
+        aria-expanded={props.isExpanded}
+      />
+      <TimelineIcon symbol={props.type} className="slds-timeline__icon" />
+    </div>
+  );
+};
 
 export const TimelineMediaBody = props => (
   <div className="slds-media__body">{props.children}</div>
@@ -120,8 +140,9 @@ export const TimelineTrigger = props => (
     <TimelineActions
       inline
       date={props.date}
-      title="More Options for this item"
-      assistiveText="More Options for this item"
+      itemTitle={props.title}
+      title={props.actionsTitle}
+      assistiveText={props.actionsAssistiveText}
     />
   </div>
 );

@@ -2,6 +2,7 @@
 // Licensed under BSD 3-Clause - see LICENSE.txt or git.io/sfdc-license
 
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import ButtonIcon from '../button-icons/';
 import classNames from 'classnames';
 import uniqueId from 'lodash.uniqueid';
@@ -31,6 +32,14 @@ const CarouselIndicator = props => (
   </li>
 );
 
+CarouselIndicator.propTypes = {
+  id: PropTypes.string,
+  contentId: PropTypes.string,
+  title: PropTypes.string,
+  isActive: PropTypes.bool,
+  className: PropTypes.string
+};
+
 /**
  * Content Sub Component
  */
@@ -59,22 +68,47 @@ const CarouselPanel = props => (
   </div>
 );
 
+CarouselPanel.propTypes = {
+  id: PropTypes.string,
+  indicatorId: PropTypes.string,
+  title: PropTypes.string,
+  description: PropTypes.string,
+  src: PropTypes.string,
+  isActive: PropTypes.bool,
+  className: PropTypes.string
+};
+
 /**
  * Play/Pause Button Sub Component
  */
-export const CarouselPlayToggle = props => (
-  <span className="slds-carousel__autoplay">
-    <ButtonIcon
-      className="slds-button_icon-border-filled slds-button_icon-x-small"
-      symbol={props.stop ? 'right' : 'pause'}
-      aria-controls={props['aria-controls']}
-      aria-pressed={props.stop}
-      disabled={props.disabled}
-      title="Stop auto-play"
-      assistiveText="Stop auto-play"
-    />
-  </span>
-);
+export const CarouselPlayToggle = props => {
+  const isStopped = props.stop;
+  const defaultActionText = isStopped ? 'Start auto-play' : 'Stop auto-play';
+  const title = props.title || defaultActionText;
+  const assistiveText = props.assistiveText || defaultActionText;
+
+  return (
+    <span className="slds-carousel__autoplay">
+      <ButtonIcon
+        className="slds-button_icon-border-filled slds-button_icon-x-small"
+        symbol={isStopped ? 'right' : 'pause'}
+        aria-controls={props['aria-controls']}
+        aria-pressed={isStopped}
+        disabled={props.disabled}
+        title={title}
+        assistiveText={assistiveText}
+      />
+    </span>
+  );
+};
+
+CarouselPlayToggle.propTypes = {
+  stop: PropTypes.bool,
+  disabled: PropTypes.bool,
+  'aria-controls': PropTypes.string,
+  title: PropTypes.string,
+  assistiveText: PropTypes.oneOfType([PropTypes.string, PropTypes.node])
+};
 
 class Carousel extends Component {
   render() {
@@ -150,5 +184,11 @@ class Carousel extends Component {
     );
   }
 }
+
+Carousel.propTypes = {
+  className: PropTypes.string,
+  autoPlay: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
+  panelActive: PropTypes.string
+};
 
 export default Carousel;

@@ -1,0 +1,3 @@
+## 2025-05-18 - Context-Aware Action Labels for Header Buttons
+**Learning:** In panel components with navigation and collapse controls, back buttons were previously receiving generic 'Collapse' labels instead of action-appropriate 'Back to [title]' labels, and missing titles resulted in 'Collapse undefined'. Header buttons for navigation vs collapse actions must dynamically reflect their specific intent and safely fallback when titles are omitted.
+**Action:** Always inspect icon buttons in modal and panel headers to ensure back buttons use 'Back to [title]' and close buttons use 'Collapse/Close [title]', falling back gracefully when titles are omitted.

@@ -29,23 +29,56 @@ export const Container = props => {
   );
 };
 
+Container.propTypes = {
+  size: PropTypes.oneOf(['small', 'medium', 'large', 'x-large', 'full']),
+  docked: PropTypes.oneOf(['left', 'right', 'bottom']),
+  isAnimated: PropTypes.bool,
+  drawer: PropTypes.bool,
+  isVisible: PropTypes.bool,
+  id: PropTypes.string,
+  children: PropTypes.node
+};
+
 export const HeaderActions = ({ children }) => (
   <div className="slds-panel__header-actions">{children}</div>
 );
 
-export const HeaderButton = ({ symbol, handleVisibility, title }) => {
+HeaderActions.propTypes = {
+  children: PropTypes.node
+};
+
+export const HeaderButton = ({
+  symbol,
+  handleVisibility,
+  title,
+  assistiveText,
+  buttonTitle
+}) => {
+  const isBack = symbol === 'back' || symbol === 'chevronleft';
   const computedClassNames = classNames({
-    'slds-panel__back': symbol === 'back' || symbol === 'chevronleft',
+    'slds-panel__back': isBack,
     'slds-panel__close': symbol === 'close'
   });
+
+  const defaultAction = isBack
+    ? title
+      ? `Back to ${title}`
+      : 'Back'
+    : title
+    ? `Collapse ${title}`
+    : 'Collapse';
+
+  const finalAssistiveText = assistiveText || defaultAction;
+  const finalTitle = buttonTitle || finalAssistiveText;
+
   return (
     <ButtonIcon
       key="panel-header-close-button"
       className={computedClassNames}
       symbol={symbol}
       size="small"
-      assistiveText={`Collapse ${title}`}
-      title={`Collapse ${title}`}
+      assistiveText={finalAssistiveText}
+      title={finalTitle}
       onClick={handleVisibility}
     />
   );
@@ -54,7 +87,9 @@ export const HeaderButton = ({ symbol, handleVisibility, title }) => {
 HeaderButton.propTypes = {
   symbol: PropTypes.oneOf(['back', 'chevronleft', 'close']),
   handleVisibility: PropTypes.func,
-  title: PropTypes.string
+  title: PropTypes.string,
+  assistiveText: PropTypes.string,
+  buttonTitle: PropTypes.string
 };
 
 export const HeaderTitle = props => (
@@ -66,6 +101,10 @@ export const HeaderTitle = props => (
     {props.title}
   </h2>
 );
+
+HeaderTitle.propTypes = {
+  title: PropTypes.string
+};
 
 /**
  * Panel Header
@@ -81,6 +120,8 @@ export const Header = props => {
           title={props.title}
           handleVisibility={props.handleVisibility}
           symbol={closeSymbol}
+          assistiveText={props.closeButtonAssistiveText}
+          buttonTitle={props.closeButtonTitle}
         />
       </HeaderActions>
     </>
@@ -93,6 +134,8 @@ export const Header = props => {
             title={props.title}
             handleVisibility={props.handleVisibility}
             symbol={props.iconBack}
+            assistiveText={props.backButtonAssistiveText}
+            buttonTitle={props.backButtonTitle}
           />
           <HeaderTitle title={props.title} />
         </>
@@ -104,6 +147,8 @@ export const Header = props => {
             title={props.title}
             handleVisibility={props.handleVisibility}
             symbol={props.iconBack}
+            assistiveText={props.backButtonAssistiveText}
+            buttonTitle={props.backButtonTitle}
           />
           <HeaderTitle title={props.title} />
           <HeaderActions>
@@ -112,6 +157,8 @@ export const Header = props => {
               title={props.title}
               handleVisibility={props.handleVisibility}
               symbol={closeSymbol}
+              assistiveText={props.closeButtonAssistiveText}
+              buttonTitle={props.closeButtonTitle}
             />
           </HeaderActions>
         </>
@@ -130,6 +177,25 @@ export const Header = props => {
       {props.customHeader ? props.customHeader : headerContent}
     </div>
   );
+};
+
+Header.propTypes = {
+  title: PropTypes.string,
+  invoke: PropTypes.oneOf(['drill-in', 'toggle']),
+  iconBack: PropTypes.string,
+  handleVisibility: PropTypes.func,
+  hasCenterTitle: PropTypes.bool,
+  customHeader: PropTypes.node,
+  headerActions: PropTypes.node,
+  isInvokedByTab: PropTypes.bool,
+  closeButtonAssistiveText: PropTypes.string,
+  closeButtonTitle: PropTypes.string,
+  backButtonAssistiveText: PropTypes.string,
+  backButtonTitle: PropTypes.string
+};
+
+Header.defaultProps = {
+  iconBack: 'chevronleft'
 };
 
 /**
@@ -174,6 +240,10 @@ HeaderDeprecated.defaultProps = {
  */
 const Body = props => <div className="slds-panel__body">{props.children}</div>;
 
+Body.propTypes = {
+  children: PropTypes.node
+};
+
 const Panel = ({
   size,
   title,
@@ -190,6 +260,10 @@ const Panel = ({
   iconBack,
   headerActions,
   headerSlot,
+  closeButtonAssistiveText,
+  closeButtonTitle,
+  backButtonAssistiveText,
+  backButtonTitle,
   id
 }) => (
   <Container
@@ -212,6 +286,10 @@ const Panel = ({
         isInvokedByTab={isInvokedByTab}
         iconBack={iconBack}
         headerActions={headerActions}
+        closeButtonAssistiveText={closeButtonAssistiveText}
+        closeButtonTitle={closeButtonTitle}
+        backButtonAssistiveText={backButtonAssistiveText}
+        backButtonTitle={backButtonTitle}
       />
     )}
     <Body>{children}</Body>
@@ -222,11 +300,22 @@ Panel.propTypes = {
   size: PropTypes.oneOf(['small', 'medium', 'large', 'x-large', 'full']),
   docked: PropTypes.oneOf(['left', 'right', 'bottom']),
   invoke: PropTypes.oneOf(['drill-in', 'toggle']),
+  drawer: PropTypes.bool,
+  title: PropTypes.string,
+  isVisible: PropTypes.bool,
+  isAnimated: PropTypes.bool,
+  handleVisibility: PropTypes.func,
+  customHeader: PropTypes.node,
   hasCenterTitle: PropTypes.bool,
   isInvokedByTab: PropTypes.bool,
   iconBack: PropTypes.string,
   headerActions: PropTypes.node,
   headerSlot: PropTypes.node,
+  closeButtonAssistiveText: PropTypes.string,
+  closeButtonTitle: PropTypes.string,
+  backButtonAssistiveText: PropTypes.string,
+  backButtonTitle: PropTypes.string,
+  children: PropTypes.node,
   id: PropTypes.string
 };
 

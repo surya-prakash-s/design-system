@@ -2,6 +2,7 @@
 // Licensed under BSD 3-Clause - see LICENSE.txt or git.io/sfdc-license
 
 import React from 'react';
+import PropTypes from 'prop-types';
 import uniqueId from 'lodash.uniqueid';
 import ButtonIcon from '../../button-icons/';
 import { StandardIcon } from '../../icons/standard/example';
@@ -11,13 +12,28 @@ import classNames from 'classnames';
 // State Constructor(s)
 /// ///////////////////////////////////////////
 
-let NotificationContainer = props => (
+export let NotificationContainer = props => (
   <div className="slds-notification-container">{props.children}</div>
 );
 
-let Notification = props => {
+NotificationContainer.propTypes = {
+  children: PropTypes.node
+};
+
+export let Notification = props => {
   const bodyUniqueId = uniqueId('dialog-body-id-');
-  const headingId = uniqueId('noti-')
+  const headingId = uniqueId('noti-');
+
+  const closeButtonAssistiveText =
+    props.closeButtonAssistiveText ||
+    (props.title
+      ? `Dismiss ${props.title} notification`
+      : 'Dismiss notification');
+  const closeButtonTitle =
+    props.closeButtonTitle ||
+    (props.title
+      ? `Dismiss ${props.title} notification`
+      : 'Dismiss notification');
 
   return (
     <section
@@ -44,7 +60,7 @@ let Notification = props => {
               id={headingId}
             >
               <span className="slds-assistive-text">
-                {`${props.type} notification:`}
+                {props.type ? `${props.type} notification:` : 'notification:'}
               </span>
               {props.title}
             </h2>
@@ -54,8 +70,8 @@ let Notification = props => {
         <ButtonIcon
           className="slds-button_icon-container slds-notification__close"
           symbol="close"
-          assistiveText={`Dismiss ${props.title} notification`}
-          title={`Dismiss ${props.title} notification`}
+          assistiveText={closeButtonAssistiveText}
+          title={closeButtonTitle}
         />
       </div>
       {props.footer && (
@@ -70,6 +86,16 @@ let Notification = props => {
       )}
     </section>
   );
+};
+
+Notification.propTypes = {
+  type: PropTypes.string,
+  title: PropTypes.node,
+  description: PropTypes.node,
+  closeButtonAssistiveText: PropTypes.string,
+  closeButtonTitle: PropTypes.string,
+  footer: PropTypes.node,
+  footerClassName: PropTypes.string
 };
 
 /// ///////////////////////////////////////////

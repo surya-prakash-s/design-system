@@ -104,7 +104,7 @@ exports[`Vertical Nav List Group renders an active list item 1`] = `
   className="slds-nav-vertical__item slds-is-active"
 >
   <a
-    aria-current={true}
+    aria-current="page"
     className="slds-nav-vertical__action"
     href="#"
     onClick={[Function]}

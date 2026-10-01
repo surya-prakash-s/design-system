@@ -1,0 +1,3 @@
+## 2025-05-18 - WCAG Compliance for aria-current in Navigation Lists
+**Learning:** In navigation components (such as Vertical Navigation), setting `aria-current={true}` (boolean) causes screen readers to misinterpret or ignore the active state or render non-standard markup. According to WAI-ARIA standards, `aria-current` expects valid string tokens such as `'page'`, `'step'`, `'location'`, `'date'`, or `'time'`.
+**Action:** When mapping boolean props like `active` to `aria-current`, convert boolean `true` to `'page'` (e.g. `aria-current={props.active === true ? 'page' : props.active || undefined}`) so screen readers accurately announce the current active navigation item.

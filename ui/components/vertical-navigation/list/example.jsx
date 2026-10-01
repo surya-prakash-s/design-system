@@ -50,7 +50,7 @@ export let NavVerticalItem = props => (
     <a
       href="#"
       className="slds-nav-vertical__action"
-      aria-current={props.active}
+      aria-current={props.active === true ? 'page' : props.active || undefined}
       onClick={e => e.preventDefault()}
     >
       {props.children}

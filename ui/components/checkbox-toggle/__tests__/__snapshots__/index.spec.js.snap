@@ -6,6 +6,7 @@ exports[`renders a checked checkbox toggle 1`] = `
 >
   <label
     className="slds-checkbox_toggle slds-grid"
+    htmlFor="checkbox-toggle-2"
   >
     <span
       className="slds-form-element__label slds-m-bottom_none"
@@ -13,16 +14,18 @@ exports[`renders a checked checkbox toggle 1`] = `
       Toggle Label
     </span>
     <input
-      aria-describedby="checkbox-toggle-2"
+      aria-describedby="checkbox-toggle-2-desc"
       defaultChecked={true}
+      id="checkbox-toggle-2"
       name="checkbox-toggle-2"
+      role="switch"
       type="checkbox"
       value="checkbox-toggle-2"
     />
     <span
       aria-live="assertive"
       className="slds-checkbox_faux_container"
-      id="checkbox-toggle-2"
+      id="checkbox-toggle-2-desc"
     >
       <span
         className="slds-checkbox_faux"
@@ -48,6 +51,7 @@ exports[`renders a default checkbox toggle 1`] = `
 >
   <label
     className="slds-checkbox_toggle slds-grid"
+    htmlFor="checkbox-toggle-1"
   >
     <span
       className="slds-form-element__label slds-m-bottom_none"
@@ -55,15 +59,17 @@ exports[`renders a default checkbox toggle 1`] = `
       Toggle Label
     </span>
     <input
-      aria-describedby="checkbox-toggle-1"
+      aria-describedby="checkbox-toggle-1-desc"
+      id="checkbox-toggle-1"
       name="checkbox-toggle-1"
+      role="switch"
       type="checkbox"
       value="checkbox-toggle-1"
     />
     <span
       aria-live="assertive"
       className="slds-checkbox_faux_container"
-      id="checkbox-toggle-1"
+      id="checkbox-toggle-1-desc"
     >
       <span
         className="slds-checkbox_faux"
@@ -89,6 +95,7 @@ exports[`renders a disabled checkbox toggle 1`] = `
 >
   <label
     className="slds-checkbox_toggle slds-grid"
+    htmlFor="checkbox-toggle-3"
   >
     <span
       className="slds-form-element__label slds-m-bottom_none"
@@ -96,16 +103,18 @@ exports[`renders a disabled checkbox toggle 1`] = `
       Toggle Label
     </span>
     <input
-      aria-describedby="checkbox-toggle-3"
+      aria-describedby="checkbox-toggle-3-desc"
       disabled={true}
+      id="checkbox-toggle-3"
       name="checkbox-toggle-3"
+      role="switch"
       type="checkbox"
       value="checkbox-toggle-3"
     />
     <span
       aria-live="assertive"
       className="slds-checkbox_faux_container"
-      id="checkbox-toggle-3"
+      id="checkbox-toggle-3-desc"
     >
       <span
         className="slds-checkbox_faux"

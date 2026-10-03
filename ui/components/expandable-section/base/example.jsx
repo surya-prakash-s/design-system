@@ -2,6 +2,7 @@
 // Licensed under BSD 3-Clause - see LICENSE.txt or git.io/sfdc-license
 
 import React from 'react';
+import PropTypes from 'prop-types';
 import SvgIcon from '../../../shared/svg-icon';
 import classNames from 'classnames';
 
@@ -20,6 +21,11 @@ export let Section = props => (
   </div>
 );
 
+Section.propTypes = {
+  children: PropTypes.node,
+  className: PropTypes.string
+};
+
 export let SectionContent = props => (
   <div
     hidden={!props.isOpen}
@@ -30,28 +36,53 @@ export let SectionContent = props => (
   </div>
 );
 
+SectionContent.propTypes = {
+  children: PropTypes.node,
+  className: PropTypes.string,
+  isOpen: PropTypes.bool,
+  referenceId: PropTypes.string
+};
+
 export let SectionTitle = props => (
   <h3 className={classNames('slds-section__title', props.className)}>
     {props.children}
   </h3>
 );
 
-export let SectionTitleAction = props => (
-  <button
-    aria-controls={props.referenceId}
-    aria-expanded={props.isOpen ? 'true' : 'false'}
-    className="slds-button slds-section__title-action"
-  >
-    <SvgIcon
-      className="slds-section__title-action-icon slds-button__icon slds-button__icon_left"
-      sprite="utility"
-      symbol="switch"
-    />
-    <span className="slds-truncate" title={props.children}>
-      {props.children}
-    </span>
-  </button>
-);
+SectionTitle.propTypes = {
+  children: PropTypes.node,
+  className: PropTypes.string
+};
+
+export let SectionTitleAction = props => {
+  const title =
+    props.title ||
+    (typeof props.children === 'string' ? props.children : undefined);
+
+  return (
+    <button
+      aria-controls={props.referenceId}
+      aria-expanded={props.isOpen ? 'true' : 'false'}
+      className="slds-button slds-section__title-action"
+    >
+      <SvgIcon
+        className="slds-section__title-action-icon slds-button__icon slds-button__icon_left"
+        sprite="utility"
+        symbol="switch"
+      />
+      <span className="slds-truncate" title={title}>
+        {props.children}
+      </span>
+    </button>
+  );
+};
+
+SectionTitleAction.propTypes = {
+  children: PropTypes.node,
+  isOpen: PropTypes.bool,
+  referenceId: PropTypes.string,
+  title: PropTypes.string
+};
 
 /* -----------------------------------------------------------------------------
     Exports

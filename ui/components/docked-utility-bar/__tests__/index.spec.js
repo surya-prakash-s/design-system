@@ -36,4 +36,14 @@ describe('Base Docked Utility Bar - Utility Bar Panel', () => {
     matchesMarkup(<UtilityPanel header="Call" />));
   it('renders an open utility bar panel', () =>
     matchesMarkup(<UtilityPanel className="slds-is-open" header="Call" />));
+  it('renders a utility bar panel with custom close button assistiveText and title', () =>
+    matchesMarkup(
+      <UtilityPanel
+        header="Call"
+        closeButtonAssistiveText="Minimize Call Panel"
+        closeButtonTitle="Minimize Call Panel"
+      />
+    ));
+  it('renders a utility bar panel with custom headerId', () =>
+    matchesMarkup(<UtilityPanel header="Call" headerId="custom-panel-id" />));
 });

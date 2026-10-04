@@ -72,7 +72,7 @@ exports[`Base Docked Utility Bar  renders a base docked utility bar with closed 
         <button
           className="slds-button slds-button_icon slds-button_icon"
           onClick={[Function]}
-          title="Close Panel"
+          title="Close Call"
         >
           <svg
             aria-hidden={true}
@@ -85,7 +85,7 @@ exports[`Base Docked Utility Bar  renders a base docked utility bar with closed 
           <span
             className="slds-assistive-text"
           >
-            Close Panel
+            Close Call
           </span>
         </button>
       </div>
@@ -311,7 +311,7 @@ exports[`Base Docked Utility Bar - Utility Bar Panel renders a default utility b
       <button
         className="slds-button slds-button_icon slds-button_icon"
         onClick={[Function]}
-        title="Close Panel"
+        title="Close Call"
       >
         <svg
           aria-hidden={true}
@@ -324,7 +324,143 @@ exports[`Base Docked Utility Bar - Utility Bar Panel renders a default utility b
         <span
           className="slds-assistive-text"
         >
-          Close Panel
+          Close Call
+        </span>
+      </button>
+    </div>
+  </div>
+  <div
+    className="slds-utility-panel__body"
+  />
+</div>
+`;
+
+exports[`Base Docked Utility Bar - Utility Bar Panel renders a utility bar panel with custom close button assistiveText and title 1`] = `
+<div
+  aria-labelledby="panel-heading-01"
+  className="slds-utility-panel slds-grid slds-grid_vertical"
+  role="dialog"
+>
+  <div
+    className="slds-utility-panel__header slds-grid slds-shrink-none"
+  >
+    <div
+      className="slds-media slds-media_center"
+    >
+      <div
+        className="slds-media__figure slds-m-right_x-small"
+      >
+        <span
+          className="slds-icon_container"
+        >
+          <svg
+            aria-hidden={true}
+            className="slds-icon slds-icon_small slds-icon-text-default"
+          >
+            <use
+              xlinkHref="/assets/icons/standard-sprite/svg/symbols.svg#call"
+            />
+          </svg>
+        </span>
+      </div>
+      <div
+        className="slds-media__body"
+      >
+        <h2
+          id="panel-heading-01"
+        >
+          Call
+        </h2>
+      </div>
+    </div>
+    <div
+      className="slds-col_bump-left slds-shrink-none"
+    >
+      <button
+        className="slds-button slds-button_icon slds-button_icon"
+        onClick={[Function]}
+        title="Minimize Call Panel"
+      >
+        <svg
+          aria-hidden={true}
+          className="slds-button__icon"
+        >
+          <use
+            xlinkHref="/assets/icons/utility-sprite/svg/symbols.svg#minimize_window"
+          />
+        </svg>
+        <span
+          className="slds-assistive-text"
+        >
+          Minimize Call Panel
+        </span>
+      </button>
+    </div>
+  </div>
+  <div
+    className="slds-utility-panel__body"
+  />
+</div>
+`;
+
+exports[`Base Docked Utility Bar - Utility Bar Panel renders a utility bar panel with custom headerId 1`] = `
+<div
+  aria-labelledby="custom-panel-id"
+  className="slds-utility-panel slds-grid slds-grid_vertical"
+  role="dialog"
+>
+  <div
+    className="slds-utility-panel__header slds-grid slds-shrink-none"
+  >
+    <div
+      className="slds-media slds-media_center"
+    >
+      <div
+        className="slds-media__figure slds-m-right_x-small"
+      >
+        <span
+          className="slds-icon_container"
+        >
+          <svg
+            aria-hidden={true}
+            className="slds-icon slds-icon_small slds-icon-text-default"
+          >
+            <use
+              xlinkHref="/assets/icons/standard-sprite/svg/symbols.svg#call"
+            />
+          </svg>
+        </span>
+      </div>
+      <div
+        className="slds-media__body"
+      >
+        <h2
+          id="custom-panel-id"
+        >
+          Call
+        </h2>
+      </div>
+    </div>
+    <div
+      className="slds-col_bump-left slds-shrink-none"
+    >
+      <button
+        className="slds-button slds-button_icon slds-button_icon"
+        onClick={[Function]}
+        title="Close Call"
+      >
+        <svg
+          aria-hidden={true}
+          className="slds-button__icon"
+        >
+          <use
+            xlinkHref="/assets/icons/utility-sprite/svg/symbols.svg#minimize_window"
+          />
+        </svg>
+        <span
+          className="slds-assistive-text"
+        >
+          Close Call
         </span>
       </button>
     </div>

@@ -1,17 +1,23 @@
 // Copyright (c) 2015-present, salesforce.com, inc. All rights reserved
 // Licensed under BSD 3-Clause - see LICENSE.txt or git.io/sfdc-license
 
-import React from 'react';
-import { FormElement } from '../../form-element';
-import Input from '../../input';
-import ButtonIcon from '../../button-icons';
+import React from "react";
+import { FormElement } from "../../form-element";
+import Input from "../../input";
+import ButtonIcon from "../../button-icons";
 
-const inputLabel = 'Counter Label';
+const inputLabel = "Counter Label";
+const decrementText = inputLabel
+  ? `Decrement ${inputLabel}`
+  : "Decrement counter";
+const incrementText = inputLabel
+  ? `Increment ${inputLabel}`
+  : "Increment counter";
 
 export default [
   {
-    id: 'default',
-    label: 'Default',
+    id: "default",
+    label: "Default",
     element: (
       <FormElement
         labelContent={inputLabel}
@@ -21,25 +27,25 @@ export default [
         <ButtonIcon
           className="slds-button_icon-small slds-input__button_decrement"
           symbol="ban"
-          assistiveText="Decrement counter"
-          title="Decrement counter"
+          assistiveText={decrementText}
+          title={decrementText}
         />
         <Input id="default1" type="number" placeholder="1" />
         <ButtonIcon
           className="slds-button_icon-small slds-input__button_increment"
           symbol="new"
-          assistiveText="Increment counter"
-          title="Increment counter"
+          assistiveText={incrementText}
+          title={incrementText}
         />
       </FormElement>
-    )
-  }
+    ),
+  },
 ];
 
 export let states = [
   {
-    id: 'disabled',
-    label: 'Disabled',
+    id: "disabled",
+    label: "Disabled",
     element: (
       <FormElement
         labelContent={inputLabel}
@@ -49,24 +55,24 @@ export let states = [
         <ButtonIcon
           className="slds-button_icon-small slds-input__button_decrement"
           symbol="ban"
-          assistiveText="Decrement counter"
-          title="Decrement counter"
+          assistiveText={decrementText}
+          title={decrementText}
           disabled
         />
         <Input id="state-disabled" type="number" placeholder="1" disabled />
         <ButtonIcon
           className="slds-button_icon-small slds-input__button_increment"
           symbol="new"
-          assistiveText="Increment counter"
-          title="Increment counter"
+          assistiveText={incrementText}
+          title={incrementText}
           disabled
         />
       </FormElement>
-    )
+    ),
   },
   {
-    id: 'read-only',
-    label: 'Read only',
+    id: "read-only",
+    label: "Read only",
     element: (
       <FormElement
         labelContent={inputLabel}
@@ -75,11 +81,11 @@ export let states = [
       >
         <Input id="state-read-only" type="text" placeholder="1" readOnly />
       </FormElement>
-    )
+    ),
   },
   {
-    id: 'required',
-    label: 'Required',
+    id: "required",
+    label: "Required",
     element: (
       <FormElement
         labelContent={inputLabel}
@@ -90,22 +96,22 @@ export let states = [
         <ButtonIcon
           className="slds-button_icon-small slds-input__button_decrement"
           symbol="ban"
-          assistiveText="Decrement counter"
-          title="Decrement counter"
+          assistiveText={decrementText}
+          title={decrementText}
         />
         <Input id="state-required" type="number" placeholder="1" required />
         <ButtonIcon
           className="slds-button_icon-small slds-input__button_increment"
           symbol="new"
-          assistiveText="Increment counter"
-          title="Increment counter"
+          assistiveText={incrementText}
+          title={incrementText}
         />
       </FormElement>
-    )
+    ),
   },
   {
-    id: 'error',
-    label: 'Error',
+    id: "error",
+    label: "Error",
     element: (
       <FormElement
         hasError
@@ -119,8 +125,8 @@ export let states = [
         <ButtonIcon
           className="slds-button_icon-small slds-input__button_decrement"
           symbol="ban"
-          assistiveText="Decrement counter"
-          title="Decrement counter"
+          assistiveText={decrementText}
+          title={decrementText}
         />
         <Input
           id="state-error"
@@ -132,18 +138,18 @@ export let states = [
         <ButtonIcon
           className="slds-button_icon-small slds-input__button_increment"
           symbol="new"
-          assistiveText="Increment counter"
-          title="Increment counter"
+          assistiveText={incrementText}
+          title={incrementText}
         />
       </FormElement>
-    )
-  }
+    ),
+  },
 ];
 
 export let examples = [
   {
-    id: 'centered',
-    label: 'Label Centered',
+    id: "centered",
+    label: "Label Centered",
     element: (
       <FormElement
         formElementClassName="slds-text-align_center"
@@ -154,17 +160,17 @@ export let examples = [
         <ButtonIcon
           className="slds-button_icon-small slds-input__button_decrement"
           symbol="ban"
-          assistiveText="Decrement counter"
-          title="Decrement counter"
+          assistiveText={decrementText}
+          title={decrementText}
         />
         <Input id="example-centered" type="number" placeholder="1" />
         <ButtonIcon
           className="slds-button_icon-small slds-input__button_increment"
           symbol="new"
-          assistiveText="Increment counter"
-          title="Increment counter"
+          assistiveText={incrementText}
+          title={incrementText}
         />
       </FormElement>
-    )
-  }
+    ),
+  },
 ];

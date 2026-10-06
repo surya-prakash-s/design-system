@@ -36,19 +36,46 @@ Demo.propTypes = {
   hasBackgroundColor: PropTypes.bool
 };
 
-export let SpinnerContainer = props => (
-  <div className={classNames('slds-spinner_container', props.className)}>
-    {props.children}
-  </div>
-);
+export let SpinnerContainer = props => {
+  const { children, className, ...rest } = props;
+  return (
+    <div
+      className={classNames('slds-spinner_container', className)}
+      {...rest}
+    >
+      {children}
+    </div>
+  );
+};
 
-export let Spinner = props => (
-  <div role="status" className={classNames('slds-spinner', props.className)}>
-    <span className="slds-assistive-text">Loading</span>
-    <div className="slds-spinner__dot-a" />
-    <div className="slds-spinner__dot-b" />
-  </div>
-);
+SpinnerContainer.propTypes = {
+  children: PropTypes.node,
+  className: PropTypes.string
+};
+
+export let Spinner = props => {
+  const { assistiveText, className, ...rest } = props;
+  return (
+    <div
+      role="status"
+      className={classNames('slds-spinner', className)}
+      {...rest}
+    >
+      <span className="slds-assistive-text">{assistiveText}</span>
+      <div className="slds-spinner__dot-a" />
+      <div className="slds-spinner__dot-b" />
+    </div>
+  );
+};
+
+Spinner.propTypes = {
+  assistiveText: PropTypes.string,
+  className: PropTypes.string
+};
+
+Spinner.defaultProps = {
+  assistiveText: 'Loading'
+};
 
 /// ///////////////////////////////////////////
 // Export
@@ -86,6 +113,20 @@ export let examples = [
     element: (
       <Demo className="demo--inverse">
         <Spinner className="slds-spinner_medium" />
+      </Demo>
+    )
+  },
+  {
+    id: 'custom-assistive-text',
+    label: 'With custom assistive text',
+    element: (
+      <Demo>
+        <SpinnerContainer>
+          <Spinner
+            className="slds-spinner_medium"
+            assistiveText="Loading records..."
+          />
+        </SpinnerContainer>
       </Demo>
     )
   },

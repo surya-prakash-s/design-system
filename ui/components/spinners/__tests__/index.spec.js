@@ -14,3 +14,11 @@ it('renders delayed spinner', () =>
   matchesMarkup(
     <Spinner className="slds-spinner_delayed slds-spinner_medium" />
   ));
+
+it('renders spinner with custom assistive text', () =>
+  matchesMarkup(
+    <Spinner
+      className="slds-spinner_medium"
+      assistiveText="Loading records..."
+    />
+  ));

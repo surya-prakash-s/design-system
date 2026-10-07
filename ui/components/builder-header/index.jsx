@@ -140,10 +140,20 @@ Name.defaultProps = {
 /**
  * Back Link
  */
-const BackLink = ({ hasBackTooltip }) => {
+const BackLink = ({
+  hasBackTooltip,
+  backTitle,
+  backAssistiveText,
+  docName
+}) => {
   const [showTooltip, setTooltip] = useState(hasBackTooltip);
   const [hasFocus, setFocus] = useState(false);
   const [hasHover, setHover] = useState(false);
+
+  const computedLabel =
+    backTitle ||
+    backAssistiveText ||
+    (docName ? `Back to ${docName}` : 'Back');
 
   const onFocus = () => {
     setFocus(true);
@@ -187,14 +197,14 @@ const BackLink = ({ hasBackTooltip }) => {
         onBlur={onBlur}
         onMouseEnter={onMouseEnter}
         onMouseLeave={onMouseLeave}
-        aria-describedby={showTooltip && exampleId}
-        title="Back"
+        aria-describedby={showTooltip ? exampleId : undefined}
+        title={computedLabel}
       >
         <UtilityIcon
           containerClassName="slds-current-color"
           className="slds-icon_x-small"
           symbol="back"
-          assistiveText="Back"
+          assistiveText={computedLabel}
           title={false}
         />
       </a>
@@ -204,7 +214,7 @@ const BackLink = ({ hasBackTooltip }) => {
           id={exampleId}
           style={computedTooltipStyles}
         >
-          Back
+          {computedLabel}
         </Tooltip>
       )}
     </div>
@@ -212,7 +222,10 @@ const BackLink = ({ hasBackTooltip }) => {
 };
 
 BackLink.propTypes = {
-  hasBackTooltip: PropTypes.bool
+  hasBackTooltip: PropTypes.bool,
+  backTitle: PropTypes.string,
+  backAssistiveText: PropTypes.string,
+  docName: PropTypes.string
 };
 
 /**
@@ -536,6 +549,8 @@ class BuilderHeader extends Component {
       showDropDown,
       openDropDown,
       hasBackTooltip,
+      backTitle,
+      backAssistiveText,
       hasStatus,
       hasStatusTooltip,
       hasWarning,
@@ -545,7 +560,12 @@ class BuilderHeader extends Component {
     return (
       <div className="slds-builder-header_container">
         <header className="slds-builder-header">
-          <BackLink hasBackTooltip={hasBackTooltip} />
+          <BackLink
+            hasBackTooltip={hasBackTooltip}
+            backTitle={backTitle}
+            backAssistiveText={backAssistiveText}
+            docName={docName}
+          />
           <Logo />
           <Nav showDropDown={showDropDown} openDropDown={openDropDown} />
           <Name label={docName} />
@@ -573,6 +593,8 @@ BuilderHeader.propTypes = {
   showDropDown: PropTypes.bool,
   openDropDown: PropTypes.bool,
   hasBackTooltip: PropTypes.bool,
+  backTitle: PropTypes.string,
+  backAssistiveText: PropTypes.string,
   hasStatus: PropTypes.bool,
   hasStatusTooltip: PropTypes.bool,
   hasWarning: PropTypes.bool,

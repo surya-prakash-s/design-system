@@ -23,7 +23,11 @@ class ProgressRing extends Component {
       isExpired,
       isActiveStep,
       isFilling,
-      className
+      className,
+      'aria-label': ariaLabel,
+      'aria-labelledby': ariaLabelledby,
+      assistiveText,
+      title
     } = this.props;
 
     let adjustedPercent = percent;
@@ -35,14 +39,14 @@ class ProgressRing extends Component {
     const isLong = percent > 50 ? 1 : 0;
     const isSweep = isFilling && !isComplete ? 0 : 1;
     const uniqueId = _.uniqueId('slds-progress-ring-path-');
-    const viewBoxParams = "-1 -1 2 2";
+    const viewBoxParams = '-1 -1 2 2';
     const progressRingRadius = 1;
     // Since the viewBox units are set to 2, radii are doubled for shape sizes.
     // For a 6px progress head in a 30 px, we use 0.2 units, instead of 0.1
-    const progressHeadRadius = (6 / 30);
+    const progressHeadRadius = 6 / 30;
     // The radius of the circular path the progress head is plotted on is 21 pixels,
     // 24 pixels from the ring, minus 3px for the radius of the progress head
-    const progressHeadPlotRadius = (21 / 30);
+    const progressHeadPlotRadius = 21 / 30;
 
     let stateClass;
 
@@ -50,6 +54,10 @@ class ProgressRing extends Component {
     if (isExpired) stateClass = 'slds-progress-ring_expired';
     if (isComplete) stateClass = 'slds-progress-ring_complete';
     if (isActiveStep) stateClass = 'slds-progress-ring_active-step';
+
+    const computedAriaLabel = ariaLabelledby
+      ? undefined
+      : ariaLabel || title || assistiveText || 'Progress ring';
 
     return (
       <div className={classNames('slds-progress-ring', stateClass, className)}>
@@ -59,7 +67,8 @@ class ProgressRing extends Component {
           aria-valuemin="0"
           aria-valuemax="100"
           aria-valuenow={percent}
-          aria-label={this.props['aria-label'] || "{{Placeholder for description of progress ring}}"}
+          aria-label={computedAriaLabel}
+          aria-labelledby={ariaLabelledby}
         >
           <svg viewBox={viewBoxParams}>
             {percent === 100 ? (
@@ -100,12 +109,18 @@ class ProgressRing extends Component {
 }
 
 ProgressRing.propTypes = {
-  percent: PropTypes.number,
-  isWarning: PropTypes.bool,
+  'aria-label': PropTypes.string,
+  'aria-labelledby': PropTypes.string,
+  assistiveText: PropTypes.string,
+  children: PropTypes.node,
+  className: PropTypes.string,
+  isActiveStep: PropTypes.bool,
   isComplete: PropTypes.bool,
   isExpired: PropTypes.bool,
-  isActiveStep: PropTypes.bool,
-  isFilling: PropTypes.bool
+  isFilling: PropTypes.bool,
+  isWarning: PropTypes.bool,
+  percent: PropTypes.number,
+  title: PropTypes.string
 };
 
 ProgressRing.defaultProps = {

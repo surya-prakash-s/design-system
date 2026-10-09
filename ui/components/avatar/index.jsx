@@ -37,12 +37,21 @@ Avatar.propTypes = {
 };
 
 export const AvatarIcon = props => (
-  <StandardIcon symbol={props.symbol} isGrouped={props.isGrouped} />
+  <StandardIcon
+    assistiveText={props.assistiveText}
+    className={props.className}
+    isGrouped={props.isGrouped}
+    symbol={props.symbol}
+    title={props.title}
+  />
 );
 
 AvatarIcon.propTypes = {
+  assistiveText: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
+  className: PropTypes.string,
   isGrouped: PropTypes.bool,
-  symbol: PropTypes.string
+  symbol: PropTypes.string,
+  title: PropTypes.oneOfType([PropTypes.string, PropTypes.bool])
 };
 
 export const AvatarInitials = props => {
@@ -64,7 +73,7 @@ export const AvatarInitials = props => {
 AvatarInitials.propTypes = {
   title: PropTypes.string.isRequired,
   initials: PropTypes.string.isRequired,
-  iconClass: PropTypes.string,
+  iconClassName: PropTypes.string,
   isGrouped: PropTypes.bool,
   isInverse: PropTypes.bool
 };

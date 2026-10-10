@@ -159,23 +159,39 @@ Notifications.propTypes = {
 /**
  * Avatar
  */
-export const Avatar = () => (
-  <div className="slds-dropdown-trigger slds-dropdown-trigger_click">
-    <button
-      className="slds-button slds-global-actions__avatar slds-global-actions__item-action"
-      title="person name"
-      aria-haspopup="true"
-    >
-      <span className="slds-avatar slds-avatar_circle slds-avatar_medium">
-        <img
-          alt="Person name"
-          src="/assets/images/avatar2.jpg"
-          title="User avatar"
-        />
-      </span>
-    </button>
-  </div>
-);
+export const Avatar = props => {
+  const { userName, title, alt, src, imageTitle } = props;
+  const buttonTitle = title || userName || 'person name';
+  const imageAlt = alt || userName || 'Person name';
+  const imgTitle = imageTitle || (userName ? `${userName} avatar` : 'User avatar');
+  const imageSrc = src || '/assets/images/avatar2.jpg';
+
+  return (
+    <div className="slds-dropdown-trigger slds-dropdown-trigger_click">
+      <button
+        className="slds-button slds-global-actions__avatar slds-global-actions__item-action"
+        title={buttonTitle}
+        aria-haspopup="true"
+      >
+        <span className="slds-avatar slds-avatar_circle slds-avatar_medium">
+          <img
+            alt={imageAlt}
+            src={imageSrc}
+            title={imgTitle}
+          />
+        </span>
+      </button>
+    </div>
+  );
+};
+
+Avatar.propTypes = {
+  userName: PropTypes.string,
+  title: PropTypes.string,
+  alt: PropTypes.string,
+  src: PropTypes.string,
+  imageTitle: PropTypes.string
+};
 
 class GlobalActions extends React.Component {
   render() {
@@ -187,7 +203,8 @@ class GlobalActions extends React.Component {
       showNotification,
       notificationCount,
       showNotificationPopup,
-      showTaskMenu
+      showTaskMenu,
+      userName
     } = this.props;
     return (
       <ul className="slds-global-actions">
@@ -216,7 +233,7 @@ class GlobalActions extends React.Component {
           />
         </li>
         <li className="slds-global-actions__item">
-          <Avatar />
+          <Avatar userName={userName} />
         </li>
       </ul>
     );
@@ -230,7 +247,8 @@ GlobalActions.propTypes = {
   showNotification: PropTypes.bool,
   notificationCount: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   showNotificationPopup: PropTypes.bool,
-  showTaskMenu: PropTypes.bool
+  showTaskMenu: PropTypes.bool,
+  userName: PropTypes.string
 };
 
 export default GlobalActions;

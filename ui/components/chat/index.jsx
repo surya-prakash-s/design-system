@@ -157,9 +157,15 @@ export const ChatMessageBody = props => {
 const ChatMessageTimeStamp = props => (
   <div
     className="slds-chat-message__meta"
-    aria-label={`said ${props.name} at ${props.timeStamp}`}
+    aria-label={
+      props.name
+        ? `said ${props.name} at ${props.timeStamp}`
+        : `at ${props.timeStamp}`
+    }
   >
-    {props.isPast ? <b>{props.name}</b> : props.name} &bull; {props.timeStamp}
+    {props.isPast ? <b>{props.name}</b> : props.name}
+    {props.name && props.timeStamp ? ' \u2022 ' : ''}
+    {props.timeStamp}
   </div>
 );
 
@@ -171,7 +177,12 @@ const ChatMessageDeliveryFailure = props => (
 );
 
 const ChatMessageAction = props => (
-  <button className="slds-button slds-chat-message__action slds-m-top_xxx-small">
+  <button
+    type="button"
+    className="slds-button slds-chat-message__action slds-m-top_xxx-small"
+    onClick={props.onClick}
+    title={props.actionTitle}
+  >
     <UtilityIcon
       assistiveText={false}
       title={false}
@@ -233,9 +244,9 @@ export const ChatBookend = props => (
 export const ChatIcon = props => (
   <UtilityIcon
     assistiveText={props.assistiveText || false}
-    className={classNames('slds-icon_x-small slds-icon-text-default', {
-      'slds-icon-text-default': props.symbol === 'error',
-      'slds-icon-text-warning': props.symbol === 'warning'
+    className={classNames('slds-icon_x-small', {
+      'slds-icon-text-warning': props.symbol === 'warning',
+      'slds-icon-text-default': props.symbol !== 'warning'
     })}
     containerClassName="slds-chat-icon"
     symbol={props.symbol}

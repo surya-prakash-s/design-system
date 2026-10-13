@@ -305,6 +305,7 @@ export let RteFormatText = props => (
         aria-describedby={props.hasTooltip ? 'bold' : null}
         disabled={props.disabledButtons}
         assistiveText="Bold"
+        title="Bold"
       />
     </li>
 
@@ -315,6 +316,7 @@ export let RteFormatText = props => (
         symbol="italic"
         disabled={props.disabledButtons}
         assistiveText="Italic"
+        title="Italic"
       />
     </li>
 
@@ -325,6 +327,7 @@ export let RteFormatText = props => (
         symbol="underline"
         disabled={props.disabledButtons}
         assistiveText="Underline"
+        title="Underline"
       />
     </li>
 
@@ -335,6 +338,7 @@ export let RteFormatText = props => (
         symbol="strikethrough"
         disabled={props.disabledButtons}
         assistiveText="Strike Through"
+        title="Strike Through"
       />
     </li>
   </ButtonGroupList>
@@ -348,6 +352,7 @@ export let RteFormatColor = props => (
         disabled={props.disabledButtons}
         className="slds-button slds-button_icon slds-button_icon-more slds-button_icon-more-filled"
         aria-haspopup="true"
+        title="Background Color"
       >
         <SvgIcon
           className="slds-button__icon"
@@ -369,6 +374,7 @@ export let RteFormatColor = props => (
         disabled={props.disabledButtons}
         className="slds-button slds-button_icon slds-button_icon-more slds-button_icon-more-filled"
         aria-haspopup="true"
+        title="Text Color"
       >
         <SvgIcon
           className="slds-button__icon"
@@ -395,6 +401,7 @@ export let RteFormatBody = props => (
         symbol="richtextbulletedlist"
         disabled={props.disabledButtons}
         assistiveText="Bulleted List"
+        title="Bulleted List"
       />
     </li>
     <li>
@@ -404,6 +411,7 @@ export let RteFormatBody = props => (
         symbol="richtextnumberedlist"
         disabled={props.disabledButtons}
         assistiveText="Numbered List"
+        title="Numbered List"
       />
     </li>
     <li>
@@ -413,6 +421,7 @@ export let RteFormatBody = props => (
         symbol="richtextindent"
         disabled={props.disabledButtons}
         assistiveText="Indent"
+        title="Indent"
       />
     </li>
     <li>
@@ -422,6 +431,7 @@ export let RteFormatBody = props => (
         symbol="richtextoutdent"
         disabled={props.disabledButtons}
         assistiveText="Outdent"
+        title="Outdent"
       />
     </li>
   </ButtonGroupList>
@@ -436,6 +446,7 @@ export let RteAlignText = props => (
         symbol="left_align_text"
         disabled={props.disabledButtons}
         assistiveText="Left Align Text"
+        title="Left Align Text"
       />
     </li>
     <li>
@@ -445,6 +456,7 @@ export let RteAlignText = props => (
         symbol="center_align_text"
         disabled={props.disabledButtons}
         assistiveText="Center Align Text"
+        title="Center Align Text"
       />
     </li>
     <li>
@@ -454,6 +466,7 @@ export let RteAlignText = props => (
         symbol="right_align_text"
         disabled={props.disabledButtons}
         assistiveText="Right Align Text"
+        title="Right Align Text"
       />
     </li>
   </ButtonGroupList>
@@ -472,6 +485,7 @@ export let RteInsertContent = props => (
         symbol="emoji"
         disabled={props.disabledButtons}
         assistiveText="Add Emoji"
+        title="Add Emoji"
       />
     </li>
     <li role={props.overflow ? 'presentation' : null}>
@@ -482,6 +496,7 @@ export let RteInsertContent = props => (
         symbol="image"
         disabled={props.disabledButtons}
         assistiveText="Add Image"
+        title="Add Image"
       />
     </li>
     <li role={props.overflow ? 'presentation' : null}>
@@ -492,6 +507,7 @@ export let RteInsertContent = props => (
         symbol="link"
         disabled={props.disabledButtons}
         assistiveText="Add Link"
+        title="Add Link"
       />
     </li>
   </ButtonGroupList>
@@ -506,6 +522,7 @@ export let RteInsertUser = props => (
         symbol="adduser"
         disabled={props.disabledButtons}
         assistiveText="Add User"
+        title="Add User"
       />
     </li>
   </ButtonGroupList>
@@ -524,6 +541,7 @@ export let RteClearFormatting = props => (
         symbol="remove_formatting"
         disabled={props.disabledButtons}
         assistiveText="Remove Formatting"
+        title="Remove Formatting"
       />
     </li>
   </ButtonGroupList>

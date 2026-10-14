@@ -41,6 +41,16 @@ class SetupAssistantStepSummary extends React.Component {
         </a>
       ));
 
+    const stepNumberPrefix =
+      stepProgress && stepProgress.number
+        ? `Step ${stepProgress.number}`
+        : 'Step';
+    const progressRingAriaLabel = stepProgress
+      ? stepProgress.isComplete
+        ? `${stepNumberPrefix} complete: ${title}`
+        : `${stepNumberPrefix}: ${title}`
+      : undefined;
+
     const stepProgressRing =
       stepProgress &&
       (stepProgress.isComplete ? (
@@ -48,6 +58,7 @@ class SetupAssistantStepSummary extends React.Component {
           className="slds-progress-ring_large"
           percent={100}
           isComplete
+          aria-label={progressRingAriaLabel}
         >
           <UtilityIcon
             symbol="check"
@@ -61,6 +72,7 @@ class SetupAssistantStepSummary extends React.Component {
           percent={isActiveStep ? stepProgress.percentage : 0}
           isActiveStep={isActiveStep}
           isFilling
+          aria-label={progressRingAriaLabel}
         >
           {stepProgress.number}
         </ProgressRing>
@@ -125,8 +137,14 @@ SetupAssistantStepSummary.propTypes = {
   description: PropTypes.string.isRequired,
   action: PropTypes.object,
   duration: PropTypes.string,
-  stepProgress: PropTypes.object,
-  isActiveStep: PropTypes.bool
+  stepProgress: PropTypes.shape({
+    number: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+    percentage: PropTypes.number,
+    isComplete: PropTypes.bool
+  }),
+  isActiveStep: PropTypes.bool,
+  referenceId: PropTypes.string,
+  isOpen: PropTypes.bool
 };
 
 SetupAssistantStepSummary.defaultProps = {

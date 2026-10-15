@@ -2,6 +2,7 @@
 // Licensed under BSD 3-Clause - see LICENSE.txt or git.io/sfdc-license
 
 import React from 'react';
+import PropTypes from 'prop-types';
 import SvgIcon from '../../shared/svg-icon';
 import { Menu, MenuList, MenuItem } from '../menus/dropdown/example';
 import classNames from 'classnames';
@@ -18,7 +19,11 @@ const Header = props => (
           props.tourMenuOpen ? 'slds-is-open' : null
         )}
       >
-        <button className="slds-button" aria-haspopup="true">
+        <button
+          className="slds-button"
+          aria-haspopup="true"
+          aria-expanded={props.tourMenuOpen ? 'true' : 'false'}
+        >
           <SvgIcon
             className="slds-button__icon slds-button__icon_left"
             sprite="utility"
@@ -91,5 +96,9 @@ const Header = props => (
     </div>
   </div>
 );
+
+Header.propTypes = {
+  tourMenuOpen: PropTypes.bool
+};
 
 export default Header;

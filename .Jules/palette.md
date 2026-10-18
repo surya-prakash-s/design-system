@@ -1,0 +1,3 @@
+## 2025-05-18 - Avoid Hardcoded Placeholder Strings in Dynamic Icons
+**Learning:** Hardcoded placeholder strings (such as "Description of the icon when needed" or "Text alternative when needed") in component titles and assistive text spans degrade user experience by surfacing raw template instructions in native browser tooltips and screen readers.
+**Action:** Always derive `title` and `assistiveText` dynamically from props, with meaningful contextual defaults (e.g., 'Open App Launcher' for `WaffleIcon`), destructure props to prevent DOM attribute pollution, and explicitly set `type="button"` on interactive icon triggers.

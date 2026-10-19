@@ -31,7 +31,10 @@ let DatepickerContainer = props => (
     role="dialog"
   >
     {props.children}
-    <button className="slds-button slds-align_absolute-center slds-text-link">
+    <button
+      type="button"
+      className="slds-button slds-align_absolute-center slds-text-link"
+    >
       Today
     </button>
   </div>

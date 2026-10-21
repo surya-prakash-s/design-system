@@ -43,7 +43,9 @@ export default (
         </ModalContent>
 
         <ModalFooter className="slds-theme_default">
-          <button className="slds-button slds-button_neutral">Got It</button>
+          <button type="button" className="slds-button slds-button_neutral">
+            Got It
+          </button>
         </ModalFooter>
       </Modal>
     </Backdrop>

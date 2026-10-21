@@ -43,6 +43,7 @@ exports[`Prompt renders a default prompt 1`] = `
       >
         <button
           className="slds-button slds-button_neutral"
+          type="button"
         >
           Got It
         </button>

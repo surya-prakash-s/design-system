@@ -2,6 +2,7 @@
 // Licensed under BSD 3-Clause - see LICENSE.txt or git.io/sfdc-license
 
 import React from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { Tooltip } from '../../tooltips/base/example';
 import SvgIcon from '../../../shared/svg-icon';
@@ -25,56 +26,90 @@ export let Progress = props => (
   </div>
 );
 
-export let Step = props => (
-  <li
-    className={classNames(
-      'slds-progress__item',
-      props.className,
-      props.active ? 'slds-is-active' : null,
-      props.done ? 'slds-is-completed' : null,
-      props.error ? 'slds-has-error' : null
-    )}
-  >
-    {props.done && !props.error ? (
-      <div
-        className="slds-progress__marker slds-progress__marker_icon"
-        tabIndex="0"
-      >
-        <SvgIcon
-          className="slds-icon slds-icon_xx-small"
-          sprite="utility"
-          symbol="success"
-        />
-        <span className="slds-assistive-text">
-          {props.done ? props.children + ' - Completed' : null}
-        </span>
-      </div>
-    ) : props.error ? (
-      <div
-        className="slds-progress__marker slds-progress__marker_icon"
-        tabIndex="0"
-      >
-        <SvgIcon
-          className="slds-icon slds-icon_xx-small"
-          sprite="utility"
-          symbol="error"
-        />
-        <span className="slds-assistive-text">
-          {props.error ? props.children + ' - Error' : null}
-        </span>
-      </div>
-    ) : (
-      <div
-        className="slds-progress__marker"
-        tabIndex="0"
-      >
-        <span className="slds-assistive-text">
-          {props.children} {props.active ? '- Active' : null}
-        </span>
-      </div>
-    )}
-  </li>
-);
+Progress.propTypes = {
+  children: PropTypes.node,
+  className: PropTypes.string,
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+};
+
+export let Step = props => {
+  const assistiveLabel = props.assistiveText || props.children;
+  let statusText = '';
+  if (props.done && !props.error) {
+    statusText = ' - Completed';
+  } else if (props.error) {
+    statusText = ' - Error';
+  } else if (props.active) {
+    statusText = ' - Active';
+  }
+
+  return (
+    <li
+      className={classNames(
+        'slds-progress__item',
+        props.className,
+        props.active ? 'slds-is-active' : null,
+        props.done ? 'slds-is-completed' : null,
+        props.error ? 'slds-has-error' : null
+      )}
+    >
+      {props.done && !props.error ? (
+        <div
+          className="slds-progress__marker slds-progress__marker_icon"
+          tabIndex="0"
+          aria-describedby={props['aria-describedby']}
+        >
+          <SvgIcon
+            className="slds-icon slds-icon_xx-small"
+            sprite="utility"
+            symbol="success"
+          />
+          <span className="slds-assistive-text">
+            {assistiveLabel}
+            {statusText}
+          </span>
+        </div>
+      ) : props.error ? (
+        <div
+          className="slds-progress__marker slds-progress__marker_icon"
+          tabIndex="0"
+          aria-describedby={props['aria-describedby']}
+        >
+          <SvgIcon
+            className="slds-icon slds-icon_xx-small"
+            sprite="utility"
+            symbol="error"
+          />
+          <span className="slds-assistive-text">
+            {assistiveLabel}
+            {statusText}
+          </span>
+        </div>
+      ) : (
+        <div
+          className="slds-progress__marker"
+          tabIndex="0"
+          aria-describedby={props['aria-describedby']}
+        >
+          <span className="slds-assistive-text">
+            {assistiveLabel}
+            {statusText}
+          </span>
+        </div>
+      )}
+    </li>
+  );
+};
+
+Step.propTypes = {
+  active: PropTypes.bool,
+  'aria-describedby': PropTypes.string,
+  assistiveText: PropTypes.string,
+  children: PropTypes.node,
+  className: PropTypes.string,
+  done: PropTypes.bool,
+  error: PropTypes.bool
+};
 
 /// ///////////////////////////////////////////
 // Export

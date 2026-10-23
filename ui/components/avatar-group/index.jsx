@@ -74,13 +74,15 @@ AvatarGrouped.propTypes = {
 };
 
 export const AvatarImage = props => {
-  const { imgType } = props;
-  const assistiveText = `Person ${imgType} name`;
+  const { imgType, src, alt, title } = props;
+  const defaultText = `Person ${imgType} name`;
+  const assistiveText = alt || title || defaultText;
+  const imageSrc = src || `/assets/images/avatar${imgType}.jpg`;
   return (
     <img
       alt={assistiveText}
-      src={`/assets/images/avatar${imgType}.jpg`}
-      title={assistiveText}
+      src={imageSrc}
+      title={title || assistiveText}
     />
   );
 };
@@ -90,22 +92,38 @@ AvatarImage.defaultProps = {
 };
 
 AvatarImage.propTypes = {
-  imgType: PropTypes.oneOf(['1', '2']).isRequired
+  alt: PropTypes.string,
+  imgType: PropTypes.oneOf(['1', '2']),
+  src: PropTypes.string,
+  title: PropTypes.string
 };
 
 export const AvatarGroupedIcon = props => (
-  <AvatarIcon symbol="user" isGrouped />
+  <AvatarIcon
+    symbol={props.symbol || 'user'}
+    isGrouped
+    assistiveText={props.assistiveText}
+    title={props.title}
+  />
 );
+
+AvatarGroupedIcon.propTypes = {
+  assistiveText: PropTypes.string,
+  symbol: PropTypes.string,
+  title: PropTypes.string
+};
 
 export const AvatarGroupedUserInitials = props => (
   <AvatarInitials
     isGrouped
     isInverse={props.isInverse}
-    title="Person name"
-    initials="WW"
+    title={props.title || 'Person name'}
+    initials={props.initials || 'WW'}
   />
 );
 
 AvatarGroupedUserInitials.propTypes = {
-  isInverse: PropTypes.bool
+  initials: PropTypes.string,
+  isInverse: PropTypes.bool,
+  title: PropTypes.string
 };

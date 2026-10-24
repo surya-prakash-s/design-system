@@ -50,13 +50,23 @@ export const NavBarItem = props => {
     isActive,
     hasNavMenu,
     hasNavMenuOpen,
-    hasMenuDropdown
+    hasMenuDropdown,
+    subMenuAssistiveText,
+    subMenuTitle
   } = props;
   const computedClassNames = classNames('slds-context-bar__item', {
     'slds-is-active': isActive,
     'slds-context-bar__dropdown-trigger slds-dropdown-trigger slds-dropdown-trigger_click': hasNavMenu,
     'slds-is-open': hasNavMenuOpen
   });
+
+  const computedSubMenuAssistiveText =
+    subMenuAssistiveText ||
+    (label ? `Open ${label} submenu` : 'Open menu item submenu');
+  const computedSubMenuTitle =
+    subMenuTitle ||
+    (label ? `Open ${label} submenu` : 'Open menu item submenu');
+
   return (
     <li className={computedClassNames}>
       <a
@@ -72,7 +82,11 @@ export const NavBarItem = props => {
       </a>
       {hasNavMenu && (
         <React.Fragment>
-          <OverflowMenuButton onClick={props.onClick} />
+          <OverflowMenuButton
+            onClick={props.onClick}
+            assistiveText={computedSubMenuAssistiveText}
+            title={computedSubMenuTitle}
+          />
           {hasMenuDropdown && <ContextDropdownMenu />}
         </React.Fragment>
       )}
@@ -90,22 +104,33 @@ NavBarItem.propTypes = {
   isActive: PropTypes.bool,
   hasNavMenu: PropTypes.bool,
   hasNavMenuOpen: PropTypes.bool,
-  hasMenuDropdown: PropTypes.bool
+  hasMenuDropdown: PropTypes.bool,
+  subMenuAssistiveText: PropTypes.string,
+  subMenuTitle: PropTypes.string
 };
 
-const OverflowMenuButton = props => {
+const OverflowMenuButton = ({
+  assistiveText = 'Open menu item submenu',
+  title = 'Open menu item submenu',
+  ...props
+}) => {
   return (
     <div className="slds-context-bar__icon-action slds-p-left_none">
       <ButtonIcon
         className="slds-button_icon slds-context-bar__button"
         symbol="chevrondown"
         aria-haspopup="true"
-        assistiveText="Open menu item submenu"
-        title="Open menu item submenu"
+        assistiveText={assistiveText}
+        title={title}
         {...props}
       />
     </div>
   );
+};
+
+OverflowMenuButton.propTypes = {
+  assistiveText: PropTypes.string,
+  title: PropTypes.string
 };
 
 export let ContextBar = props => {

@@ -2,6 +2,7 @@
 // Licensed under BSD 3-Clause - see LICENSE.txt or git.io/sfdc-license
 
 import React from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import uniqueId from 'lodash.uniqueid';
 import { FormElementControl } from '../../form-element/';
@@ -17,8 +18,13 @@ export let RadioButtonGroup = props => (
   </div>
 );
 
+RadioButtonGroup.propTypes = {
+  children: PropTypes.node,
+  className: PropTypes.string
+};
+
 export let RadioButton = props => {
-  const exampleId = uniqueId('example-unique-id-');
+  const exampleId = props.id || uniqueId('example-unique-id-');
 
   return (
     <span
@@ -28,9 +34,9 @@ export let RadioButton = props => {
         name={props.name}
         type="radio"
         id={exampleId}
-        value={props.id}
+        value={props.id || exampleId}
         disabled={props.disabled}
-        aria-describedby={props.errorId}
+        aria-describedby={props.errorId || undefined}
         defaultChecked={props.checked}
       />
       <label className="slds-radio_button__label" htmlFor={exampleId}>
@@ -38,6 +44,16 @@ export let RadioButton = props => {
       </label>
     </span>
   );
+};
+
+RadioButton.propTypes = {
+  children: PropTypes.node,
+  className: PropTypes.string,
+  id: PropTypes.string,
+  name: PropTypes.string,
+  disabled: PropTypes.bool,
+  errorId: PropTypes.string,
+  checked: PropTypes.bool
 };
 
 const ExampleRadioButtonGroup = ({
@@ -51,7 +67,7 @@ const ExampleRadioButtonGroup = ({
   const exampleErrorId = uniqueId('error-unique-id-');
 
   return (
-    <Fieldset className={hasError && 'slds-has-error'}>
+    <Fieldset className={hasError ? 'slds-has-error' : undefined} isRequired={required}>
       <Legend>
         {required && (
           <abbr className="slds-required" title="required" aria-hidden="true">
@@ -86,6 +102,14 @@ const ExampleRadioButtonGroup = ({
       </FormElementControl>
     </Fieldset>
   );
+};
+
+ExampleRadioButtonGroup.propTypes = {
+  legend: PropTypes.string,
+  modifier: PropTypes.string,
+  disabled: PropTypes.bool,
+  required: PropTypes.bool,
+  hasError: PropTypes.bool
 };
 
 /// ////////////////////////////////////////

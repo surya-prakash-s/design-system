@@ -2,6 +2,7 @@
 // Licensed under BSD 3-Clause - see LICENSE.txt or git.io/sfdc-license
 
 import React from 'react';
+import PropTypes from 'prop-types';
 import SvgIcon from '../../../shared/svg-icon';
 import ButtonIcon from '../../button-icons/';
 import classNames from 'classnames';
@@ -28,42 +29,67 @@ const exampleDemoStyles = `
 // Partial(s)
 /// ////////////////////////////////////////
 
-export let UtilityPanel = props => (
-  <div
-    className={classNames(
-      'slds-utility-panel slds-grid slds-grid_vertical',
-      props.className
-    )}
-    role="dialog"
-    aria-labelledby="panel-heading-01"
-  >
-    <div className="slds-utility-panel__header slds-grid slds-shrink-none">
-      <div className="slds-media slds-media_center">
-        <div className="slds-media__figure slds-m-right_x-small">
-          <span className="slds-icon_container">
-            <SvgIcon
-              className="slds-icon slds-icon_small slds-icon-text-default"
-              sprite="standard"
-              symbol="call"
-            />
-          </span>
+export let UtilityPanel = props => {
+  const headerId = props.headerId || 'panel-heading-01';
+  const closeAssistiveText =
+    props.closeButtonAssistiveText ||
+    props.minimizeButtonAssistiveText ||
+    (props.header ? `Close ${props.header}` : 'Close Panel');
+  const closeTitle =
+    props.closeButtonTitle ||
+    props.minimizeButtonTitle ||
+    closeAssistiveText;
+
+  return (
+    <div
+      className={classNames(
+        'slds-utility-panel slds-grid slds-grid_vertical',
+        props.className
+      )}
+      role="dialog"
+      aria-labelledby={headerId}
+    >
+      <div className="slds-utility-panel__header slds-grid slds-shrink-none">
+        <div className="slds-media slds-media_center">
+          <div className="slds-media__figure slds-m-right_x-small">
+            <span className="slds-icon_container">
+              <SvgIcon
+                className="slds-icon slds-icon_small slds-icon-text-default"
+                sprite={props.headerSprite || 'standard'}
+                symbol={props.headerSymbol || 'call'}
+              />
+            </span>
+          </div>
+          <div className="slds-media__body">
+            <h2 id={headerId}>{props.header || 'Header'}</h2>
+          </div>
         </div>
-        <div className="slds-media__body">
-          <h2 id="panel-heading-01">{props.header || 'Header'}</h2>
+        <div className="slds-col_bump-left slds-shrink-none">
+          <ButtonIcon
+            className="slds-button_icon"
+            symbol="minimize_window"
+            assistiveText={closeAssistiveText}
+            title={closeTitle}
+          />
         </div>
       </div>
-      <div className="slds-col_bump-left slds-shrink-none">
-        <ButtonIcon
-          className="slds-button_icon"
-          symbol="minimize_window"
-          assistiveText="Close Panel"
-          title="Close Panel"
-        />
-      </div>
+      <div className="slds-utility-panel__body">{props.children}</div>
     </div>
-    <div className="slds-utility-panel__body">{props.children}</div>
-  </div>
-);
+  );
+};
+
+UtilityPanel.propTypes = {
+  header: PropTypes.node,
+  headerId: PropTypes.string,
+  headerSymbol: PropTypes.string,
+  headerSprite: PropTypes.string,
+  closeButtonAssistiveText: PropTypes.string,
+  closeButtonTitle: PropTypes.string,
+  minimizeButtonAssistiveText: PropTypes.string,
+  minimizeButtonTitle: PropTypes.string,
+  className: PropTypes.string,
+  children: PropTypes.node
+};
 
 export let UtilityBarItem = props => (
   <li
@@ -106,6 +132,15 @@ export let UtilityBarItem = props => (
   </li>
 );
 
+UtilityBarItem.propTypes = {
+  active: PropTypes.bool,
+  notification: PropTypes.bool,
+  hasPopOut: PropTypes.bool,
+  symbol: PropTypes.string,
+  className: PropTypes.string,
+  children: PropTypes.node
+};
+
 export let UtilityBar = props => (
   <footer className="slds-utility-bar_container" aria-label="Utility Bar">
     <h2 className="slds-assistive-text">Utility Bar</h2>
@@ -115,6 +150,12 @@ export let UtilityBar = props => (
     {props.panel}
   </footer>
 );
+
+UtilityBar.propTypes = {
+  panel: PropTypes.node,
+  className: PropTypes.string,
+  children: PropTypes.node
+};
 
 const PanelOpen = (
   <UtilityPanel className="slds-is-open" header="Call">

@@ -72,7 +72,7 @@ exports[`Base Docked Utility Bar  renders a base docked utility bar with closed 
         <button
           className="slds-button slds-button_icon slds-button_icon"
           onClick={[Function]}
-          title="Close Panel"
+          title="Close Call"
         >
           <svg
             aria-hidden={true}
@@ -85,7 +85,7 @@ exports[`Base Docked Utility Bar  renders a base docked utility bar with closed 
           <span
             className="slds-assistive-text"
           >
-            Close Panel
+            Close Call
           </span>
         </button>
       </div>
@@ -153,7 +153,7 @@ exports[`Base Docked Utility Bar  renders a base docked utility bar with opened 
         <button
           className="slds-button slds-button_icon slds-button_icon"
           onClick={[Function]}
-          title="Close Panel"
+          title="Close Call"
         >
           <svg
             aria-hidden={true}
@@ -166,7 +166,7 @@ exports[`Base Docked Utility Bar  renders a base docked utility bar with opened 
           <span
             className="slds-assistive-text"
           >
-            Close Panel
+            Close Call
           </span>
         </button>
       </div>
@@ -311,7 +311,7 @@ exports[`Base Docked Utility Bar - Utility Bar Panel renders a default utility b
       <button
         className="slds-button slds-button_icon slds-button_icon"
         onClick={[Function]}
-        title="Close Panel"
+        title="Close Call"
       >
         <svg
           aria-hidden={true}
@@ -324,7 +324,7 @@ exports[`Base Docked Utility Bar - Utility Bar Panel renders a default utility b
         <span
           className="slds-assistive-text"
         >
-          Close Panel
+          Close Call
         </span>
       </button>
     </div>
@@ -379,7 +379,7 @@ exports[`Base Docked Utility Bar - Utility Bar Panel renders an open utility bar
       <button
         className="slds-button slds-button_icon slds-button_icon"
         onClick={[Function]}
-        title="Close Panel"
+        title="Close Call"
       >
         <svg
           aria-hidden={true}
@@ -392,7 +392,7 @@ exports[`Base Docked Utility Bar - Utility Bar Panel renders an open utility bar
         <span
           className="slds-assistive-text"
         >
-          Close Panel
+          Close Call
         </span>
       </button>
     </div>

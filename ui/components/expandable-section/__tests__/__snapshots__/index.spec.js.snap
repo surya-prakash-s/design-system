@@ -1,0 +1,109 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Expandable Section renders SectionTitleAction with explicit title 1`] = `
+<button
+  aria-controls="expando-03"
+  aria-expanded="false"
+  className="slds-button slds-section__title-action"
+  type="button"
+>
+  <svg
+    aria-hidden={true}
+    className="slds-section__title-action-icon slds-button__icon slds-button__icon_left"
+  >
+    <use
+      xlinkHref="/assets/icons/utility-sprite/svg/symbols.svg#switch"
+    />
+  </svg>
+  <span
+    className="slds-truncate"
+    title="Custom Title"
+  >
+    <span>
+      Complex Node
+    </span>
+  </span>
+</button>
+`;
+
+exports[`Expandable Section renders a closed section 1`] = `
+<div
+  className="slds-section"
+>
+  <h3
+    className="slds-section__title"
+  >
+    <button
+      aria-controls="expando-02"
+      aria-expanded="false"
+      className="slds-button slds-section__title-action"
+      type="button"
+    >
+      <svg
+        aria-hidden={true}
+        className="slds-section__title-action-icon slds-button__icon slds-button__icon_left"
+      >
+        <use
+          xlinkHref="/assets/icons/utility-sprite/svg/symbols.svg#switch"
+        />
+      </svg>
+      <span
+        className="slds-truncate"
+        title="Section Title"
+      >
+        Section Title
+      </span>
+    </button>
+  </h3>
+  <div
+    className="slds-section__content"
+    hidden={true}
+    id="expando-02"
+  >
+    <p>
+      Section Content
+    </p>
+  </div>
+</div>
+`;
+
+exports[`Expandable Section renders an open section 1`] = `
+<div
+  className="slds-section slds-is-open"
+>
+  <h3
+    className="slds-section__title"
+  >
+    <button
+      aria-controls="expando-01"
+      aria-expanded="true"
+      className="slds-button slds-section__title-action"
+      type="button"
+    >
+      <svg
+        aria-hidden={true}
+        className="slds-section__title-action-icon slds-button__icon slds-button__icon_left"
+      >
+        <use
+          xlinkHref="/assets/icons/utility-sprite/svg/symbols.svg#switch"
+        />
+      </svg>
+      <span
+        className="slds-truncate"
+        title="Section Title"
+      >
+        Section Title
+      </span>
+    </button>
+  </h3>
+  <div
+    className="slds-section__content"
+    hidden={false}
+    id="expando-01"
+  >
+    <p>
+      Section Content
+    </p>
+  </div>
+</div>
+`;

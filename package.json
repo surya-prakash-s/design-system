@@ -27,6 +27,12 @@
       "internal": false
     }
   },
+  "pnpm": {
+    "overrides": {
+      "babel-preset-current-node-syntax": "1.0.1",
+      "cheerio": "1.0.0-rc.12"
+    }
+  },
   "devDependencies": {
     "@axe-core/playwright": "^4.10.1",
     "@babel/cli": "7.12.0",
@@ -263,7 +269,8 @@
       "<rootDir>/jest.setup.js"
     ],
     "moduleNameMapper": {
-      "\\.(scss)$": "<rootDir>/shared/vendor/prism/"
+      "\\.(scss)$": "<rootDir>/shared/vendor/prism/",
+      "^node:(.*)$": "$1"
     },
     "testPathIgnorePatterns": [
       "<rootDir>/node_modules/",

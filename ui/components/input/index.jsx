@@ -38,7 +38,7 @@ const Input = props => {
       defaultValue={defaultValue}
       disabled={disabled}
       required={required}
-      aria-invalid={props['aria-describedby'] ? 'true' : undefined}
+      aria-invalid={props['aria-invalid']}
       role={role}
       tabIndex={tabIndex}
     />
@@ -50,6 +50,9 @@ Input.defaultProps = {
 };
 
 Input.propTypes = {
+  'aria-describedby': PropTypes.string,
+  'aria-invalid': PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
+  'aria-labelledby': PropTypes.string,
   id: PropTypes.string,
   className: PropTypes.string,
   type: PropTypes.oneOf([

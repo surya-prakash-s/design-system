@@ -201,6 +201,12 @@
   "overrides": {
     "chromedriver": "^133.0.0"
   },
+  "pnpm": {
+    "overrides": {
+      "babel-preset-current-node-syntax": "1.0.1",
+      "cheerio": "1.0.0-rc.12"
+    }
+  },
   "optionalDependencies": {
     "fsevents": "*"
   },
@@ -263,6 +269,7 @@
       "<rootDir>/jest.setup.js"
     ],
     "moduleNameMapper": {
+      "^node:(.*)$": "$1",
       "\\.(scss)$": "<rootDir>/shared/vendor/prism/"
     },
     "testPathIgnorePatterns": [

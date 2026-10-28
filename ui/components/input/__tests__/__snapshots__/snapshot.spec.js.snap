@@ -32,6 +32,7 @@ exports[`Input renders an input that has an error 1`] = `
     htmlFor="text-input-id-3"
   >
     <abbr
+      aria-hidden="true"
       className="slds-required"
       title="required"
     >
@@ -71,6 +72,7 @@ exports[`Input renders an input that has an error with icon 1`] = `
     htmlFor="text-input-id-5"
   >
     <abbr
+      aria-hidden="true"
       className="slds-required"
       title="required"
     >
@@ -167,6 +169,7 @@ exports[`Input renders an input that is required 1`] = `
     htmlFor="text-input-id-1"
   >
     <abbr
+      aria-hidden="true"
       className="slds-required"
       title="required"
     >
@@ -488,7 +491,6 @@ exports[`Input renders an input with inline help 1`] = `
   >
     <input
       aria-describedby="error-message-id-19"
-      aria-invalid="true"
       className="slds-input"
       id="text-input-id-18"
       placeholder="Placeholder text…"

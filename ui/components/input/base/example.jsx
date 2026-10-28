@@ -45,6 +45,7 @@ let ErrorState = () => {
         placeholder={placeholderText}
         required
         aria-describedby={errorId}
+        aria-invalid="true"
       />
     </FormElement>
   );
@@ -70,6 +71,7 @@ let ErrorIcon = () => {
         required
         placeholder={placeholderText}
         aria-describedby={errorId}
+        aria-invalid="true"
       />
     </FormElement>
   );

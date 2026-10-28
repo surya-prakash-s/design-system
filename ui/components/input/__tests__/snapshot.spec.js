@@ -7,7 +7,7 @@ import createHelpers from '../../../../jest.helpers';
 const { matchesMarkup } = createHelpers(__dirname);
 
 describe('Input', () => {
-  it('renders a default input', () => matchesMarkup(Input.default));
+  it('renders a default input', () => matchesMarkup(Input.default[0].element));
 
   it('renders an input that is required', () =>
     matchesMarkup(getDisplayElementById(Input.states, 'input-required')));

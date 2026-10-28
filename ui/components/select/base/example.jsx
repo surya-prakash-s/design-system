@@ -19,6 +19,7 @@ export let Select = props => {
   const renderSelect = () => (
     <select
       aria-describedby={props['aria-describedby']}
+      aria-invalid={props['aria-invalid']}
       className={classNames('slds-select', props.className)}
       disabled={props.disabled}
       id={props.id || defaultSelectId}
@@ -37,12 +38,15 @@ export let Select = props => {
   return props.hasNoContainer ? renderSelect() : renderWithContainter();
 };
 Select.propTypes = {
+  'aria-describedby': PropTypes.string,
+  'aria-invalid': PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
   children: PropTypes.node,
   className: PropTypes.string,
   disabled: PropTypes.bool,
   hasNoContainer: PropTypes.bool,
   id: PropTypes.string,
   multiple: PropTypes.bool,
+  onChange: PropTypes.func,
   required: PropTypes.bool
 };
 
@@ -70,7 +74,7 @@ let ErrorState = props => (
     isRequired
     inlineMessage="Select an option."
   >
-    <Select id={defaultSelectId} aria-describedby={errorId} required>
+    <Select id={defaultSelectId} aria-describedby={errorId} aria-invalid="true" required>
       <option value="">Select…</option>
       <option>Option One</option>
       <option>Option Two</option>

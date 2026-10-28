@@ -27,6 +27,8 @@ export let Textarea = props => (
 );
 
 Textarea.propTypes = {
+  'aria-describedby': PropTypes.string,
+  'aria-invalid': PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
   id: PropTypes.string,
   className: PropTypes.string,
   placeholder: PropTypes.string
@@ -83,7 +85,7 @@ export let states = [
         errorId="error-01"
         inlineMessage="Enter a value."
       >
-        <Textarea id={textareaId} required aria-describedby="error-01" />
+        <Textarea id={textareaId} required aria-describedby="error-01" aria-invalid="true" />
       </FormElement>
     )
   },

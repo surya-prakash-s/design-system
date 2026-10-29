@@ -71,15 +71,15 @@ export let examples = [
           </div>
         </ButtonGroupItem>
         <ButtonGroupItem>
-          <ButtonIcon symbol="edit" theme="neutral" />
+          <ButtonIcon symbol="edit" theme="neutral" assistiveText="Edit" title="Edit" />
         </ButtonGroupItem>
         <ButtonGroupItem>
-          <ButtonIcon symbol="refresh" theme="neutral" />
+          <ButtonIcon symbol="refresh" theme="neutral" assistiveText="Refresh" title="Refresh" />
         </ButtonGroupItem>
         <ButtonGroupItem>
           <ButtonGroup>
-            <ButtonIcon symbol="chart" theme="neutral" />
-            <ButtonIcon symbol="filter" theme="neutral" />
+            <ButtonIcon symbol="chart" theme="neutral" assistiveText="Charts" title="Charts" />
+            <ButtonIcon symbol="filter" theme="neutral" assistiveText="Filter" title="Filter" />
           </ButtonGroup>
         </ButtonGroupItem>
       </ButtonGroupRow>

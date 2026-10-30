@@ -37,14 +37,25 @@ exports[`Pill - Listbox of Pills renders a default listbox of pills 1`] = `
           className="slds-icon_container slds-pill__remove"
           title="Remove"
         >
-          <svg
-            aria-hidden={true}
-            className="slds-icon slds-icon_x-small slds-icon-text-default"
+          <button
+            className="slds-button slds-button_icon slds-button_icon slds-pill__remove"
+            onClick={[Function]}
+            title="Remove"
           >
-            <use
-              xlinkHref="/assets/icons/utility-sprite/svg/symbols.svg#close"
-            />
-          </svg>
+            <svg
+              aria-hidden={true}
+              className="slds-button__icon"
+            >
+              <use
+                xlinkHref="/assets/icons/utility-sprite/svg/symbols.svg#close"
+              />
+            </svg>
+            <span
+              className="slds-assistive-text"
+            >
+              Remove
+            </span>
+          </button>
         </span>
       </span>
     </li>
@@ -67,14 +78,25 @@ exports[`Pill - Listbox of Pills renders a default listbox of pills 1`] = `
           className="slds-icon_container slds-pill__remove"
           title="Remove"
         >
-          <svg
-            aria-hidden={true}
-            className="slds-icon slds-icon_x-small slds-icon-text-default"
+          <button
+            className="slds-button slds-button_icon slds-button_icon slds-pill__remove"
+            onClick={[Function]}
+            title="Remove"
           >
-            <use
-              xlinkHref="/assets/icons/utility-sprite/svg/symbols.svg#close"
-            />
-          </svg>
+            <svg
+              aria-hidden={true}
+              className="slds-button__icon"
+            >
+              <use
+                xlinkHref="/assets/icons/utility-sprite/svg/symbols.svg#close"
+              />
+            </svg>
+            <span
+              className="slds-assistive-text"
+            >
+              Remove
+            </span>
+          </button>
         </span>
       </span>
     </li>
@@ -119,14 +141,25 @@ exports[`Pill - Listbox of Pills renders a listbox of pills - bare 1`] = `
           className="slds-icon_container slds-pill__remove"
           title="Remove"
         >
-          <svg
-            aria-hidden={true}
-            className="slds-icon slds-icon_x-small slds-icon-text-default"
+          <button
+            className="slds-button slds-button_icon slds-button_icon slds-pill__remove"
+            onClick={[Function]}
+            title="Remove"
           >
-            <use
-              xlinkHref="/assets/icons/utility-sprite/svg/symbols.svg#close"
-            />
-          </svg>
+            <svg
+              aria-hidden={true}
+              className="slds-button__icon"
+            >
+              <use
+                xlinkHref="/assets/icons/utility-sprite/svg/symbols.svg#close"
+              />
+            </svg>
+            <span
+              className="slds-assistive-text"
+            >
+              Remove
+            </span>
+          </button>
         </span>
       </span>
     </li>
@@ -149,14 +182,25 @@ exports[`Pill - Listbox of Pills renders a listbox of pills - bare 1`] = `
           className="slds-icon_container slds-pill__remove"
           title="Remove"
         >
-          <svg
-            aria-hidden={true}
-            className="slds-icon slds-icon_x-small slds-icon-text-default"
+          <button
+            className="slds-button slds-button_icon slds-button_icon slds-pill__remove"
+            onClick={[Function]}
+            title="Remove"
           >
-            <use
-              xlinkHref="/assets/icons/utility-sprite/svg/symbols.svg#close"
-            />
-          </svg>
+            <svg
+              aria-hidden={true}
+              className="slds-button__icon"
+            >
+              <use
+                xlinkHref="/assets/icons/utility-sprite/svg/symbols.svg#close"
+              />
+            </svg>
+            <span
+              className="slds-assistive-text"
+            >
+              Remove
+            </span>
+          </button>
         </span>
       </span>
     </li>
@@ -198,14 +242,25 @@ exports[`Pill - Listbox of Pills renders a listbox of pills - group 1`] = `
             className="slds-icon_container slds-pill__remove"
             title="Remove"
           >
-            <svg
-              aria-hidden={true}
-              className="slds-icon slds-icon_x-small slds-icon-text-default"
+            <button
+              className="slds-button slds-button_icon slds-button_icon slds-pill__remove"
+              onClick={[Function]}
+              title="Remove"
             >
-              <use
-                xlinkHref="/assets/icons/utility-sprite/svg/symbols.svg#close"
-              />
-            </svg>
+              <svg
+                aria-hidden={true}
+                className="slds-button__icon"
+              >
+                <use
+                  xlinkHref="/assets/icons/utility-sprite/svg/symbols.svg#close"
+                />
+              </svg>
+              <span
+                className="slds-assistive-text"
+              >
+                Remove
+              </span>
+            </button>
           </span>
         </span>
       </li>
@@ -228,14 +283,25 @@ exports[`Pill - Listbox of Pills renders a listbox of pills - group 1`] = `
             className="slds-icon_container slds-pill__remove"
             title="Remove"
           >
-            <svg
-              aria-hidden={true}
-              className="slds-icon slds-icon_x-small slds-icon-text-default"
+            <button
+              className="slds-button slds-button_icon slds-button_icon slds-pill__remove"
+              onClick={[Function]}
+              title="Remove"
             >
-              <use
-                xlinkHref="/assets/icons/utility-sprite/svg/symbols.svg#close"
-              />
-            </svg>
+              <svg
+                aria-hidden={true}
+                className="slds-button__icon"
+              >
+                <use
+                  xlinkHref="/assets/icons/utility-sprite/svg/symbols.svg#close"
+                />
+              </svg>
+              <span
+                className="slds-assistive-text"
+              >
+                Remove
+              </span>
+            </button>
           </span>
         </span>
       </li>
@@ -290,14 +356,25 @@ exports[`Pill - Listbox of Pills renders a listbox of pills with an avatar 1`] =
           className="slds-icon_container slds-pill__remove"
           title="Remove"
         >
-          <svg
-            aria-hidden={true}
-            className="slds-icon slds-icon_x-small slds-icon-text-default"
+          <button
+            className="slds-button slds-button_icon slds-button_icon slds-pill__remove"
+            onClick={[Function]}
+            title="Remove"
           >
-            <use
-              xlinkHref="/assets/icons/utility-sprite/svg/symbols.svg#close"
-            />
-          </svg>
+            <svg
+              aria-hidden={true}
+              className="slds-button__icon"
+            >
+              <use
+                xlinkHref="/assets/icons/utility-sprite/svg/symbols.svg#close"
+              />
+            </svg>
+            <span
+              className="slds-assistive-text"
+            >
+              Remove
+            </span>
+          </button>
         </span>
       </span>
     </li>
@@ -329,14 +406,25 @@ exports[`Pill - Listbox of Pills renders a listbox of pills with an avatar 1`] =
           className="slds-icon_container slds-pill__remove"
           title="Remove"
         >
-          <svg
-            aria-hidden={true}
-            className="slds-icon slds-icon_x-small slds-icon-text-default"
+          <button
+            className="slds-button slds-button_icon slds-button_icon slds-pill__remove"
+            onClick={[Function]}
+            title="Remove"
           >
-            <use
-              xlinkHref="/assets/icons/utility-sprite/svg/symbols.svg#close"
-            />
-          </svg>
+            <svg
+              aria-hidden={true}
+              className="slds-button__icon"
+            >
+              <use
+                xlinkHref="/assets/icons/utility-sprite/svg/symbols.svg#close"
+              />
+            </svg>
+            <span
+              className="slds-assistive-text"
+            >
+              Remove
+            </span>
+          </button>
         </span>
       </span>
     </li>
@@ -399,14 +487,25 @@ exports[`Pill - Listbox of Pills renders a listbox of pills with an icon 1`] = `
           className="slds-icon_container slds-pill__remove"
           title="Remove"
         >
-          <svg
-            aria-hidden={true}
-            className="slds-icon slds-icon_x-small slds-icon-text-default"
+          <button
+            className="slds-button slds-button_icon slds-button_icon slds-pill__remove"
+            onClick={[Function]}
+            title="Remove"
           >
-            <use
-              xlinkHref="/assets/icons/utility-sprite/svg/symbols.svg#close"
-            />
-          </svg>
+            <svg
+              aria-hidden={true}
+              className="slds-button__icon"
+            >
+              <use
+                xlinkHref="/assets/icons/utility-sprite/svg/symbols.svg#close"
+              />
+            </svg>
+            <span
+              className="slds-assistive-text"
+            >
+              Remove
+            </span>
+          </button>
         </span>
       </span>
     </li>
@@ -447,14 +546,25 @@ exports[`Pill - Listbox of Pills renders a listbox of pills with an icon 1`] = `
           className="slds-icon_container slds-pill__remove"
           title="Remove"
         >
-          <svg
-            aria-hidden={true}
-            className="slds-icon slds-icon_x-small slds-icon-text-default"
+          <button
+            className="slds-button slds-button_icon slds-button_icon slds-pill__remove"
+            onClick={[Function]}
+            title="Remove"
           >
-            <use
-              xlinkHref="/assets/icons/utility-sprite/svg/symbols.svg#close"
-            />
-          </svg>
+            <svg
+              aria-hidden={true}
+              className="slds-button__icon"
+            >
+              <use
+                xlinkHref="/assets/icons/utility-sprite/svg/symbols.svg#close"
+              />
+            </svg>
+            <span
+              className="slds-assistive-text"
+            >
+              Remove
+            </span>
+          </button>
         </span>
       </span>
     </li>
@@ -746,7 +856,7 @@ exports[`Pill renders a pill that is truncated 1`] = `
     <button
       className="slds-button slds-button_icon slds-button_icon slds-pill__remove"
       onClick={[Function]}
-      title="Remove"
+      title="Remove Pill label that is longer than the area that contains it"
     >
       <svg
         aria-hidden={true}
@@ -759,7 +869,7 @@ exports[`Pill renders a pill that is truncated 1`] = `
       <span
         className="slds-assistive-text"
       >
-        Remove
+        Remove Pill label that is longer than the area that contains it
       </span>
     </button>
   </span>
